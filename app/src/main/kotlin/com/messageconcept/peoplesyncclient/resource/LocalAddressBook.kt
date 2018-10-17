@@ -1,7 +1,7 @@
 /*
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
-package at.bitfire.davdroid.resource
+package com.messageconcept.peoplesyncclient.resource
 
 import android.accounts.Account
 import android.accounts.AccountManager
@@ -16,16 +16,16 @@ import android.provider.ContactsContract.Groups
 import android.provider.ContactsContract.RawContacts
 import androidx.annotation.OpenForTesting
 import androidx.core.content.contentValuesOf
-import at.bitfire.davdroid.R
-import at.bitfire.davdroid.db.SyncState
-import at.bitfire.davdroid.repository.DavCollectionRepository
-import at.bitfire.davdroid.repository.DavServiceRepository
-import at.bitfire.davdroid.resource.LocalAddressBook.Companion.USER_DATA_READ_ONLY
-import at.bitfire.davdroid.resource.workaround.ContactDirtyVerifier
-import at.bitfire.davdroid.settings.AccountSettings
-import at.bitfire.davdroid.sync.SyncFrameworkIntegration
-import at.bitfire.davdroid.sync.account.SystemAccountUtils
-import at.bitfire.davdroid.sync.account.setAndVerifyUserData
+import com.messageconcept.peoplesyncclient.R
+import com.messageconcept.peoplesyncclient.db.SyncState
+import com.messageconcept.peoplesyncclient.repository.DavCollectionRepository
+import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
+import com.messageconcept.peoplesyncclient.resource.LocalAddressBook.Companion.USER_DATA_READ_ONLY
+import com.messageconcept.peoplesyncclient.resource.workaround.ContactDirtyVerifier
+import com.messageconcept.peoplesyncclient.settings.AccountSettings
+import com.messageconcept.peoplesyncclient.sync.SyncFrameworkIntegration
+import com.messageconcept.peoplesyncclient.sync.account.SystemAccountUtils
+import com.messageconcept.peoplesyncclient.sync.account.setAndVerifyUserData
 import at.bitfire.vcard4android.AndroidAddressBook
 import at.bitfire.vcard4android.AndroidContact
 import at.bitfire.vcard4android.AndroidGroup
@@ -338,7 +338,7 @@ open class LocalAddressBook @AssistedInject constructor(
         const val USER_DATA_ACCOUNT_TYPE = "account_type"
 
         /**
-         * ID of the corresponding database [at.bitfire.davdroid.db.Collection].
+         * ID of the corresponding database [com.messageconcept.peoplesyncclient.db.Collection].
          *
          * User data of the address book account (Long).
          */

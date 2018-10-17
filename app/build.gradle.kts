@@ -17,7 +17,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "at.bitfire.davdroid"
+        applicationId = "com.messageconcept.peoplesyncclient"
 
         versionCode = 404100004
         versionName = "4.4.10"
@@ -27,7 +27,7 @@ android {
         minSdk = 24        // Android 7.0
         targetSdk = 35     // Android 15
 
-        testInstrumentationRunner = "at.bitfire.davdroid.HiltTestRunner"
+        testInstrumentationRunner = "com.messageconcept.peoplesyncclient.HiltTestRunner"
     }
 
     java {
@@ -49,7 +49,7 @@ android {
     }
 
     // Java namespace for our classes (not to be confused with Android package ID)
-    namespace = "at.bitfire.davdroid"
+    namespace = "com.messageconcept.peoplesyncclient"
 
     flavorDimensions += "distribution"
     productFlavors {

@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.ui.setup
+package com.messageconcept.peoplesyncclient.ui.setup
 
 import android.accounts.Account
 import android.net.Uri
@@ -27,10 +27,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import at.bitfire.davdroid.Constants
-import at.bitfire.davdroid.Constants.withStatParams
-import at.bitfire.davdroid.R
-import at.bitfire.davdroid.ui.AppTheme
+import com.messageconcept.peoplesyncclient.Constants
+import com.messageconcept.peoplesyncclient.Constants.withStatParams
+import com.messageconcept.peoplesyncclient.R
+import com.messageconcept.peoplesyncclient.ui.AppTheme
 
 @Composable
 fun LoginScreen(

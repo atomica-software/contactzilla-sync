@@ -2,13 +2,13 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.sync.groups
+package com.messageconcept.peoplesyncclient.sync.groups
 
 import android.content.ContentUris
 import android.provider.ContactsContract
-import at.bitfire.davdroid.resource.LocalAddressBook
-import at.bitfire.davdroid.resource.LocalGroup
-import at.bitfire.davdroid.sync.ContactsSyncManager.Companion.disjunct
+import com.messageconcept.peoplesyncclient.resource.LocalAddressBook
+import com.messageconcept.peoplesyncclient.resource.LocalGroup
+import com.messageconcept.peoplesyncclient.sync.ContactsSyncManager.Companion.disjunct
 import at.bitfire.vcard4android.BatchOperation
 import at.bitfire.vcard4android.Contact
 import java.io.FileNotFoundException

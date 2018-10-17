@@ -2,13 +2,13 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.push
+package com.messageconcept.peoplesyncclient.push
 
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import androidx.test.rule.ServiceTestRule
-import at.bitfire.davdroid.di.MainDispatcher
+import com.messageconcept.peoplesyncclient.di.MainDispatcher
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule

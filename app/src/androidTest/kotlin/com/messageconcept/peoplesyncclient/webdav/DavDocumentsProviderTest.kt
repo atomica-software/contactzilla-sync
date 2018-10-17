@@ -2,15 +2,15 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.webdav
+package com.messageconcept.peoplesyncclient.webdav
 
 import android.content.Context
 import android.security.NetworkSecurityPolicy
-import at.bitfire.davdroid.db.AppDatabase
-import at.bitfire.davdroid.db.WebDavDocument
-import at.bitfire.davdroid.db.WebDavMount
-import at.bitfire.davdroid.di.MainDispatcher
-import at.bitfire.davdroid.network.HttpClient
+import com.messageconcept.peoplesyncclient.db.AppDatabase
+import com.messageconcept.peoplesyncclient.db.WebDavDocument
+import com.messageconcept.peoplesyncclient.db.WebDavMount
+import com.messageconcept.peoplesyncclient.di.MainDispatcher
+import com.messageconcept.peoplesyncclient.network.HttpClient
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

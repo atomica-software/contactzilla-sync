@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.ui
+package com.messageconcept.peoplesyncclient.ui
 
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.LocalActivity
@@ -23,7 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.LocalView
 import androidx.lifecycle.compose.LifecycleResumeEffect
-import at.bitfire.davdroid.ui.composable.SafeAndroidUriHandler
+import com.messageconcept.peoplesyncclient.ui.composable.SafeAndroidUriHandler
 
 @Composable
 fun AppTheme(

@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.sync
+package com.messageconcept.peoplesyncclient.sync
 
 import android.accounts.Account
 import android.content.Context
@@ -27,20 +27,20 @@ import at.bitfire.dav4jvm.property.caldav.GetCTag
 import at.bitfire.dav4jvm.property.caldav.ScheduleTag
 import at.bitfire.dav4jvm.property.webdav.GetETag
 import at.bitfire.dav4jvm.property.webdav.SyncToken
-import at.bitfire.davdroid.R
-import at.bitfire.davdroid.db.Collection
-import at.bitfire.davdroid.db.SyncState
-import at.bitfire.davdroid.network.HttpClient
-import at.bitfire.davdroid.repository.AccountRepository
-import at.bitfire.davdroid.repository.DavCollectionRepository
-import at.bitfire.davdroid.repository.DavServiceRepository
-import at.bitfire.davdroid.repository.DavSyncStatsRepository
-import at.bitfire.davdroid.resource.LocalCollection
-import at.bitfire.davdroid.resource.LocalResource
-import at.bitfire.davdroid.sync.SyncManager.Companion.DELAY_UNTIL_DEFAULT
-import at.bitfire.davdroid.sync.SyncManager.Companion.DELAY_UNTIL_MAX
-import at.bitfire.davdroid.sync.SyncManager.Companion.DELAY_UNTIL_MIN
-import at.bitfire.davdroid.sync.account.InvalidAccountException
+import com.messageconcept.peoplesyncclient.R
+import com.messageconcept.peoplesyncclient.db.Collection
+import com.messageconcept.peoplesyncclient.db.SyncState
+import com.messageconcept.peoplesyncclient.network.HttpClient
+import com.messageconcept.peoplesyncclient.repository.AccountRepository
+import com.messageconcept.peoplesyncclient.repository.DavCollectionRepository
+import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
+import com.messageconcept.peoplesyncclient.repository.DavSyncStatsRepository
+import com.messageconcept.peoplesyncclient.resource.LocalCollection
+import com.messageconcept.peoplesyncclient.resource.LocalResource
+import com.messageconcept.peoplesyncclient.sync.SyncManager.Companion.DELAY_UNTIL_DEFAULT
+import com.messageconcept.peoplesyncclient.sync.SyncManager.Companion.DELAY_UNTIL_MAX
+import com.messageconcept.peoplesyncclient.sync.SyncManager.Companion.DELAY_UNTIL_MIN
+import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
 import at.bitfire.ical4android.CalendarStorageException
 import at.bitfire.vcard4android.ContactsStorageException
 import dagger.hilt.android.qualifiers.ApplicationContext

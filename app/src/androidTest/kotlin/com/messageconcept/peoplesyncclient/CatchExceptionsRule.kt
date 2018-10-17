@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid
+package com.messageconcept.peoplesyncclient
 
 import org.junit.rules.TestRule
 import org.junit.runner.Description

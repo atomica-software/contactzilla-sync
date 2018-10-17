@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.ui
+package com.messageconcept.peoplesyncclient.ui
 
 import android.accounts.Account
 import android.content.Context
@@ -22,18 +22,18 @@ import androidx.lifecycle.ViewModel
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.WorkQuery
-import at.bitfire.davdroid.db.AppDatabase
-import at.bitfire.davdroid.repository.AccountRepository
-import at.bitfire.davdroid.servicedetection.RefreshCollectionsWorker
-import at.bitfire.davdroid.sync.SyncDataType
-import at.bitfire.davdroid.sync.worker.BaseSyncWorker
-import at.bitfire.davdroid.sync.worker.OneTimeSyncWorker
-import at.bitfire.davdroid.sync.worker.SyncWorkerManager
-import at.bitfire.davdroid.ui.account.AccountProgress
-import at.bitfire.davdroid.ui.intro.IntroPage
-import at.bitfire.davdroid.ui.intro.IntroPageFactory
-import at.bitfire.davdroid.util.broadcastReceiverFlow
-import at.bitfire.davdroid.util.packageChangedFlow
+import com.messageconcept.peoplesyncclient.db.AppDatabase
+import com.messageconcept.peoplesyncclient.repository.AccountRepository
+import com.messageconcept.peoplesyncclient.servicedetection.RefreshCollectionsWorker
+import com.messageconcept.peoplesyncclient.sync.SyncDataType
+import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker
+import com.messageconcept.peoplesyncclient.sync.worker.OneTimeSyncWorker
+import com.messageconcept.peoplesyncclient.sync.worker.SyncWorkerManager
+import com.messageconcept.peoplesyncclient.ui.account.AccountProgress
+import com.messageconcept.peoplesyncclient.ui.intro.IntroPage
+import com.messageconcept.peoplesyncclient.ui.intro.IntroPageFactory
+import com.messageconcept.peoplesyncclient.util.broadcastReceiverFlow
+import com.messageconcept.peoplesyncclient.util.packageChangedFlow
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

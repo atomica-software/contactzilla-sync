@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.ui.setup
+package com.messageconcept.peoplesyncclient.ui.setup
 
 import android.content.ActivityNotFoundException
 import android.net.Uri
@@ -45,11 +45,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.text.HtmlCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import at.bitfire.davdroid.Constants
-import at.bitfire.davdroid.Constants.withStatParams
-import at.bitfire.davdroid.R
-import at.bitfire.davdroid.ui.UiUtils.toAnnotatedString
-import at.bitfire.davdroid.ui.setup.GoogleLogin.GOOGLE_POLICY_URL
+import com.messageconcept.peoplesyncclient.Constants
+import com.messageconcept.peoplesyncclient.Constants.withStatParams
+import com.messageconcept.peoplesyncclient.R
+import com.messageconcept.peoplesyncclient.ui.UiUtils.toAnnotatedString
+import com.messageconcept.peoplesyncclient.ui.setup.GoogleLogin.GOOGLE_POLICY_URL
 import java.util.logging.Level
 import java.util.logging.Logger
 

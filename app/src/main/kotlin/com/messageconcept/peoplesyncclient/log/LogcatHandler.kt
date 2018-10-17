@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.log
+package com.messageconcept.peoplesyncclient.log
 
 import android.os.Build
 import android.util.Log
-import at.bitfire.davdroid.BuildConfig
+import com.messageconcept.peoplesyncclient.BuildConfig
 import com.google.common.base.Ascii
 import java.util.logging.Handler
 import java.util.logging.Level

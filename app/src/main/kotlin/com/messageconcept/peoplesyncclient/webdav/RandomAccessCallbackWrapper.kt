@@ -2,15 +2,15 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.webdav
+package com.messageconcept.peoplesyncclient.webdav
 
 import android.os.Build
 import android.os.Handler
 import android.os.HandlerThread
 import android.os.ProxyFileDescriptorCallback
 import androidx.annotation.RequiresApi
-import at.bitfire.davdroid.network.HttpClient
-import at.bitfire.davdroid.webdav.RandomAccessCallbackWrapper.Companion.TIMEOUT_INTERVAL
+import com.messageconcept.peoplesyncclient.network.HttpClient
+import com.messageconcept.peoplesyncclient.webdav.RandomAccessCallbackWrapper.Companion.TIMEOUT_INTERVAL
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

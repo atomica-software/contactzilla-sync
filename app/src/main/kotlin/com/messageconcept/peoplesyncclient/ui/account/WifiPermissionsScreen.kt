@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.ui.account
+package com.messageconcept.peoplesyncclient.ui.account
 
 import android.Manifest
 import android.os.Build
@@ -40,12 +40,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import at.bitfire.davdroid.Constants
-import at.bitfire.davdroid.Constants.withStatParams
-import at.bitfire.davdroid.R
-import at.bitfire.davdroid.ui.AppTheme
-import at.bitfire.davdroid.ui.composable.PermissionSwitchRow
-import at.bitfire.davdroid.util.PermissionUtils
+import com.messageconcept.peoplesyncclient.Constants
+import com.messageconcept.peoplesyncclient.Constants.withStatParams
+import com.messageconcept.peoplesyncclient.R
+import com.messageconcept.peoplesyncclient.ui.AppTheme
+import com.messageconcept.peoplesyncclient.ui.composable.PermissionSwitchRow
+import com.messageconcept.peoplesyncclient.util.PermissionUtils
 
 @Composable
 fun WifiPermissionsScreen(

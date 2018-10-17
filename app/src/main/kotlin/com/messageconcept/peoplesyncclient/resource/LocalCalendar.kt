@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.resource
+package com.messageconcept.peoplesyncclient.resource
 
 import android.accounts.Account
 import android.content.ContentProviderClient
@@ -11,7 +11,7 @@ import android.content.ContentValues
 import android.provider.CalendarContract.Calendars
 import android.provider.CalendarContract.Events
 import androidx.core.content.contentValuesOf
-import at.bitfire.davdroid.db.SyncState
+import com.messageconcept.peoplesyncclient.db.SyncState
 import at.bitfire.ical4android.AndroidCalendar
 import at.bitfire.ical4android.AndroidCalendarFactory
 import at.bitfire.ical4android.BatchOperation
@@ -23,7 +23,7 @@ import java.util.logging.Logger
 /**
  * Application-specific subclass of [AndroidCalendar] for local calendars.
  *
- * [Calendars._SYNC_ID] corresponds to the database collection ID ([at.bitfire.davdroid.db.Collection.id]).
+ * [Calendars._SYNC_ID] corresponds to the database collection ID ([com.messageconcept.peoplesyncclient.db.Collection.id]).
  */
 class LocalCalendar private constructor(
     account: Account,

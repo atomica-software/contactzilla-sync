@@ -2,13 +2,13 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.network
+package com.messageconcept.peoplesyncclient.network
 
 import at.bitfire.dav4jvm.exception.DavException
 import at.bitfire.dav4jvm.exception.HttpException
-import at.bitfire.davdroid.db.Credentials
-import at.bitfire.davdroid.ui.setup.LoginInfo
-import at.bitfire.davdroid.util.withTrailingSlash
+import com.messageconcept.peoplesyncclient.db.Credentials
+import com.messageconcept.peoplesyncclient.ui.setup.LoginInfo
+import com.messageconcept.peoplesyncclient.util.withTrailingSlash
 import at.bitfire.vcard4android.GroupMethod
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runInterruptible

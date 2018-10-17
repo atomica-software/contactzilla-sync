@@ -2,20 +2,20 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid.sync
+package com.messageconcept.peoplesyncclient.sync
 
 import android.content.ContentProviderClient
 import android.content.Context
 import androidx.test.rule.GrantPermissionRule
-import at.bitfire.davdroid.CatchExceptionsRule
-import at.bitfire.davdroid.db.Collection
-import at.bitfire.davdroid.db.Service
-import at.bitfire.davdroid.network.HttpClient
-import at.bitfire.davdroid.repository.DavServiceRepository
-import at.bitfire.davdroid.resource.LocalJtxCollection
-import at.bitfire.davdroid.resource.LocalJtxCollectionStore
-import at.bitfire.davdroid.sync.account.TestAccount
-import at.bitfire.davdroid.util.PermissionUtils
+import com.messageconcept.peoplesyncclient.CatchExceptionsRule
+import com.messageconcept.peoplesyncclient.db.Collection
+import com.messageconcept.peoplesyncclient.db.Service
+import com.messageconcept.peoplesyncclient.network.HttpClient
+import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
+import com.messageconcept.peoplesyncclient.resource.LocalJtxCollection
+import com.messageconcept.peoplesyncclient.resource.LocalJtxCollectionStore
+import com.messageconcept.peoplesyncclient.sync.account.TestAccount
+import com.messageconcept.peoplesyncclient.util.PermissionUtils
 import at.bitfire.ical4android.TaskProvider
 import at.bitfire.ical4android.util.MiscUtils.closeCompat
 import at.techbee.jtx.JtxContract

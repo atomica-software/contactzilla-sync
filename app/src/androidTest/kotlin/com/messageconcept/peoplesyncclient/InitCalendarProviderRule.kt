@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid
+package com.messageconcept.peoplesyncclient
 
 import android.Manifest
 import android.accounts.Account
@@ -13,8 +13,8 @@ import android.os.Build
 import android.provider.CalendarContract
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
-import at.bitfire.davdroid.resource.LocalCalendar
-import at.bitfire.davdroid.resource.LocalEvent
+import com.messageconcept.peoplesyncclient.resource.LocalCalendar
+import com.messageconcept.peoplesyncclient.resource.LocalEvent
 import at.bitfire.ical4android.AndroidCalendar
 import at.bitfire.ical4android.Event
 import net.fortuna.ical4j.model.property.DtStart
@@ -34,7 +34,7 @@ import java.util.logging.Logger
  * So this rule is needed to allow tests which need the calendar provider to succeed even when the calendar provider
  * is used the very first time (especially in CI tests / a fresh emulator).
  *
- * See [at.bitfire.davdroid.resource.LocalCalendarTest] for an example of how to use this rule.
+ * See [com.messageconcept.peoplesyncclient.resource.LocalCalendarTest] for an example of how to use this rule.
  */
 class InitCalendarProviderRule private constructor(): ExternalResource() {
 

@@ -2,14 +2,14 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package at.bitfire.davdroid
+package com.messageconcept.peoplesyncclient
 
 import android.app.Application
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import androidx.test.runner.AndroidJUnitRunner
-import at.bitfire.davdroid.sync.SyncAdapterService
+import com.messageconcept.peoplesyncclient.sync.SyncAdapterService
 import dagger.hilt.android.testing.HiltTestApplication
 
 @Suppress("unused")
