@@ -8,7 +8,7 @@ import com.messageconcept.peoplesyncclient.db.SyncState
 
 interface LocalCollection<out T: LocalResource<*>> {
 
-    /** a tag that uniquely identifies the collection (DAVx5-wide) */
+    /** a tag that uniquely identifies the collection (PeopleSync-wide) */
     val tag: String
 
     /** ID of the collection in the database (corresponds to [com.messageconcept.peoplesyncclient.db.Collection.id]) */
