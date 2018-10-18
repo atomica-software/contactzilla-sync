@@ -18,8 +18,7 @@ class StandardLoginTypesProvider @Inject constructor(
     companion object {
         val genericLoginTypes = listOf(
             UrlLogin,
-            EmailLogin,
-            AdvancedLogin
+            EmailLogin
         )
 
         val specificLoginTypes = listOf(
