@@ -26,7 +26,6 @@ import androidx.work.WorkQuery
 import androidx.work.WorkRequest
 import com.messageconcept.peoplesyncclient.push.PushNotificationManager
 import com.messageconcept.peoplesyncclient.sync.SyncDataType
-import com.messageconcept.peoplesyncclient.sync.TasksAppManager
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.INPUT_ACCOUNT_NAME
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.INPUT_ACCOUNT_TYPE
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.INPUT_DATA_TYPE
@@ -53,7 +52,6 @@ class SyncWorkerManager @Inject constructor(
     @ApplicationContext val context: Context,
     val logger: Logger,
     val pushNotificationManager: PushNotificationManager,
-    val tasksAppManager: Lazy<TasksAppManager>
 ) {
 
     // one-time sync workers

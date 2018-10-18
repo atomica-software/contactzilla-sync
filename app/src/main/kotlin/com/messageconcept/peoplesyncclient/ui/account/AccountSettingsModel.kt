@@ -14,7 +14,6 @@ import com.messageconcept.peoplesyncclient.db.Service
 import com.messageconcept.peoplesyncclient.settings.AccountSettings
 import com.messageconcept.peoplesyncclient.settings.SettingsManager
 import com.messageconcept.peoplesyncclient.sync.SyncDataType
-import com.messageconcept.peoplesyncclient.sync.TasksAppManager
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker
 import com.messageconcept.peoplesyncclient.sync.worker.SyncWorkerManager
 import at.bitfire.vcard4android.GroupMethod
@@ -39,7 +38,6 @@ class AccountSettingsModel @AssistedInject constructor(
     db: AppDatabase,
     private val settings: SettingsManager,
     private val syncWorkerManager: SyncWorkerManager,
-    private val tasksAppManager: TasksAppManager
 ): ViewModel(), SettingsManager.OnChangeListener {
 
     @AssistedFactory
@@ -75,8 +73,6 @@ class AccountSettingsModel @AssistedInject constructor(
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 
     private val serviceDao = db.serviceDao()
-    private val tasksProvider
-        get() = tasksAppManager.currentProvider()
 
     /**
      * Only acquire account settings on a worker thread!
@@ -104,16 +100,10 @@ class AccountSettingsModel @AssistedInject constructor(
 
     private suspend fun reload() = withContext(Dispatchers.Default) {
         val hasContactsSync = serviceDao.getByAccountAndType(account.name, Service.TYPE_CARDDAV) != null
-        val hasCalendarSync = serviceDao.getByAccountAndType(account.name, Service.TYPE_CALDAV) != null
-        val hasTasksSync = hasCalendarSync && tasksProvider != null
 
         _uiState.value = UiState(
             hasContactsSync = hasContactsSync,
             syncIntervalContacts = accountSettings.getSyncInterval(SyncDataType.CONTACTS),
-            hasCalendarsSync = hasCalendarSync,
-            syncIntervalCalendars = accountSettings.getSyncInterval(SyncDataType.EVENTS),
-            hasTasksSync = hasTasksSync,
-            syncIntervalTasks = accountSettings.getSyncInterval(SyncDataType.TASKS),
 
             syncWifiOnly = accountSettings.getSyncWifiOnly(),
             syncWifiOnlySSIDs = accountSettings.getSyncWifiOnlySSIDs(),
@@ -122,11 +112,6 @@ class AccountSettingsModel @AssistedInject constructor(
             credentials = accountSettings.credentials(),
             allowCredentialsChange = accountSettings.changingCredentialsAllowed(),
 
-            timeRangePastDays = accountSettings.getTimeRangePastDays(),
-            defaultAlarmMinBefore = accountSettings.getDefaultAlarm(),
-            manageCalendarColors = accountSettings.getManageCalendarColors(),
-            eventColors = accountSettings.getEventColors(),
-
             contactGroupMethod = accountSettings.getGroupMethod(),
         )
     }
@@ -134,20 +119,6 @@ class AccountSettingsModel @AssistedInject constructor(
     fun updateContactsSyncInterval(syncInterval: Long) {
         CoroutineScope(Dispatchers.Default).launch {
             accountSettings.setSyncInterval(SyncDataType.CONTACTS, syncInterval.takeUnless { it == -1L })
-            reload()
-        }
-    }
-
-    fun updateCalendarSyncInterval(syncInterval: Long) {
-        CoroutineScope(Dispatchers.Default).launch {
-            accountSettings.setSyncInterval(SyncDataType.EVENTS, syncInterval.takeUnless { it == -1L })
-            reload()
-        }
-    }
-
-    fun updateTasksSyncInterval(syncInterval: Long) {
-        CoroutineScope(Dispatchers.Default).launch {
-            accountSettings.setSyncInterval(SyncDataType.TASKS, syncInterval.takeUnless { it == -1L })
             reload()
         }
     }
@@ -172,58 +143,11 @@ class AccountSettingsModel @AssistedInject constructor(
         reload()
     }
 
-    fun updateTimeRangePastDays(days: Int?) = CoroutineScope(Dispatchers.Default).launch {
-        accountSettings.setTimeRangePastDays(days)
-        reload()
-
-        /* If the new setting is a certain number of days, no full resync is required,
-        because every sync will cause a REPORT calendar-query with the given number of days.
-        However, if the new setting is "all events", collection sync may/should be used, so
-        the last sync-token has to be reset, which is done by setting fullResync=true.
-         */
-        resyncCalendars(fullResync = days == null, tasks = false)
-    }
-
-    fun updateDefaultAlarm(minBefore: Int?) = CoroutineScope(Dispatchers.Default).launch {
-        accountSettings.setDefaultAlarm(minBefore)
-        reload()
-
-        resyncCalendars(fullResync = true, tasks = false)
-    }
-
-    fun updateManageCalendarColors(manage: Boolean) = CoroutineScope(Dispatchers.Default).launch {
-        accountSettings.setManageCalendarColors(manage)
-        reload()
-
-        resyncCalendars(fullResync = false, tasks = true)
-    }
-
-    fun updateEventColors(manageColors: Boolean) = CoroutineScope(Dispatchers.Default).launch {
-        accountSettings.setEventColors(manageColors)
-        reload()
-
-        resyncCalendars(fullResync = true, tasks = false)
-    }
-
     fun updateContactGroupMethod(groupMethod: GroupMethod) = CoroutineScope(Dispatchers.Default).launch {
         accountSettings.setGroupMethod(groupMethod)
         reload()
 
         resync(SyncDataType.CONTACTS, fullResync = true)
-    }
-
-    /**
-     * Initiates calendar re-synchronization.
-     *
-     * @param fullResync whether sync shall download all events again
-     * (_true_: sets [BaseSyncWorker.FULL_RESYNC],
-     * _false_: sets [BaseSyncWorker.RESYNC])
-     * @param tasks whether tasks shall be synchronized, too (false: only events, true: events and tasks)
-     */
-    private fun resyncCalendars(fullResync: Boolean, tasks: Boolean) {
-        resync(SyncDataType.EVENTS, fullResync)
-        if (tasks)
-            resync(SyncDataType.TASKS, fullResync)
     }
 
     /**

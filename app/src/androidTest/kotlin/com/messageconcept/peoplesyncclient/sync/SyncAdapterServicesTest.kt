@@ -8,7 +8,7 @@ import android.accounts.Account
 import android.content.Context
 import android.content.SyncResult
 import android.os.Bundle
-import android.provider.CalendarContract
+import android.provider.ContactsContract
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
@@ -123,7 +123,7 @@ class SyncAdapterServicesTest {
             every { workManager.getWorkInfosForUniqueWorkFlow("TheSyncWorker") } just Awaits
 
             val sync = launch {
-                syncAdapter.onPerformSync(account, Bundle(), CalendarContract.AUTHORITY, mockk(), SyncResult())
+                syncAdapter.onPerformSync(account, Bundle(), ContactsContract.AUTHORITY, mockk(), SyncResult())
             }
 
             // simulate incoming cancellation from sync framework
@@ -151,7 +151,7 @@ class SyncAdapterServicesTest {
                 // immediate timeout (instead of really waiting)
                 coEvery { withTimeout(any<Long>(), any<suspend CoroutineScope.() -> Unit>()) } throws CancellationException("Simulated timeout")
 
-                syncAdapter.onPerformSync(account, Bundle(), CalendarContract.AUTHORITY, mockk(), SyncResult())
+                syncAdapter.onPerformSync(account, Bundle(), ContactsContract.AUTHORITY, mockk(), SyncResult())
             }
         }
     }
@@ -175,7 +175,7 @@ class SyncAdapterServicesTest {
             }
 
             // should just run
-            syncAdapter.onPerformSync(account, Bundle(), CalendarContract.AUTHORITY, mockk(), SyncResult())
+            syncAdapter.onPerformSync(account, Bundle(), ContactsContract.AUTHORITY, mockk(), SyncResult())
         }
     }
 

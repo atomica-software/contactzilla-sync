@@ -40,17 +40,13 @@ import javax.inject.Singleton
     Collection::class,
     Principal::class,
     SyncStats::class,
-    WebDavDocument::class,
-    WebDavMount::class
 ], exportSchema = true, version = 17, autoMigrations = [
     AutoMigration(from = 16, to = 17),      // collection: add VAPID key
     AutoMigration(from = 15, to = 16, spec = AutoMigration16::class),
     AutoMigration(from = 14, to = 15),
     AutoMigration(from = 13, to = 14),
     AutoMigration(from = 12, to = 13),
-    AutoMigration(from = 11, to = 12, spec = AutoMigration12::class),
-    AutoMigration(from = 10, to = 11),
-    AutoMigration(from = 9, to = 10)
+    AutoMigration(from = 9, to = 12, spec = AutoMigration12::class),
 ])
 @TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
@@ -110,8 +106,6 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun collectionDao(): CollectionDao
     abstract fun principalDao(): PrincipalDao
     abstract fun syncStatsDao(): SyncStatsDao
-    abstract fun webDavDocumentDao(): WebDavDocumentDao
-    abstract fun webDavMountDao(): WebDavMountDao
 
 
     // helpers

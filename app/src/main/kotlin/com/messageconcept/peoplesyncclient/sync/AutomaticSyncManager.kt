@@ -29,7 +29,6 @@ class AutomaticSyncManager @Inject constructor(
     private val accountSettingsFactory: AccountSettings.Factory,
     private val serviceRepository: DavServiceRepository,
     private val syncFramework: SyncFrameworkIntegration,
-    private val tasksAppManager: Provider<TasksAppManager>,
     private val workerManager: SyncWorkerManager
 ) {
 
@@ -71,8 +70,6 @@ class AutomaticSyncManager @Inject constructor(
             // Content triggered sync of contacts is handled per address book account in
             // [LocalAddressBook.updateSyncFrameworkSettings()]
             SyncDataType.CONTACTS -> null
-            SyncDataType.EVENTS -> CalendarContract.AUTHORITY
-            SyncDataType.TASKS -> tasksAppManager.get().currentProvider()?.authority
         }
         if (authority != null && syncInterval != null) {
             // enable given authority, but completely disable all other possible authorities
@@ -110,15 +107,10 @@ class AutomaticSyncManager @Inject constructor(
     fun updateAutomaticSync(account: Account, dataType: SyncDataType) {
         val serviceType = when (dataType) {
             SyncDataType.CONTACTS -> Service.TYPE_CARDDAV
-            SyncDataType.EVENTS,
-            SyncDataType.TASKS -> Service.TYPE_CALDAV
         }
         val hasService = runBlocking { serviceRepository.getByAccountAndType(account.name, serviceType) != null }
 
-        val hasProvider = if (dataType == SyncDataType.TASKS)
-            tasksAppManager.get().currentProvider() != null
-        else
-            true
+        val hasProvider = true
 
         if (hasService && hasProvider)
             enableAutomaticSync(account, dataType)

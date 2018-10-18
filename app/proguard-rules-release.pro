@@ -14,6 +14,7 @@
 
 # Additional rules which are now required since missing classes can't be ignored in R8 anymore.
 # [https://developer.android.com/build/releases/past-releases/agp-7-0-0-release-notes#r8-missing-class-warning]
+-dontwarn org.slf4j.impl.StaticLoggerBinder
 -dontwarn org.xmlpull.**
 
 # dnsjava

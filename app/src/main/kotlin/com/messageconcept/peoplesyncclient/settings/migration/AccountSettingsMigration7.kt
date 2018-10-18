@@ -10,7 +10,6 @@ import android.content.Context
 import android.provider.CalendarContract
 import com.messageconcept.peoplesyncclient.settings.AccountSettings
 import com.messageconcept.peoplesyncclient.sync.account.setAndVerifyUserData
-import at.bitfire.ical4android.AndroidCalendar
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -26,10 +25,7 @@ class AccountSettingsMigration7 @Inject constructor(
 ): AccountSettingsMigration {
 
     override fun migrate(account: Account) {
-        // add calendar colors
-        context.contentResolver.acquireContentProviderClient(CalendarContract.AUTHORITY)?.use { provider ->
-            AndroidCalendar.insertColors(provider, account)
-        }
+        // nothing to do for calendar colors
 
         // update allowed WiFi settings key
         val accountManager = AccountManager.get(context)

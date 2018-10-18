@@ -41,7 +41,6 @@ import com.messageconcept.peoplesyncclient.sync.SyncManager.Companion.DELAY_UNTI
 import com.messageconcept.peoplesyncclient.sync.SyncManager.Companion.DELAY_UNTIL_MAX
 import com.messageconcept.peoplesyncclient.sync.SyncManager.Companion.DELAY_UNTIL_MIN
 import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
-import at.bitfire.ical4android.CalendarStorageException
 import at.bitfire.vcard4android.ContactsStorageException
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.coroutineScope
@@ -767,12 +766,6 @@ abstract class SyncManager<ResourceType: LocalResource<*>, out CollectionType: L
                 logger.log(Level.SEVERE, "HTTP/DAV exception", e)
                 syncResult.numHttpExceptions++
                 message = context.getString(R.string.sync_error_http_dav, e.localizedMessage)
-            }
-
-            is CalendarStorageException, is ContactsStorageException, is RemoteException -> {
-                logger.log(Level.SEVERE, "Couldn't access local storage", e)
-                syncResult.localStorageError = true
-                message = context.getString(R.string.sync_error_local_storage, e.localizedMessage)
             }
 
             else -> {

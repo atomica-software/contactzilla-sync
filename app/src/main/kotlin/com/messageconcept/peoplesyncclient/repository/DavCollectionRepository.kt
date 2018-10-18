@@ -28,18 +28,9 @@ import com.messageconcept.peoplesyncclient.db.HomeSet
 import com.messageconcept.peoplesyncclient.network.HttpClient
 import com.messageconcept.peoplesyncclient.servicedetection.RefreshCollectionsWorker
 import com.messageconcept.peoplesyncclient.util.DavUtils
-import at.bitfire.ical4android.ICalendar
-import at.bitfire.ical4android.util.DateUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runInterruptible
-import net.fortuna.ical4j.model.Calendar
-import net.fortuna.ical4j.model.Component
-import net.fortuna.ical4j.model.ComponentList
-import net.fortuna.ical4j.model.Property
-import net.fortuna.ical4j.model.PropertyList
-import net.fortuna.ical4j.model.component.VTimeZone
-import net.fortuna.ical4j.model.property.Version
 import okhttp3.HttpUrl
 import java.io.StringWriter
 import java.util.UUID
@@ -339,59 +330,6 @@ class DavCollectionRepository @Inject constructor(
                                 text(it)
                             }
                         }
-
-                    } else {
-                        // calendar-specific properties
-                        description?.let {
-                            insertTag(CalendarDescription.NAME) {
-                                text(it)
-                            }
-                        }
-                        color?.let {
-                            insertTag(CalendarColor.NAME) {
-                                text(DavUtils.ARGBtoCalDAVColor(it))
-                            }
-                        }
-                        timezoneId?.let { id ->
-                            insertTag(CalendarTimezoneId.NAME) {
-                                text(id)
-                            }
-                            getVTimeZone(id)?.let { vTimezone ->
-                                insertTag(CalendarTimezone.NAME) {
-                                    text(
-                                        // spec requires "an iCalendar object with exactly one VTIMEZONE component"
-                                        Calendar(
-                                            PropertyList<Property>().apply {
-                                                add(ICalendar.prodId)
-                                                add(Version.VERSION_2_0)
-                                            },
-                                            ComponentList(
-                                                listOf(vTimezone)
-                                            )
-                                        ).toString()
-                                    )
-                                }
-                            }
-                        }
-
-                        if (!supportsVEVENT || !supportsVTODO || !supportsVJOURNAL) {
-                            insertTag(SupportedCalendarComponentSet.NAME) {
-                                // Only if there's at least one not explicitly supported calendar component set,
-                                // otherwise don't include the property, which means "supports everything".
-                                if (supportsVEVENT)
-                                    insertTag(SupportedCalendarComponentSet.COMP) {
-                                        attribute(null, "name", Component.VEVENT)
-                                    }
-                                if (supportsVTODO)
-                                    insertTag(SupportedCalendarComponentSet.COMP) {
-                                        attribute(null, "name", Component.VTODO)
-                                    }
-                                if (supportsVJOURNAL)
-                                    insertTag(SupportedCalendarComponentSet.COMP) {
-                                        attribute(null, "name", Component.VJOURNAL)
-                                    }
-                            }
-                        }
                     }
                 }
             }
@@ -403,7 +341,5 @@ class DavCollectionRepository @Inject constructor(
         }
         return writer.toString()
     }
-
-    private fun getVTimeZone(tzId: String): VTimeZone? = DateUtils.ical4jTimeZone(tzId)?.vTimeZone
 
 }

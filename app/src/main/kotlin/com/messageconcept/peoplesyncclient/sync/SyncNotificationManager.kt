@@ -21,20 +21,16 @@ import com.messageconcept.peoplesyncclient.R
 import com.messageconcept.peoplesyncclient.db.Collection
 import com.messageconcept.peoplesyncclient.resource.LocalCollection
 import com.messageconcept.peoplesyncclient.resource.LocalContact
-import com.messageconcept.peoplesyncclient.resource.LocalEvent
 import com.messageconcept.peoplesyncclient.resource.LocalResource
-import com.messageconcept.peoplesyncclient.resource.LocalTask
 import com.messageconcept.peoplesyncclient.ui.DebugInfoActivity
 import com.messageconcept.peoplesyncclient.ui.NotificationRegistry
 import com.messageconcept.peoplesyncclient.ui.account.AccountSettingsActivity
-import at.bitfire.ical4android.TaskProvider
 import com.google.common.base.Ascii
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.HttpUrl
-import org.dmfs.tasks.contract.TaskContract
 import java.io.IOException
 import java.util.logging.Level
 import java.util.logging.Logger
@@ -62,9 +58,6 @@ class SyncNotificationManager @AssistedInject constructor(
             ContactsContract.AUTHORITY ->
                 R.string.sync_warning_contacts_storage_disabled_title to
                 R.string.sync_warning_contacts_storage_disabled_description
-            CalendarContract.AUTHORITY ->
-                R.string.sync_warning_calendar_storage_disabled_title to
-                R.string.sync_warning_calendar_storage_disabled_description
             else -> {
                 logger.log(Level.WARNING, "Content provider error for unknown authority: $authority")
                 return
@@ -258,10 +251,6 @@ class SyncNotificationManager @AssistedInject constructor(
             when (local) {
                 is LocalContact ->
                     Intent(Intent.ACTION_VIEW, ContentUris.withAppendedId(ContactsContract.RawContacts.CONTENT_URI, id))
-                is LocalEvent ->
-                    Intent(Intent.ACTION_VIEW, ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, id))
-                is LocalTask ->
-                    Intent(Intent.ACTION_VIEW, ContentUris.withAppendedId(TaskContract.Tasks.getContentUri(TaskProvider.ProviderName.OpenTasks.authority), id))
                 else ->
                     null
             }

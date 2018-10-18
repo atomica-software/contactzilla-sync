@@ -85,7 +85,6 @@ fun AppSettingsScreen(
     onBatterySavingSettings: () -> Unit,
     onNavPermissionsScreen: () -> Unit,
     onShowNotificationSettings: () -> Unit,
-    onNavTasksScreen: () -> Unit,
     onNavUp: () -> Unit,
     model: AppSettingsModel = viewModel()
 ) {
@@ -120,12 +119,9 @@ fun AppSettingsScreen(
             onResetHints = model::resetHints,
 
             // Integration (Tasks and Push)
-            tasksAppName = model.tasksAppName.collectAsStateWithLifecycle(null).value ?: stringResource(R.string.app_settings_tasks_provider_none),
-            tasksAppIcon = model.tasksAppIcon.collectAsStateWithLifecycle(null).value,
             pushDistributors = model.pushDistributors.collectAsState().value,
             pushDistributor = model.pushDistributor.collectAsState().value,
             onPushDistributorChange = model::updatePushDistributor,
-            onNavTasksScreen = onNavTasksScreen
         )
     }
 }
@@ -161,12 +157,9 @@ fun AppSettingsScreen(
     onResetHints: () -> Unit,
 
     // AppSettings Integration
-    tasksAppName: String,
-    tasksAppIcon: Drawable?,
     pushDistributors: List<PushDistributorInfo>?,
     pushDistributor: String?,
     onPushDistributorChange: (String?) -> Unit,
-    onNavTasksScreen: () -> Unit,
 
     onShowNotificationSettings: () -> Unit,
     onNavUp: () -> Unit
@@ -250,12 +243,9 @@ fun AppSettingsScreen(
                 )
 
                 AppSettings_Integration(
-                    tasksAppName = tasksAppName,
-                    tasksAppIcon = tasksAppIcon,
                     pushDistributors = pushDistributors,
                     pushDistributor = pushDistributor,
                     onPushDistributorChange = onPushDistributorChange,
-                    onNavTasksScreen = onNavTasksScreen
                 )
             }
         }
@@ -288,12 +278,9 @@ fun AppSettingsScreen_Preview() {
             onNavPermissionsScreen = {},
             onThemeSelected = {},
             onResetHints = {},
-            tasksAppName = "No tasks app",
-            tasksAppIcon = null,
             pushDistributors = null,
             pushDistributor = null,
             onPushDistributorChange = {},
-            onNavTasksScreen = {}
         )
     }
 }
@@ -711,28 +698,13 @@ fun PushDistributorSelectionDialog_Preview_DistributorSelected() {
 
 @Composable
 fun AppSettings_Integration(
-    tasksAppName: String,
-    tasksAppIcon: Drawable? = null,
     pushDistributors: List<PushDistributorInfo>?,
     pushDistributor: String?,
     onPushDistributorChange: (String?) -> Unit,
-    onNavTasksScreen: () -> Unit = {}
 ) {
     SettingsHeader(divider = true) {
         Text(stringResource(R.string.app_settings_integration))
     }
-    Setting(
-        name = {
-            Text(stringResource(R.string.app_settings_tasks_provider))
-        },
-        icon = {
-           tasksAppIcon?.let {
-               Image(tasksAppIcon.toBitmap().asImageBitmap(), tasksAppName)
-           }
-        },
-        summary = tasksAppName,
-        onClick = onNavTasksScreen
-    )
 
     var showingDistributorDialog by remember { mutableStateOf(false) }
     if (showingDistributorDialog) {

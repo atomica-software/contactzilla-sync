@@ -20,21 +20,16 @@ import com.messageconcept.peoplesyncclient.R
 import com.messageconcept.peoplesyncclient.push.PushNotificationManager
 import com.messageconcept.peoplesyncclient.settings.AccountSettings
 import com.messageconcept.peoplesyncclient.sync.AddressBookSyncer
-import com.messageconcept.peoplesyncclient.sync.CalendarSyncer
-import com.messageconcept.peoplesyncclient.sync.JtxSyncer
 import com.messageconcept.peoplesyncclient.sync.SyncConditions
 import com.messageconcept.peoplesyncclient.sync.SyncDataType
 import com.messageconcept.peoplesyncclient.sync.SyncResult
 import com.messageconcept.peoplesyncclient.sync.Syncer
-import com.messageconcept.peoplesyncclient.sync.TaskSyncer
-import com.messageconcept.peoplesyncclient.sync.TasksAppManager
 import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.FULL_RESYNC
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.NO_RESYNC
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.RESYNC
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.commonTag
 import com.messageconcept.peoplesyncclient.ui.NotificationRegistry
-import at.bitfire.ical4android.TaskProvider
 import dagger.Lazy
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
@@ -58,12 +53,6 @@ abstract class BaseSyncWorker(
     lateinit var addressBookSyncer: AddressBookSyncer.Factory
 
     @Inject
-    lateinit var calendarSyncer: CalendarSyncer.Factory
-
-    @Inject
-    lateinit var jtxSyncer: JtxSyncer.Factory
-
-    @Inject
     lateinit var logger: Logger
 
     @Inject
@@ -74,12 +63,6 @@ abstract class BaseSyncWorker(
 
     @Inject
     lateinit var syncConditionsFactory: SyncConditions.Factory
-
-    @Inject
-    lateinit var tasksAppManager: Lazy<TasksAppManager>
-
-    @Inject
-    lateinit var taskSyncer: TaskSyncer.Factory
 
 
     override suspend fun doWork(): Result {
@@ -164,22 +147,6 @@ abstract class BaseSyncWorker(
         val syncer = when (dataType) {
             SyncDataType.CONTACTS ->
                 addressBookSyncer.create(account, extras, syncResult)
-            SyncDataType.EVENTS ->
-                calendarSyncer.create(account, extras, syncResult)
-            SyncDataType.TASKS -> {
-                val currentProvider = tasksAppManager.get().currentProvider()
-                when (currentProvider) {
-                    TaskProvider.ProviderName.JtxBoard ->
-                        jtxSyncer.create(account, extras, syncResult)
-                    TaskProvider.ProviderName.OpenTasks,
-                    TaskProvider.ProviderName.TasksOrg ->
-                        taskSyncer.create(account, currentProvider, extras, syncResult)
-                    else -> {
-                        logger.warning("No valid tasks provider found, aborting sync")
-                        return@withContext Result.failure()
-                    }
-                }
-            }
         }
 
         // Start syncing
