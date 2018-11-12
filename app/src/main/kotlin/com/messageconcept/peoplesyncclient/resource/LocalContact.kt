@@ -32,7 +32,7 @@ class LocalContact: AndroidContact, LocalAddress {
     companion object {
 
         init {
-            Contact.productID = "+//IDN bitfire.at//PeopleSync/${BuildConfig.VERSION_NAME} ez-vcard/" + Ezvcard.VERSION
+            Contact.productID = "+//IDN messageconcept.com//PeopleSync/${BuildConfig.VERSION_NAME} ez-vcard/" + Ezvcard.VERSION
         }
 
         const val COLUMN_FLAGS = ContactsContract.RawContacts.SYNC4
