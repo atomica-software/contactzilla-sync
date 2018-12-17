@@ -16,6 +16,7 @@ import com.messageconcept.peoplesyncclient.repository.DavCollectionRepository
 import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
 import com.messageconcept.peoplesyncclient.resource.LocalCollection
 import com.messageconcept.peoplesyncclient.resource.LocalDataStore
+import com.messageconcept.peoplesyncclient.servicedetection.CollectionListRefresher
 import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.runBlocking
@@ -77,6 +78,9 @@ abstract class Syncer<StoreType: LocalDataStore<CollectionType>, CollectionType:
     @Inject
     lateinit var syncNotificationManagerFactory: SyncNotificationManager.Factory
 
+    @Inject
+    lateinit var collectionListRefresherFactory: CollectionListRefresher.Factory
+
     @ServiceType
     abstract val serviceType: String
 
@@ -122,6 +126,33 @@ abstract class Syncer<StoreType: LocalDataStore<CollectionType>, CollectionType:
     internal fun getSyncEnabledCollections(): Map<Long, Collection> = runBlocking {
         val dbCollections = mutableMapOf<Long, Collection>()
         serviceRepository.getByAccountAndType(account.name, serviceType)?.let { service ->
+            logger.log(Level.INFO,"Refreshing collections")
+            try {
+                httpClientBuilder
+                    .fromAccount(account)
+                    .build().use { client ->
+                        val httpClient = client.okHttpClient
+                        val refresher = collectionListRefresherFactory.create(service, httpClient)
+
+                        // refresh home set list (from principal url)
+                        service.principal?.let { principalUrl ->
+                            logger.fine("Querying principal $principalUrl for home sets")
+                            refresher.discoverHomesets(principalUrl)
+                        }
+
+                        // refresh home sets and their member collections
+                        refresher.refreshHomesetsAndTheirCollections()
+
+                        // also refresh collections without a home set
+                        refresher.refreshHomelessCollections()
+
+                        // Lastly, refresh the principals (collection owners)
+                        refresher.refreshPrincipals()
+                    }
+            } catch(e: Exception) {
+                logger.log(Level.SEVERE, "Failed to refresh collections", e)
+            }
+
             for (dbCollection in getDbSyncCollections(service.id))
                 dbCollections[dbCollection.id] = dbCollection
         }
