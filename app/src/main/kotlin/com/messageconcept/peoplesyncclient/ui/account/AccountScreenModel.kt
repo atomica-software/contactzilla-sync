@@ -64,6 +64,11 @@ class AccountScreenModel @AssistedInject constructor(
      */
     private val accountSettings by lazy { accountSettingsFactory.create(account) }
 
+    init {
+        logger.log(Level.INFO, "Triggering sync for $account")
+        sync()
+    }
+
     /** whether the account is invalid and the screen shall be closed */
     val invalidAccount = accountRepository.getAllFlow().map { accounts ->
         !accounts.contains(account)
