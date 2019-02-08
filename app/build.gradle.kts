@@ -12,6 +12,11 @@ plugins {
     alias(libs.plugins.mikepenz.aboutLibraries)
 }
 
+aboutLibraries {
+    // path to our custom library definitions
+    configPath = "config"
+}
+
 // Android configuration
 android {
     compileSdk = 35

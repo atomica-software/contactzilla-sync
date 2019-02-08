@@ -1,0 +1,16 @@
+{
+  "uniqueId": "com.github.bitfireAT:davx5-ose",
+  "developers": [
+  {
+      "name": "bitfire web engineering",
+      "organisationUrl": "https://www.davx5.com/"
+    }
+  ],
+  "artifactVersion": "4.4.10-ose",
+  "description": "DAVx⁵ is a CalDAV/CardDAV management and sync app for Android.",
+  "name": "bitfireAT/davx5-ose",
+  "website": "https://github.com/bitfireAT/davx5-ose",
+  "licenses": [
+    "GPL-3.0-or-later"
+  ]
+}
