@@ -252,24 +252,6 @@ fun AccountScreen(
                 modifier = Modifier.padding(padding)
             ) {
                 if (nrPages > 0) {
-                    TabRow(selectedTabIndex = pagerState.currentPage) {
-                        if (idxCardDav != null) {
-                            Tab(
-                                selected = pagerState.currentPage == idxCardDav,
-                                onClick = {
-                                    scope.launch {
-                                        pagerState.scrollToPage(idxCardDav)
-                                    }
-                                }
-                            ) {
-                                Text(
-                                    stringResource(R.string.account_carddav),
-                                    modifier = Modifier.padding(8.dp)
-                                )
-                            }
-                        }
-                    }
-
                     HorizontalPager(
                         pagerState,
                         verticalAlignment = Alignment.Top,
