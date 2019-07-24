@@ -425,4 +425,6 @@
   <string name="widget_sync_all">Sincronizar todos</string>
   <string name="widget_sync_all_accounts">Sincronizar todas las cuentas</string>
   <!--cert4android-->
+  <!--managed configurations-->
+  <string name="login_type_managed">Por favor, inicie sesión</string>
 </resources>
