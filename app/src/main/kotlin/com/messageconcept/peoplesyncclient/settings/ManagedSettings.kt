@@ -17,6 +17,7 @@ class ManagedSettings @Inject constructor(
     companion object {
         private const val KEY_LOGIN_BASE_URL = "login_base_url"
         private const val KEY_LOGIN_USER_NAME = "login_user_name"
+        private const val KEY_LOGIN_PASSWORD = "login_password"
     }
 
     fun getBaseUrl(): String? {
@@ -25,5 +26,9 @@ class ManagedSettings @Inject constructor(
 
     fun getUsername(): String? {
         return settingsManager.getString(KEY_LOGIN_USER_NAME)
+    }
+
+    fun getPassword(): String? {
+        return settingsManager.getString(KEY_LOGIN_PASSWORD)
     }
 }
