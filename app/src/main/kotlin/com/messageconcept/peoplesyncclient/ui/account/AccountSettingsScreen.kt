@@ -105,6 +105,10 @@ fun AccountSettingsScreen(
             // CardDav Settings
             contactGroupMethod = uiState.contactGroupMethod,
             onUpdateContactGroupMethod = model::updateContactGroupMethod,
+
+            // allow modification only if not provided via managed configuration
+            isUsernameUpdateAllowed = uiState.allowUsernameChange,
+            isPasswordUpdateAllowed = uiState.allowPasswordChange,
         )
     }
 }
@@ -136,6 +140,9 @@ fun AccountSettingsScreen(
     // CardDav Settings
     contactGroupMethod: GroupMethod,
     onUpdateContactGroupMethod: (GroupMethod) -> Unit = {},
+
+    isUsernameUpdateAllowed: Boolean = true,
+    isPasswordUpdateAllowed: Boolean = true,
 ) {
     val uriHandler = LocalUriHandler.current
     val snackbarHostState = remember { SnackbarHostState() }
@@ -184,7 +191,10 @@ fun AccountSettingsScreen(
 
                 // CardDav Settings
                 contactGroupMethod = contactGroupMethod,
-                onUpdateContactGroupMethod = onUpdateContactGroupMethod
+                onUpdateContactGroupMethod = onUpdateContactGroupMethod,
+
+                isUsernameUpdateAllowed = isUsernameUpdateAllowed,
+                isPasswordUpdateAllowed = isPasswordUpdateAllowed,
             )
         }
     }
@@ -215,6 +225,9 @@ fun AccountSettings_FromModel(
     // CardDav Settings
     contactGroupMethod: GroupMethod,
     onUpdateContactGroupMethod: (GroupMethod) -> Unit = {},
+
+    isUsernameUpdateAllowed: Boolean,
+    isPasswordUpdateAllowed: Boolean,
 ) {
     Column(Modifier.padding(8.dp)) {
         SyncSettings(
@@ -236,7 +249,9 @@ fun AccountSettings_FromModel(
                 snackbarHostState = snackbarHostState,
                 credentials = credentials,
                 isEnabled = isCredentialsUpdateAllowed,
-                onUpdateCredentials = onUpdateCredentials
+                onUpdateCredentials = onUpdateCredentials,
+                isUsernameEnabled = isUsernameUpdateAllowed,
+                isPasswordEnabled = isPasswordUpdateAllowed,
             )
         }
 
@@ -388,7 +403,9 @@ fun AuthenticationSettings(
     credentials: Credentials,
     snackbarHostState: SnackbarHostState = SnackbarHostState(),
     isEnabled: Boolean = true,
-    onUpdateCredentials: (Credentials) -> Unit = {}
+    onUpdateCredentials: (Credentials) -> Unit = {},
+    isUsernameEnabled: Boolean = true,
+    isPasswordEnabled: Boolean = true
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -405,7 +422,7 @@ fun AuthenticationSettings(
                     icon = Icons.Default.AccountCircle,
                     name = stringResource(R.string.settings_username),
                     summary = credentials.username,
-                    enabled = isEnabled,
+                    enabled = isUsernameEnabled,
                     onClick = {
                         showUsernameDialog = true
                     }
@@ -425,7 +442,7 @@ fun AuthenticationSettings(
                     icon = Icons.Default.Password,
                     name = stringResource(R.string.settings_password),
                     summary = stringResource(R.string.settings_password_summary),
-                    enabled = isEnabled,
+                    enabled = isPasswordEnabled,
                     onClick = {
                         showPasswordDialog = true
                     }

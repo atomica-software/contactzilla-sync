@@ -12,6 +12,7 @@ import com.messageconcept.peoplesyncclient.db.AppDatabase
 import com.messageconcept.peoplesyncclient.db.Credentials
 import com.messageconcept.peoplesyncclient.db.Service
 import com.messageconcept.peoplesyncclient.settings.AccountSettings
+import com.messageconcept.peoplesyncclient.settings.ManagedSettings
 import com.messageconcept.peoplesyncclient.settings.SettingsManager
 import com.messageconcept.peoplesyncclient.sync.SyncDataType
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker
@@ -38,6 +39,7 @@ class AccountSettingsModel @AssistedInject constructor(
     db: AppDatabase,
     private val settings: SettingsManager,
     private val syncWorkerManager: SyncWorkerManager,
+    private val managedSettings: ManagedSettings,
 ): ViewModel(), SettingsManager.OnChangeListener {
 
     @AssistedFactory
@@ -66,7 +68,10 @@ class AccountSettingsModel @AssistedInject constructor(
         val manageCalendarColors: Boolean = false,
         val eventColors: Boolean = false,
 
-        val contactGroupMethod: GroupMethod = GroupMethod.GROUP_VCARDS
+        val contactGroupMethod: GroupMethod = GroupMethod.GROUP_VCARDS,
+
+        val allowUsernameChange: Boolean = true,
+        val allowPasswordChange: Boolean = true,
     )
 
     private val _uiState = MutableStateFlow(UiState())
@@ -78,7 +83,6 @@ class AccountSettingsModel @AssistedInject constructor(
      * Only acquire account settings on a worker thread!
      */
     private val accountSettings by lazy { accountSettingsFactory.create(account) }
-
 
     init {
         settings.addOnChangeListener(this)
@@ -113,6 +117,9 @@ class AccountSettingsModel @AssistedInject constructor(
             allowCredentialsChange = accountSettings.changingCredentialsAllowed(),
 
             contactGroupMethod = accountSettings.getGroupMethod(),
+
+            allowUsernameChange = managedSettings.getUsername().isNullOrEmpty(),
+            allowPasswordChange = managedSettings.getPassword().isNullOrEmpty(),
         )
     }
 
