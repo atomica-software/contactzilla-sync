@@ -40,6 +40,8 @@ import com.messageconcept.peoplesyncclient.db.AppDatabase
 import com.messageconcept.peoplesyncclient.repository.AccountRepository
 import com.messageconcept.peoplesyncclient.resource.LocalAddressBook
 import com.messageconcept.peoplesyncclient.settings.AccountSettings
+import com.messageconcept.peoplesyncclient.settings.AccountSettings.Companion.KEY_BASE_URL
+import com.messageconcept.peoplesyncclient.settings.AccountSettings.Companion.KEY_USERNAME
 import com.messageconcept.peoplesyncclient.settings.SettingsManager
 import com.messageconcept.peoplesyncclient.sync.SyncDataType
 import com.messageconcept.peoplesyncclient.sync.SyncFrameworkIntegration
@@ -299,7 +301,7 @@ class DebugInfoGenerator @Inject constructor(
         val accountManager = AccountManager.get(context)
         val accounts = accountRepository.getAll()
         for (account in accounts)
-            dumpAccount(account, writer)
+            dumpAccount(account, accountManager, writer)
 
         val addressBookAccounts = accountManager.getAccountsByType(context.getString(R.string.account_type_address_book)).toMutableList()
         if (addressBookAccounts.isNotEmpty()) {
@@ -326,7 +328,7 @@ class DebugInfoGenerator @Inject constructor(
     /**
      * Appends relevant android account information the given writer.
      */
-    private fun dumpAccount(account: Account, writer: Writer) {
+    private fun dumpAccount(account: Account, accountManager: AccountManager, writer: Writer) {
         writer.append("\n\n - Account: ${account.name}\n")
         val accountSettings = accountSettingsFactory.create(account)
 
@@ -355,6 +357,13 @@ class DebugInfoGenerator @Inject constructor(
             writer.append(
                 "\n  Contact group method: ${accountSettings.getGroupMethod()}\n"
             )
+
+            accountManager.getUserData(account, KEY_USERNAME)?.let { userName ->
+                writer.append("  Username: ${userName}\n")
+            }
+            accountManager.getUserData(account, KEY_BASE_URL)?.let { baseUrl ->
+                writer.append("  Base URL: ${baseUrl}\n")
+            }
 
             writer.append("\nSync workers:\n")
             dumpSyncWorkers(account, writer)
