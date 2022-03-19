@@ -140,6 +140,7 @@ class CollectionListRefresherTest {
                 1, // will have gotten an owner too
                 Collection.TYPE_ADDRESSBOOK,
                 mockServer.url("$PATH_CARDDAV$SUBPATH_ADDRESSBOOK/"),
+                sync = settings.getBoolean(Settings.PRESELECT_COLLECTIONS),
                 displayName = "My Contacts",
                 description = "My Contacts Description"
             ),
