@@ -91,7 +91,7 @@ class CollectionListRefresher @AssistedInject constructor(
             DisplayName.NAME,
             GroupMembership.NAME,
             ResourceType.NAME
-        ) + when (service.type) {       // service-specific CalDAV/CardDAV properties
+        ) + when (service.type) {       // service-specific CardDAV properties
                 Service.TYPE_CARDDAV -> arrayOf(
                     AddressbookHomeSet.NAME,
                 )
@@ -114,7 +114,7 @@ class CollectionListRefresher @AssistedInject constructor(
             ResourceType.NAME,
             PushTransports.NAME,        // WebDAV-Push
             Topic.NAME
-        ) + when (service.type) {       // service-specific CalDAV/CardDAV properties
+        ) + when (service.type) {       // service-specific CardDAV properties
             Service.TYPE_CARDDAV -> arrayOf(
                 AddressbookDescription.NAME
             )
@@ -368,7 +368,7 @@ class CollectionListRefresher @AssistedInject constructor(
 
     /**
      * Finds out whether given collection is usable, by checking that either
-     *  - CalDAV/CardDAV: service and collection type match, or
+     *  - CardDAV: service and collection type match, or
      *  - WebCal: subscription source URL is not empty
      */
     private fun isUsableCollection(collection: Collection) =

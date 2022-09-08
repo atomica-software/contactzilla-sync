@@ -39,7 +39,7 @@ class GoogleLogin(
         )
 
         /**
-         * Gets the Google CalDAV/CardDAV base URI. See https://developers.google.com/calendar/caldav/v2/guide;
+         * Gets the Google CardDAV base URI. See https://developers.google.com/calendar/caldav/v2/guide;
          * _calid_ of the primary calendar is the account name.
          *
          * This URL allows CardDAV (over well-known URLs) and CalDAV detection including calendar-homesets and secondary
