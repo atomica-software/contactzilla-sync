@@ -7,6 +7,7 @@ package com.messageconcept.peoplesyncclient.ui
 import android.accounts.Account
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED
 import android.content.IntentFilter
 import android.content.pm.PackageManager.NameNotFoundException
 import android.net.ConnectivityManager
@@ -25,6 +26,7 @@ import androidx.work.WorkQuery
 import com.messageconcept.peoplesyncclient.db.AppDatabase
 import com.messageconcept.peoplesyncclient.repository.AccountRepository
 import com.messageconcept.peoplesyncclient.servicedetection.RefreshCollectionsWorker
+import com.messageconcept.peoplesyncclient.settings.ManagedSettings
 import com.messageconcept.peoplesyncclient.sync.SyncDataType
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker
 import com.messageconcept.peoplesyncclient.sync.worker.OneTimeSyncWorker
@@ -44,6 +46,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
@@ -58,6 +61,7 @@ class AccountsModel @AssistedInject constructor(
     private val db: AppDatabase,
     introPageFactory: IntroPageFactory,
     private val logger: Logger,
+    private val managedSettings: ManagedSettings,
     private val syncWorkerManager: SyncWorkerManager
 ): ViewModel() {
 
@@ -82,7 +86,9 @@ class AccountsModel @AssistedInject constructor(
 
     private val accounts = accountRepository.getAllFlow()
     val showAddAccount: Flow<FABStyle> = accounts.map {
-        if (it.isEmpty())
+        if (it.isNotEmpty() && isManaged.first())
+            FABStyle.None
+        else if (it.isEmpty())
             FABStyle.WithText
         else
             FABStyle.Standard
@@ -142,6 +148,14 @@ class AccountsModel @AssistedInject constructor(
 
     private val connectivityManager = context.getSystemService<ConnectivityManager>()!!
     private val powerManager: PowerManager = context.getSystemService<PowerManager>()!!
+
+    /** whether to consider managed mode **/
+    val isManaged =
+        broadcastReceiverFlow(
+            context = context,
+            filter = IntentFilter(ACTION_APPLICATION_RESTRICTIONS_CHANGED),
+            immediate = true
+        ).map { managedSettings.isManaged() }
 
     /** whether a usable network connection is available (sync framework won't run synchronization otherwise) */
     val networkAvailable = callbackFlow<Boolean> {

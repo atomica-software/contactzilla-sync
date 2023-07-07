@@ -28,6 +28,7 @@ import androidx.compose.material.icons.filled.BatterySaver
 import androidx.compose.material.icons.filled.DataSaverOn
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.NotificationsOff
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.SignalCellularOff
 import androidx.compose.material.icons.filled.Storage
 import androidx.compose.material.icons.filled.Sync
@@ -81,6 +82,7 @@ import com.messageconcept.peoplesyncclient.ui.composable.ProgressBar
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
+import com.messageconcept.peoplesyncclient.ui.composable.NotificationCard
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -121,6 +123,7 @@ fun AccountsScreen(
         onAddAccount = onAddAccount,
         onShowAccount = onShowAccount,
         onManagePermissions = onManagePermissions,
+        isManaged = model.isManaged.collectAsStateWithLifecycle(false).value,
         internetUnavailable = !model.networkAvailable.collectAsStateWithLifecycle(false).value,
         batterySaverActive = model.batterySaverActive.collectAsStateWithLifecycle(false).value,
         dataSaverActive = model.dataSaverEnabled.collectAsStateWithLifecycle(false).value,
@@ -141,6 +144,7 @@ fun AccountsScreen(
     onAddAccount: () -> Unit = {},
     onShowAccount: (Account) -> Unit = {},
     onManagePermissions: () -> Unit = {},
+    isManaged: Boolean = false,
     internetUnavailable: Boolean = false,
     batterySaverActive: Boolean = false,
     dataSaverActive: Boolean = false,
@@ -270,6 +274,7 @@ fun AccountsScreen(
                             // Warnings show as action cards
                             val context = LocalContext.current
                             SyncWarnings(
+                                managedWarning = isManaged,
                                 notificationsWarning = notificationsPermissionState?.status?.isGranted == false,
                                 onManagePermissions = onManagePermissions,
                                 internetWarning = internetUnavailable,
@@ -488,6 +493,7 @@ fun AccountList_Preview_Syncing() {
 
 @Composable
 fun SyncWarnings(
+    managedWarning: Boolean,
     notificationsWarning: Boolean = true,
     onManagePermissions: () -> Unit = {},
     internetWarning: Boolean = true,
@@ -503,6 +509,13 @@ fun SyncWarnings(
     onManageApps: () -> Unit = {}
 ) {
     Column(Modifier.padding(horizontal = 8.dp)) {
+        if (managedWarning)
+            NotificationCard(
+                icon = Icons.Default.Settings,
+                modifier = Modifier.padding(vertical = 4.dp)
+            ) {
+                Text(stringResource(R.string.account_list_managed_configuration))
+            }
         if (notificationsWarning)
             ActionCard(
                 icon = Icons.Default.NotificationsOff,
@@ -592,6 +605,7 @@ fun SyncWarnings(
 fun SyncWarnings_Preview() {
     AppTheme {
         SyncWarnings(
+            managedWarning = true,
             notificationsWarning = true,
             internetWarning = true,
             batterySaverActive = true,
