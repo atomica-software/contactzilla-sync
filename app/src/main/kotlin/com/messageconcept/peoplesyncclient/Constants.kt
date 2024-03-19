@@ -28,7 +28,6 @@ object Constants {
 
     const val MANUAL_PATH_SETTINGS = "settings.html"
     const val MANUAL_FRAGMENT_APP_SETTINGS = "app-wide-settings"
-    const val MANUAL_FRAGMENT_ACCOUNT_SETTINGS = "account-settings"
 
     const val MANUAL_PATH_WEBDAV_PUSH = "webdav_push.html"
 
