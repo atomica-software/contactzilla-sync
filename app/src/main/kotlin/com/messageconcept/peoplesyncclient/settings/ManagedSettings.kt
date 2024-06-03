@@ -37,6 +37,7 @@ class ManagedSettings @Inject constructor(
         private const val KEY_LOGIN_BASE_URL = "login_base_url"
         private const val KEY_LOGIN_USER_NAME = "login_user_name"
         private const val KEY_LOGIN_PASSWORD = "login_password"
+        private const val KEY_ORGANIZATION = "organization"
     }
 
     private val broadCastReceiver = object : BroadcastReceiver() {
@@ -63,6 +64,10 @@ class ManagedSettings @Inject constructor(
 
     fun getPassword(): String? {
         return settingsManager.getString(KEY_LOGIN_PASSWORD)
+    }
+
+    fun getOrganization(): String? {
+        return settingsManager.getString(KEY_ORGANIZATION)
     }
 
     fun updateAccounts() {
