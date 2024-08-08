@@ -88,20 +88,6 @@ fun LoginScreenContent(
                     title = {
                         Text(stringResource(R.string.login_title))
                     },
-                    actions = {
-                        val uriHandler = LocalUriHandler.current
-                        val specificHelpUri = helpUri ?:
-                            Constants.HOMEPAGE_URL.buildUpon()
-                            .appendPath(Constants.HOMEPAGE_PATH_TESTED_SERVICES)
-                            .withStatParams("LoginActivity")
-                            .build()
-                        IconButton(onClick = {
-                            // show tested-with page
-                            uriHandler.openUri(specificHelpUri.toString())
-                        }) {
-                            Icon(Icons.AutoMirrored.Default.Help, stringResource(R.string.help))
-                        }
-                    }
                 )
             },
             snackbarHost = { SnackbarHost(snackbarHostState) }
