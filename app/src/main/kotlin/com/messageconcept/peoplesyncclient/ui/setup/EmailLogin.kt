@@ -116,19 +116,6 @@ fun EmailLoginScreen(
                 focusRequester.requestFocus()
             }
 
-            val manualUrl = Constants.MANUAL_URL.buildUpon()
-                .appendPath(Constants.MANUAL_PATH_ACCOUNTS_COLLECTIONS)
-                .fragment(Constants.MANUAL_FRAGMENT_SERVICE_DISCOVERY)
-                .build()
-            val emailInfo = HtmlCompat.fromHtml(stringResource(R.string.login_email_address_info, manualUrl), HtmlCompat.FROM_HTML_MODE_COMPACT)
-            Text(
-                text = emailInfo.toAnnotatedString(),
-                style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp, bottom = 16.dp)
-            )
-
             PasswordTextField(
                 password = password,
                 onPasswordChange = onSetPassword,
