@@ -24,7 +24,6 @@ import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.WorkQuery
 import androidx.work.WorkRequest
-import com.messageconcept.peoplesyncclient.push.PushNotificationManager
 import com.messageconcept.peoplesyncclient.sync.SyncDataType
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.INPUT_ACCOUNT_NAME
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.INPUT_ACCOUNT_TYPE
@@ -51,7 +50,6 @@ import javax.inject.Inject
 class SyncWorkerManager @Inject constructor(
     @ApplicationContext val context: Context,
     val logger: Logger,
-    val pushNotificationManager: PushNotificationManager,
 ) {
 
     // one-time sync workers
@@ -135,10 +133,6 @@ class SyncWorkerManager @Inject constructor(
             resync = resync,
             upload = upload
         )
-        if (fromPush) {
-            logger.fine("Showing push sync pending notification for $name")
-            pushNotificationManager.notify(account, dataType)
-        }
         WorkManager.getInstance(context).enqueueUniqueWork(
             name,
             /* If sync is already running, just continue.

@@ -25,7 +25,6 @@ import androidx.work.WorkerParameters
 import at.bitfire.dav4jvm.exception.UnauthorizedException
 import com.messageconcept.peoplesyncclient.R
 import com.messageconcept.peoplesyncclient.network.HttpClient
-import com.messageconcept.peoplesyncclient.push.PushRegistrationManager
 import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
 import com.messageconcept.peoplesyncclient.servicedetection.RefreshCollectionsWorker.Companion.ARG_SERVICE_ID
 import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
@@ -66,7 +65,6 @@ class RefreshCollectionsWorker @AssistedInject constructor(
     private val httpClientBuilder: HttpClient.Builder,
     private val logger: Logger,
     private val notificationRegistry: NotificationRegistry,
-    private val pushRegistrationManager: PushRegistrationManager,
     serviceRepository: DavServiceRepository
 ): CoroutineWorker(appContext, workerParams) {
 
@@ -201,9 +199,6 @@ class RefreshCollectionsWorker @AssistedInject constructor(
             )
             return Result.failure()
         }
-
-        // update push registrations
-        pushRegistrationManager.update(serviceId)
 
         // Success
         return Result.success()

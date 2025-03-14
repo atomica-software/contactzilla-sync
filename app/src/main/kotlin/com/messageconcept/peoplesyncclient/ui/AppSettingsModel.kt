@@ -15,7 +15,6 @@ import androidx.lifecycle.viewModelScope
 import at.bitfire.cert4android.CustomCertStore
 import com.messageconcept.peoplesyncclient.BuildConfig
 import com.messageconcept.peoplesyncclient.di.IoDispatcher
-import com.messageconcept.peoplesyncclient.push.PushRegistrationManager
 import com.messageconcept.peoplesyncclient.repository.PreferenceRepository
 import com.messageconcept.peoplesyncclient.settings.Settings
 import com.messageconcept.peoplesyncclient.settings.SettingsManager
@@ -31,7 +30,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import org.unifiedpush.android.connector.UnifiedPush
 import javax.inject.Inject
 
 @HiltViewModel
@@ -39,7 +37,6 @@ class AppSettingsModel @Inject constructor(
     @ApplicationContext private val context: Context,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     private val preferences: PreferenceRepository,
-    private val pushRegistrationManager: PushRegistrationManager,
     private val settings: SettingsManager,
 ) : ViewModel() {
 
@@ -102,78 +99,5 @@ class AppSettingsModel @Inject constructor(
     }
 
     private val pm: PackageManager = context.packageManager
-
-    // push
-
-    private val _pushDistributor = MutableStateFlow<String?>(null)
-    val pushDistributor = _pushDistributor.asStateFlow()
-
-    private val _pushDistributors = MutableStateFlow<List<PushDistributorInfo>?>(null)
-    val pushDistributors = _pushDistributors.asStateFlow()
-
-    /**
-     * Loads the push distributors configuration:
-     *
-     * - Loads the currently selected distributor into [pushDistributor].
-     * - Loads all the available distributors into [pushDistributors].
-     * - If there's only one push distributor available, and none is selected, it's selected automatically.
-     * - Makes sure the app is registered with UnifiedPush if there's already a distributor selected.
-     */
-    private fun loadPushDistributors() {
-        val savedPushDistributor = UnifiedPush.getSavedDistributor(context)
-        _pushDistributor.value = savedPushDistributor
-
-        val pushDistributors = UnifiedPush.getDistributors(context)
-            .map { pushDistributor ->
-                try {
-                    val applicationInfo = pm.getApplicationInfo(pushDistributor, 0)
-                    val label = pm.getApplicationLabel(applicationInfo).toString()
-                    val icon = pm.getApplicationIcon(applicationInfo)
-                    PushDistributorInfo(pushDistributor, label, icon)
-                } catch (_: PackageManager.NameNotFoundException) {
-                    // The app is not available for some reason, do not include the app data.
-                    PushDistributorInfo(pushDistributor)
-                }
-            }
-        _pushDistributors.value = pushDistributors
-    }
-
-    /**
-     * Updates the current push distributor selection.
-     *
-     * Saves the preference in UnifiedPush, (un)registers the app, and writes the selection to [pushDistributor].
-     *
-     * @param pushDistributor The package name of the push distributor, _null_ to disable push.
-     */
-    fun updatePushDistributor(pushDistributor: String?) {
-        viewModelScope.launch(ioDispatcher) {
-            if (pushDistributor == null) {
-                // Disable UnifiedPush if the distributor given is null
-                UnifiedPush.removeDistributor(context)
-            } else {
-                // If a distributor was passed, store it
-                UnifiedPush.saveDistributor(context, pushDistributor)
-            }
-
-            // Update subscriptions
-            pushRegistrationManager.update()
-
-            _pushDistributor.value = pushDistributor
-        }
-    }
-
-
-    init {
-        viewModelScope.launch(ioDispatcher) {
-            loadPushDistributors()
-        }
-    }
-
-
-    data class PushDistributorInfo(
-        val packageName: String,
-        val appName: String? = null,
-        val appIcon: Drawable? = null
-    )
 
 }
