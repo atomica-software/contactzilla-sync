@@ -35,6 +35,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -209,6 +210,7 @@ fun DebugInfoScreen(
                     CardWithImage(
                         image = painterResource(R.drawable.undraw_server_down),
                         imageAlignment = BiasAlignment(0f, .7f),
+                        imageContentScale = ContentScale.Fit,
                         title = stringResource(R.string.debug_info_title),
                         subtitle = stringResource(R.string.debug_info_subtitle),
                         icon = Icons.Rounded.BugReport,
