@@ -10,11 +10,21 @@ plugins {
     alias(libs.plugins.ksp)
 
     alias(libs.plugins.mikepenz.aboutLibraries)
+    alias(libs.plugins.cyclonedx)
 }
 
 aboutLibraries {
     // path to our custom library definitions
     configPath = "config"
+}
+
+tasks.cyclonedxBom {
+    projectType = "application"
+    outputName = "sbom-android-app"
+    outputFormat = "json"
+    includeLicenseText = false
+    componentName = "PeopleSyncClient"
+    componentVersion = android.defaultConfig.versionName
 }
 
 // Android configuration
