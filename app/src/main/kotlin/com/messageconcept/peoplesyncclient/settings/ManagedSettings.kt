@@ -50,6 +50,9 @@ class ManagedSettings @Inject constructor(
         }
     }
 
+    @Inject
+    lateinit var accountsettingsFactory: AccountSettings.Factory
+
     init {
         context.registerReceiver(broadCastReceiver, IntentFilter(ACTION_APPLICATION_RESTRICTIONS_CHANGED))
     }
@@ -68,6 +71,18 @@ class ManagedSettings @Inject constructor(
 
     fun getOrganization(): String? {
         return settingsManager.getString(KEY_ORGANIZATION)
+    }
+
+    fun loadNewAccountSettings() {
+        val accountManager = AccountManager.get(context)
+
+        accountManager.getAccountsByType(context.getString(R.string.account_type)).forEach { account ->
+            val version = accountManager.getUserData(account, AccountSettings.KEY_SETTINGS_VERSION).toInt()
+            if (version < 20) {
+                logger.info("Triggering account migrations for ${account.name}")
+                accountsettingsFactory.create(account)
+            }
+        }
     }
 
     fun updateAccounts() {

@@ -72,6 +72,8 @@ class App: Application(), Configuration.Provider {
 
             // trigger account updates when managed settings have changed
             managedSettings.updateAccounts()
+            // trigger a (one-time) migration of the account settings for existing accounts
+            managedSettings.loadNewAccountSettings()
 
             // run startup plugins (async)
             for (plugin in plugins.sortedBy { it.priorityAsync() }) {
