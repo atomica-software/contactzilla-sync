@@ -14,8 +14,8 @@ import com.messageconcept.peoplesyncclient.db.Service
 import com.messageconcept.peoplesyncclient.settings.AccountSettings
 import com.messageconcept.peoplesyncclient.settings.ManagedSettings
 import com.messageconcept.peoplesyncclient.settings.SettingsManager
+import com.messageconcept.peoplesyncclient.sync.ResyncType
 import com.messageconcept.peoplesyncclient.sync.SyncDataType
-import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker
 import com.messageconcept.peoplesyncclient.sync.worker.SyncWorkerManager
 import at.bitfire.vcard4android.GroupMethod
 import dagger.assisted.Assisted
@@ -154,24 +154,18 @@ class AccountSettingsModel @AssistedInject constructor(
         accountSettings.setGroupMethod(groupMethod)
         reload()
 
-        resync(SyncDataType.CONTACTS, fullResync = true)
+        resync(SyncDataType.CONTACTS, ResyncType.RESYNC_ENTRIES)
     }
 
     /**
      * Initiates re-synchronization for given authority.
      *
-     * @param dataType      type of data to synchronize
-     * @param fullResync    whether sync shall download all events again
-     * (_true_: sets [BaseSyncWorker.FULL_RESYNC],
-     * _false_: sets [BaseSyncWorker.RESYNC])
+     * @param dataType  type of data to synchronize
+     * @param resync    whether only the list of entries (resync) or also all entries
+     *                  themselves (full resync) shall be downloaded again
      */
-    private fun resync(dataType: SyncDataType, fullResync: Boolean) {
-        val resync: Int =
-            if (fullResync)
-                BaseSyncWorker.FULL_RESYNC
-            else
-                BaseSyncWorker.RESYNC
-        syncWorkerManager.enqueueOneTime(account, dataType, resync = resync)
+    private fun resync(dataType: SyncDataType, resync: ResyncType) {
+        syncWorkerManager.enqueueOneTime(account, dataType = dataType, resync = resync)
     }
 
 }

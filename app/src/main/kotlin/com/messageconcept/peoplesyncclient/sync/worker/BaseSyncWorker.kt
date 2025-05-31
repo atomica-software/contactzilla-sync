@@ -5,7 +5,6 @@
 package com.messageconcept.peoplesyncclient.sync.worker
 
 import android.accounts.Account
-import android.content.ContentResolver
 import android.content.Context
 import android.os.Build
 import androidx.annotation.IntDef
@@ -19,21 +18,18 @@ import androidx.work.WorkerParameters
 import com.messageconcept.peoplesyncclient.R
 import com.messageconcept.peoplesyncclient.settings.AccountSettings
 import com.messageconcept.peoplesyncclient.sync.AddressBookSyncer
+import com.messageconcept.peoplesyncclient.sync.ResyncType
 import com.messageconcept.peoplesyncclient.sync.SyncConditions
 import com.messageconcept.peoplesyncclient.sync.SyncDataType
 import com.messageconcept.peoplesyncclient.sync.SyncResult
-import com.messageconcept.peoplesyncclient.sync.Syncer
 import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
-import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.FULL_RESYNC
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.NO_RESYNC
-import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.RESYNC
+import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.RESYNC_ENTRIES
+import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.RESYNC_LIST
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.commonTag
 import com.messageconcept.peoplesyncclient.ui.NotificationRegistry
 import dagger.Lazy
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.runInterruptible
-import kotlinx.coroutines.withContext
 import java.util.Collections
 import java.util.logging.Level
 import java.util.logging.Logger
@@ -41,8 +37,7 @@ import javax.inject.Inject
 
 abstract class BaseSyncWorker(
     context: Context,
-    private val workerParams: WorkerParameters,
-    private val syncDispatcher: CoroutineDispatcher
+    private val workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
 
     @Inject
@@ -118,34 +113,29 @@ abstract class BaseSyncWorker(
         }
     }
 
-    suspend fun doSyncWork(account: Account, dataType: SyncDataType): Result = withContext(syncDispatcher) {
+    suspend fun doSyncWork(account: Account, dataType: SyncDataType): Result {
         logger.info("Running ${javaClass.name}: account=$account, dataType=$dataType")
 
-        // pass possibly supplied flags to the selected syncer
-        val extrasList = mutableListOf<String>()
-        when (inputData.getInt(INPUT_RESYNC, NO_RESYNC)) {
-            RESYNC ->      extrasList.add(Syncer.SYNC_EXTRAS_RESYNC)
-            FULL_RESYNC -> extrasList.add(Syncer.SYNC_EXTRAS_FULL_RESYNC)
+        // pass supplied parameters to the selected syncer
+        val resyncType: ResyncType? = when (inputData.getInt(INPUT_RESYNC, NO_RESYNC)) {
+            RESYNC_ENTRIES -> ResyncType.RESYNC_ENTRIES
+            RESYNC_LIST -> ResyncType.RESYNC_LIST
+            else -> null
         }
-        if (inputData.getBoolean(INPUT_UPLOAD, false))
-            // Comes in through SyncAdapterService and is used only by ContactsSyncManager for an Android 7 workaround.
-            extrasList.add(ContentResolver.SYNC_EXTRAS_UPLOAD)
-        val extras = extrasList.toTypedArray()
 
-        // We still use the sync adapter framework's SyncResult to pass the sync results, but this
-        // is only for legacy reasons and can be replaced by our own result class in the future.
+        // Comes in through SyncAdapterService and is used only by ContactsSyncManager for an Android 7 workaround.
+        val syncFrameworkUpload = inputData.getBoolean(INPUT_UPLOAD, false)
+
         val syncResult = SyncResult()
 
         // What are we going to sync? Select syncer based on authority
         val syncer = when (dataType) {
             SyncDataType.CONTACTS ->
-                addressBookSyncer.create(account, extras, syncResult)
+                addressBookSyncer.create(account, resyncType, syncFrameworkUpload, syncResult)
         }
 
         // Start syncing
-        runInterruptible {
-            syncer()
-        }
+        syncer()
 
         // convert SyncResult from Syncers to worker Data
         val output = Data.Builder()
@@ -168,7 +158,7 @@ abstract class BaseSyncWorker(
                         delay(blockDuration * 1000)
 
                     logger.warning("Retrying on soft error (attempt $runAttemptCount of $MAX_RUN_ATTEMPTS)")
-                    return@withContext Result.retry()
+                    return Result.retry()
                 }
 
                 logger.warning("Max retries on soft errors reached ($runAttemptCount of $MAX_RUN_ATTEMPTS). Treating as failed")
@@ -185,7 +175,7 @@ abstract class BaseSyncWorker(
                 }
 
                 output.putBoolean(OUTPUT_TOO_MANY_RETRIES, true)
-                return@withContext Result.failure(output.build())
+                return Result.failure(output.build())
             }
 
             // If no soft error found, dismiss sync error notification
@@ -199,37 +189,37 @@ abstract class BaseSyncWorker(
             // Note: SyncManager should have notified the user
             if (syncResult.hasHardError()) {
                 logger.log(Level.WARNING, "Hard error while syncing", syncResult)
-                return@withContext Result.failure(output.build())
+                return Result.failure(output.build())
             }
         }
 
         logger.log(Level.INFO, "Sync worker succeeded", syncResult)
-        return@withContext Result.success(output.build())
+        return Result.success(output.build())
     }
 
 
     companion object {
 
         // common worker input parameters
-        const val INPUT_ACCOUNT_NAME = "accountName"
-        const val INPUT_ACCOUNT_TYPE = "accountType"
-        const val INPUT_DATA_TYPE = "dataType"
+        internal const val INPUT_ACCOUNT_NAME = "accountName"
+        internal const val INPUT_ACCOUNT_TYPE = "accountType"
+        internal const val INPUT_DATA_TYPE = "dataType"
 
         /** set to `true` for user-initiated sync that skips network checks */
-        const val INPUT_MANUAL = "manual"
+        internal const val INPUT_MANUAL = "manual"
 
-        /** set to `true` for syncs that are caused by local changes */
-        const val INPUT_UPLOAD = "upload"
+        /** set to `true` for syncs that are caused because the sync framework notified us about local changes */
+        internal const val INPUT_UPLOAD = "upload"
 
-        /** Whether re-synchronization is requested. One of [NO_RESYNC] (default), [RESYNC] or [FULL_RESYNC]. */
-        const val INPUT_RESYNC = "resync"
-        @IntDef(NO_RESYNC, RESYNC, FULL_RESYNC)
+        /** Whether re-synchronization is requested. One of [NO_RESYNC] (default), [RESYNC_LIST] or [RESYNC_ENTRIES]. */
+        internal const val INPUT_RESYNC = "resync"
+        @IntDef(NO_RESYNC, RESYNC_LIST, RESYNC_ENTRIES)
         annotation class InputResync
-        const val NO_RESYNC = 0
-        /** Re-synchronization is requested. See [Syncer.SYNC_EXTRAS_RESYNC] for details. */
-        const val RESYNC = 1
-        /** Full re-synchronization is requested. See [Syncer.SYNC_EXTRAS_FULL_RESYNC] for details. */
-        const val FULL_RESYNC = 2
+        internal const val NO_RESYNC = 0
+        /** Re-synchronization is requested. See [ResyncType.RESYNC_LIST] for details. */
+        internal const val RESYNC_LIST = 1
+        /** Full re-synchronization is requested. See [ResyncType.RESYNC_ENTRIES] for details. */
+        internal const val RESYNC_ENTRIES = 2
 
         const val OUTPUT_TOO_MANY_RETRIES = "tooManyRetries"
 

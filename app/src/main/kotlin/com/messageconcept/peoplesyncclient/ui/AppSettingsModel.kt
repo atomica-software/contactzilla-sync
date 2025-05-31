@@ -6,7 +6,6 @@ package com.messageconcept.peoplesyncclient.ui
 
 import android.content.Context
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.PowerManager
 import androidx.core.content.getSystemService
@@ -97,7 +96,5 @@ class AppSettingsModel @Inject constructor(
         settings.remove(BatteryOptimizationsPageModel.HINT_BATTERY_OPTIMIZATIONS)
         settings.remove(BatteryOptimizationsPageModel.HINT_AUTOSTART_PERMISSION)
     }
-
-    private val pm: PackageManager = context.packageManager
 
 }

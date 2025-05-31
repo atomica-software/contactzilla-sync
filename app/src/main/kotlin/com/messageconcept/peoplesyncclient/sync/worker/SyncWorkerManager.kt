@@ -5,9 +5,7 @@
 package com.messageconcept.peoplesyncclient.sync.worker
 
 import android.accounts.Account
-import android.content.ContentResolver
 import android.content.Context
-import android.provider.CalendarContract
 import androidx.work.BackoffPolicy
 import androidx.work.Constraints
 import androidx.work.Data
@@ -24,6 +22,7 @@ import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.WorkQuery
 import androidx.work.WorkRequest
+import com.messageconcept.peoplesyncclient.sync.ResyncType
 import com.messageconcept.peoplesyncclient.sync.SyncDataType
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.INPUT_ACCOUNT_NAME
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.INPUT_ACCOUNT_TYPE
@@ -31,8 +30,8 @@ import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.INPUT_MANUAL
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.INPUT_RESYNC
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.INPUT_UPLOAD
-import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.InputResync
-import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.NO_RESYNC
+import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.RESYNC_ENTRIES
+import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.RESYNC_LIST
 import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker.Companion.commonTag
 import dagger.Lazy
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -65,19 +64,25 @@ class SyncWorkerManager @Inject constructor(
         account: Account,
         dataType: SyncDataType,
         manual: Boolean = false,
-        @InputResync resync: Int = NO_RESYNC,
-        upload: Boolean = false
+        resync: ResyncType? = null,
+        fromUpload: Boolean = false
     ): OneTimeWorkRequest {
         // worker arguments
         val argumentsBuilder = Data.Builder()
             .putString(INPUT_DATA_TYPE, dataType.toString())
             .putString(INPUT_ACCOUNT_NAME, account.name)
             .putString(INPUT_ACCOUNT_TYPE, account.type)
+
         if (manual)
             argumentsBuilder.putBoolean(INPUT_MANUAL, true)
-        if (resync != NO_RESYNC)
-            argumentsBuilder.putInt(INPUT_RESYNC, resync)
-        argumentsBuilder.putBoolean(INPUT_UPLOAD, upload)
+
+        when (resync) {
+            ResyncType.RESYNC_ENTRIES -> argumentsBuilder.putInt(INPUT_RESYNC, RESYNC_ENTRIES)
+            ResyncType.RESYNC_LIST -> argumentsBuilder.putInt(INPUT_RESYNC, RESYNC_LIST)
+            else -> { /* no explicit re-synchronization */ }
+        }
+
+        argumentsBuilder.putBoolean(INPUT_UPLOAD, fromUpload)
 
         // build work request
         val constraints = Constraints.Builder()
@@ -105,11 +110,17 @@ class SyncWorkerManager @Inject constructor(
     /**
      * Requests immediate synchronization of an account with a specific authority.
      *
+     * If there is no currently running one-time sync, the sync is enqueued normally.
+     *
+     * If there is a currently running one-time sync, another sync is appended to make sure
+     * a complete sync is run. This method makes however sure that there's only _one_
+     * further sync in the queue.
+     *
      * @param account       account to sync
      * @param dataType      type of data to synchronize
      * @param manual        user-initiated sync (ignores network checks)
-     * @param resync        whether to request (full) re-synchronization or not
-     * @param upload        see [ContentResolver.SYNC_EXTRAS_UPLOAD] – only used for contacts sync and Android 7 workaround
+     * @param resync        whether to request (full) re-synchronization (`null` for normal sync)
+     * @param fromUpload    whether this sync is initiated by a local change
      * @param fromPush      whether this sync is initiated by a push notification
      *
      * @return existing or newly created worker name
@@ -118,11 +129,11 @@ class SyncWorkerManager @Inject constructor(
         account: Account,
         dataType: SyncDataType,
         manual: Boolean = false,
-        @InputResync resync: Int = NO_RESYNC,
-        upload: Boolean = false,
+        resync: ResyncType? = null,
+        fromUpload: Boolean = false,
         fromPush: Boolean = false
     ): String {
-        logger.info("Enqueueing unique worker for account=$account, dataType=$dataType, manual=$manual, resync=$resync, upload=$upload, fromPush=$fromPush")
+        logger.info("Enqueueing unique worker for account=$account, dataType=$dataType, manual=$manual, resync=$resync, fromUpload=$fromUpload, fromPush=$fromPush")
 
         // enqueue and start syncing
         val name = OneTimeSyncWorker.workerName(account, dataType)
@@ -131,16 +142,27 @@ class SyncWorkerManager @Inject constructor(
             dataType = dataType,
             manual = manual,
             resync = resync,
-            upload = upload
+            fromUpload = fromUpload
         )
-        WorkManager.getInstance(context).enqueueUniqueWork(
-            name,
-            /* If sync is already running, just continue.
-            Existing retried work will not be replaced (for instance when
-            PeriodicSyncWorker enqueues another scheduled sync). */
-            ExistingWorkPolicy.KEEP,
-            request
-        )
+
+        /* We want to append only one work request, regardless of how many sync requests came in.
+        So we have to append the work one time, and as soon as there is already a pending
+        appended work, stop adding more work. */
+
+        val workManager = WorkManager.getInstance(context)
+        synchronized(SyncWorkerManager::class.java) {
+            val currentWork = workManager.getWorkInfosForUniqueWork(name).get()
+            val alreadyAppended = currentWork.any {
+                it.state in setOf(WorkInfo.State.BLOCKED, WorkInfo.State.ENQUEUED)
+            }
+            if (!alreadyAppended) {
+                val op = workManager.enqueueUniqueWork(name, ExistingWorkPolicy.APPEND_OR_REPLACE, request)
+                // for synchronization: wait until work is actually enqueued
+                op.result
+            } else
+                logger.fine("Another one-time sync already waiting, not adding more of $name")
+        }
+
         return name
     }
 
@@ -153,8 +175,8 @@ class SyncWorkerManager @Inject constructor(
     fun enqueueOneTimeAllAuthorities(
         account: Account,
         manual: Boolean = false,
-        @InputResync resync: Int = NO_RESYNC,
-        upload: Boolean = false,
+        resync: ResyncType? = null,
+        fromUpload: Boolean = false,
         fromPush: Boolean = false
     ) {
         for (dataType in SyncDataType.entries)
@@ -163,7 +185,7 @@ class SyncWorkerManager @Inject constructor(
                 dataType = dataType,
                 manual = manual,
                 resync = resync,
-                upload = upload,
+                fromUpload = fromUpload,
                 fromPush = fromPush
             )
     }
@@ -252,7 +274,7 @@ class SyncWorkerManager @Inject constructor(
      *
      * @param workStates   list of states of workers to match
      * @param account      the account which the workers belong to
-     * @param authorities  type of sync work, ie [CalendarContract.AUTHORITY]
+     * @param dataTypes    data types of sync work
      * @param whichTag     function to generate tag that should be observed for given account and authority
      *
      * @return flow that emits `true` if at least one worker with matching query was found; `false` otherwise

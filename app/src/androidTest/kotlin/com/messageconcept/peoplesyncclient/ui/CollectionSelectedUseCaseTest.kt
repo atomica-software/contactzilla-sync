@@ -6,7 +6,6 @@ package com.messageconcept.peoplesyncclient.ui
 
 import com.messageconcept.peoplesyncclient.db.Collection
 import com.messageconcept.peoplesyncclient.db.Service
-import com.messageconcept.peoplesyncclient.di.MainDispatcher
 import com.messageconcept.peoplesyncclient.repository.DavCollectionRepository
 import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
 import com.messageconcept.peoplesyncclient.sync.worker.SyncWorkerManager
@@ -16,7 +15,6 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit4.MockKRule
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
@@ -46,10 +44,6 @@ class CollectionSelectedUseCaseTest {
 
     @Inject
     lateinit var collectionRepository: DavCollectionRepository
-
-    @Inject
-    @MainDispatcher
-    lateinit var mainDispatcher: CoroutineDispatcher
 
     val service = Service(
         id = 1,
@@ -82,7 +76,7 @@ class CollectionSelectedUseCaseTest {
 
 
     @Test
-    fun testHandleWithDelay() = runTest(mainDispatcher) {
+    fun testHandleWithDelay() = runTest {
         useCase.handleWithDelay(collectionId = collection.id)
 
         advanceUntilIdle()
