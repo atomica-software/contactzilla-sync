@@ -35,6 +35,7 @@ class RestrictionsProvider @Inject constructor(
         override fun onReceive(context: Context?, intent: Intent?) {
             when (intent?.action) {
                 ACTION_APPLICATION_RESTRICTIONS_CHANGED -> {
+                    // cache app restrictions to avoid unnecessary disk access
                     restrictions = restrictionsManager.applicationRestrictions
                     onChangeListener?.onSettingsChanged(null)
                 }

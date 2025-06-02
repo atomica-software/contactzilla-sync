@@ -14,6 +14,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED
 import android.content.IntentFilter
+import android.content.RestrictionsManager
+import android.os.Bundle
 import com.messageconcept.peoplesyncclient.R
 import com.messageconcept.peoplesyncclient.settings.AccountSettings.Companion.KEY_BASE_URL
 import com.messageconcept.peoplesyncclient.settings.AccountSettings.Companion.KEY_USERNAME
@@ -28,7 +30,6 @@ import javax.inject.Singleton
 @Singleton
 class ManagedSettings @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val settingsManager: SettingsManager,
     private val logger: Logger,
     private val syncWorkerManager: SyncWorkerManager
 )  {
@@ -40,10 +41,16 @@ class ManagedSettings @Inject constructor(
         private const val KEY_ORGANIZATION = "organization"
     }
 
+    private val restrictionsManager = context.getSystemService(Context.RESTRICTIONS_SERVICE) as RestrictionsManager
+
+    private var restrictions: Bundle
+
     private val broadCastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             when (intent?.action) {
                 ACTION_APPLICATION_RESTRICTIONS_CHANGED -> {
+                    // cache app restrictions to avoid unnecessary disk access
+                    restrictions = restrictionsManager.applicationRestrictions
                     updateAccounts()
                 }
             }
@@ -54,23 +61,24 @@ class ManagedSettings @Inject constructor(
     lateinit var accountsettingsFactory: AccountSettings.Factory
 
     init {
+        restrictions = restrictionsManager.applicationRestrictions
         context.registerReceiver(broadCastReceiver, IntentFilter(ACTION_APPLICATION_RESTRICTIONS_CHANGED))
     }
 
     fun getBaseUrl(): String? {
-        return settingsManager.getString(KEY_LOGIN_BASE_URL)
+        return restrictions.getString(KEY_LOGIN_BASE_URL)
     }
 
     fun getUsername(): String? {
-        return settingsManager.getString(KEY_LOGIN_USER_NAME)
+        return restrictions.getString(KEY_LOGIN_USER_NAME)
     }
 
     fun getPassword(): String? {
-        return settingsManager.getString(KEY_LOGIN_PASSWORD)
+        return restrictions.getString(KEY_LOGIN_PASSWORD)
     }
 
     fun getOrganization(): String? {
-        return settingsManager.getString(KEY_ORGANIZATION)
+        return restrictions.getString(KEY_ORGANIZATION)
     }
 
     fun loadNewAccountSettings() {
@@ -128,6 +136,6 @@ class ManagedSettings @Inject constructor(
     }
 
     fun isManaged(): Boolean {
-        return !settingsManager.getString(KEY_LOGIN_BASE_URL).isNullOrEmpty()
+        return !restrictions.getString(KEY_LOGIN_BASE_URL).isNullOrEmpty()
     }
 }
