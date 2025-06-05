@@ -84,20 +84,6 @@ fun WifiPermissionsScreen(
                         }
                     },
                     title = { Text(stringResource(R.string.wifi_permissions_label)) },
-                    actions = {
-                        val uriHandler = LocalUriHandler.current
-                        IconButton(onClick = {
-                            uriHandler.openUri(
-                                Constants.HOMEPAGE_URL.buildUpon()
-                                    .appendPath(Constants.HOMEPAGE_PATH_FAQ)
-                                    .appendPath(Constants.HOMEPAGE_PATH_FAQ_LOCATION_PERMISSION)
-                                    .withStatParams("WifiPermissionsActivity")
-                                    .build().toString()
-                            )
-                        }) {
-                            Icon(Icons.AutoMirrored.Default.Help, stringResource(R.string.help))
-                        }
-                    }
                 )
             }
         ) { padding ->
