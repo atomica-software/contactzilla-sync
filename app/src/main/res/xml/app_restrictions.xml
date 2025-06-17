@@ -65,6 +65,109 @@
         android:restrictionType="string"
         android:title="@string/organization"/>
 
+    <!-- Account 1 (Primary) -->
+    <restriction
+        android:description="@string/login_account_name_description"
+        android:key="login_account_name"
+        android:restrictionType="string"
+        android:title="@string/login_account_name_title"/>
+
+    <!-- Account 2 -->
+    <restriction
+        android:description="@string/login_base_url_description"
+        android:key="login_base_url_2"
+        android:restrictionType="string"
+        android:title="@string/login_base_url_title_2"/>
+
+    <restriction
+        android:description="@string/login_user_name_description"
+        android:key="login_user_name_2"
+        android:restrictionType="string"
+        android:title="@string/login_user_name_title_2"/>
+
+    <restriction
+        android:key="login_password_2"
+        android:restrictionType="string"
+        android:title="@string/login_password_title_2"/>
+
+    <restriction
+        android:description="@string/login_account_name_description"
+        android:key="login_account_name_2"
+        android:restrictionType="string"
+        android:title="@string/login_account_name_title_2"/>
+
+    <!-- Account 3 -->
+    <restriction
+        android:description="@string/login_base_url_description"
+        android:key="login_base_url_3"
+        android:restrictionType="string"
+        android:title="@string/login_base_url_title_3"/>
+
+    <restriction
+        android:description="@string/login_user_name_description"
+        android:key="login_user_name_3"
+        android:restrictionType="string"
+        android:title="@string/login_user_name_title_3"/>
+
+    <restriction
+        android:key="login_password_3"
+        android:restrictionType="string"
+        android:title="@string/login_password_title_3"/>
+
+    <restriction
+        android:description="@string/login_account_name_description"
+        android:key="login_account_name_3"
+        android:restrictionType="string"
+        android:title="@string/login_account_name_title_3"/>
+
+    <!-- Account 4 -->
+    <restriction
+        android:description="@string/login_base_url_description"
+        android:key="login_base_url_4"
+        android:restrictionType="string"
+        android:title="@string/login_base_url_title_4"/>
+
+    <restriction
+        android:description="@string/login_user_name_description"
+        android:key="login_user_name_4"
+        android:restrictionType="string"
+        android:title="@string/login_user_name_title_4"/>
+
+    <restriction
+        android:key="login_password_4"
+        android:restrictionType="string"
+        android:title="@string/login_password_title_4"/>
+
+    <restriction
+        android:description="@string/login_account_name_description"
+        android:key="login_account_name_4"
+        android:restrictionType="string"
+        android:title="@string/login_account_name_title_4"/>
+
+    <!-- Account 5 -->
+    <restriction
+        android:description="@string/login_base_url_description"
+        android:key="login_base_url_5"
+        android:restrictionType="string"
+        android:title="@string/login_base_url_title_5"/>
+
+    <restriction
+        android:description="@string/login_user_name_description"
+        android:key="login_user_name_5"
+        android:restrictionType="string"
+        android:title="@string/login_user_name_title_5"/>
+
+    <restriction
+        android:key="login_password_5"
+        android:restrictionType="string"
+        android:title="@string/login_password_title_5"/>
+
+    <restriction
+        android:description="@string/login_account_name_description"
+        android:key="login_account_name_5"
+        android:restrictionType="string"
+        android:title="@string/login_account_name_title_5"/>
+
     <!-- per account restrictions -->
     <restriction
         android:defaultValue="false"

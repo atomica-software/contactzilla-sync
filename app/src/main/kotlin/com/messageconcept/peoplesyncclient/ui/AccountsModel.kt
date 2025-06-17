@@ -86,7 +86,7 @@ class AccountsModel @AssistedInject constructor(
 
     private val accounts = accountRepository.getAllFlow()
     val showAddAccount: Flow<FABStyle> = accounts.map {
-        if (it.isNotEmpty() && isManaged.first())
+        if (managedSettings.hasManagedAccounts())
             FABStyle.None
         else if (it.isEmpty())
             FABStyle.WithText
@@ -155,7 +155,7 @@ class AccountsModel @AssistedInject constructor(
             context = context,
             filter = IntentFilter(ACTION_APPLICATION_RESTRICTIONS_CHANGED),
             immediate = true
-        ).map { managedSettings.isManaged() }
+        ).map { managedSettings.hasManagedAccounts() }
 
     /** whether a usable network connection is available (sync framework won't run synchronization otherwise) */
     val networkAvailable = callbackFlow<Boolean> {

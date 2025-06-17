@@ -19,6 +19,7 @@ import android.os.Bundle
 import com.atomica.contactzillasync.R
 import com.atomica.contactzillasync.settings.AccountSettings.Companion.KEY_BASE_URL
 import com.atomica.contactzillasync.settings.AccountSettings.Companion.KEY_USERNAME
+import com.atomica.contactzillasync.BuildConfig
 import com.atomica.contactzillasync.sync.account.InvalidAccountException
 import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -26,6 +27,14 @@ import java.util.logging.Level
 import java.util.logging.Logger
 import javax.inject.Inject
 import javax.inject.Singleton
+
+// Data class to represent a managed account configuration
+data class ManagedAccountConfig(
+    val baseUrl: String,
+    val username: String,
+    val password: String,
+    val accountName: String
+)
 
 @Singleton
 class ManagedSettings @Inject constructor(
@@ -38,7 +47,35 @@ class ManagedSettings @Inject constructor(
         private const val KEY_LOGIN_BASE_URL = "login_base_url"
         private const val KEY_LOGIN_USER_NAME = "login_user_name"
         private const val KEY_LOGIN_PASSWORD = "login_password"
+        private const val KEY_LOGIN_ACCOUNT_NAME = "login_account_name"
         private const val KEY_ORGANIZATION = "organization"
+        
+        // Maximum number of accounts supported
+        const val MAX_ACCOUNTS = 5
+        
+        // Keys for additional accounts
+        private fun getKeyForAccount(accountIndex: Int, baseKey: String): String {
+            return if (accountIndex == 1) baseKey else "${baseKey}_$accountIndex"
+        }
+        
+        // Debug mode - uses BuildConfig.DEBUG to automatically enable in debug builds
+        private val DEBUG_MODE = BuildConfig.DEBUG
+        
+                // Test configurations for debug mode  
+        private val debugConfigs = mapOf(
+            1 to ManagedAccountConfig(
+                baseUrl = "dav.contactzilla.app/addressbooks/honorableswanobey/",  // Try parent directory
+                username = "honorableswanobey", 
+                password = "SilentExceptionalHawk4=#8+?!",
+                accountName = "Staff List"
+            ),
+            2 to ManagedAccountConfig(
+                baseUrl = "dav.contactzilla.app/addressbooks/flawlesshyenaecho/",  // Try parent directory
+                username = "flawlesshyenaecho",
+                password = "PhilanthropicDivineMoor17$%@+4", 
+                accountName = "Clients"
+            )
+        )
     }
 
     private val restrictionsManager = context.getSystemService(Context.RESTRICTIONS_SERVICE) as RestrictionsManager
@@ -79,6 +116,68 @@ class ManagedSettings @Inject constructor(
 
     fun getOrganization(): String? {
         return restrictions.getString(KEY_ORGANIZATION)
+    }
+
+    // Get account configuration for a specific account number (1-5)
+    fun getAccountConfig(accountIndex: Int): ManagedAccountConfig? {
+        if (accountIndex < 1 || accountIndex > MAX_ACCOUNTS) return null
+        
+        // Use debug configuration if debug mode is enabled
+        if (DEBUG_MODE) {
+            logger.info("Debug mode enabled, checking for debug config $accountIndex")
+            val debugConfig = debugConfigs[accountIndex]
+            if (debugConfig != null) {
+                logger.info("Using debug configuration for account $accountIndex: ${debugConfig.accountName}")
+                return debugConfig
+            } else {
+                logger.info("No debug configuration found for account $accountIndex")
+            }
+        }
+        
+        val baseUrl = restrictions.getString(getKeyForAccount(accountIndex, KEY_LOGIN_BASE_URL))
+        val username = restrictions.getString(getKeyForAccount(accountIndex, KEY_LOGIN_USER_NAME))
+        val password = restrictions.getString(getKeyForAccount(accountIndex, KEY_LOGIN_PASSWORD))
+        val accountName = restrictions.getString(getKeyForAccount(accountIndex, KEY_LOGIN_ACCOUNT_NAME))
+        
+        // Return null if essential fields are missing
+        if (baseUrl.isNullOrEmpty() || username.isNullOrEmpty() || password.isNullOrEmpty()) {
+            logger.info("Account config $accountIndex missing essential fields - baseUrl: ${baseUrl?.isNotEmpty()}, username: ${username?.isNotEmpty()}, password: ${password?.isNotEmpty()}")
+            return null
+        }
+        
+        return ManagedAccountConfig(
+            baseUrl = baseUrl,
+            username = username,
+            password = password,
+            accountName = accountName ?: username // Fallback to username if account name not provided
+        )
+    }
+    
+    // Get all configured accounts
+    fun getAllAccountConfigs(): List<ManagedAccountConfig> {
+        val configs = mutableListOf<ManagedAccountConfig>()
+        logger.info("Getting all account configs, DEBUG_MODE = $DEBUG_MODE")
+        
+        for (i in 1..MAX_ACCOUNTS) {
+            val config = getAccountConfig(i)
+            if (config != null) {
+                logger.info("Found account config $i: ${config.accountName} - ${config.baseUrl}")
+                configs.add(config)
+            } else {
+                logger.info("No account config found for index $i")
+            }
+        }
+        
+        logger.info("Total account configs found: ${configs.size}")
+        return configs
+    }
+    
+    // Check if any managed accounts are configured
+    fun hasManagedAccounts(): Boolean {
+        val configs = getAllAccountConfigs()
+        val result = configs.isNotEmpty()
+        logger.info("hasManagedAccounts() - configs.size: ${configs.size}, returning: $result")
+        return result
     }
 
     fun loadNewAccountSettings() {

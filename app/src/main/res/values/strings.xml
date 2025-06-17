@@ -536,6 +536,33 @@
     <string name="login_user_name_description">Username</string>
     <string name="login_user_name_title">Username</string>
     <string name="login_password_title">Password</string>
+    <string name="login_account_name_description">Account name</string>
+    <string name="login_account_name_title">Account name</string>
+    
+    <!-- Account 2 -->
+    <string name="login_base_url_title_2">Base URL (Account 2)</string>
+    <string name="login_user_name_title_2">Username (Account 2)</string>
+    <string name="login_password_title_2">Password (Account 2)</string>
+    <string name="login_account_name_title_2">Account name (Account 2)</string>
+    
+    <!-- Account 3 -->
+    <string name="login_base_url_title_3">Base URL (Account 3)</string>
+    <string name="login_user_name_title_3">Username (Account 3)</string>
+    <string name="login_password_title_3">Password (Account 3)</string>
+    <string name="login_account_name_title_3">Account name (Account 3)</string>
+    
+    <!-- Account 4 -->
+    <string name="login_base_url_title_4">Base URL (Account 4)</string>
+    <string name="login_user_name_title_4">Username (Account 4)</string>
+    <string name="login_password_title_4">Password (Account 4)</string>
+    <string name="login_account_name_title_4">Account name (Account 4)</string>
+    
+    <!-- Account 5 -->
+    <string name="login_base_url_title_5">Base URL (Account 5)</string>
+    <string name="login_user_name_title_5">Username (Account 5)</string>
+    <string name="login_password_title_5">Password (Account 5)</string>
+    <string name="login_account_name_title_5">Account name (Account 5)</string>
+    
     <string name="proxy_type_title">Proxy type (System: -1, None: 0, HTTP: 1, Socks: 2)</string>
     <string name="proxy_host_title">Proxy host</string>
     <string name="proxy_port_title">Proxy port</string>
