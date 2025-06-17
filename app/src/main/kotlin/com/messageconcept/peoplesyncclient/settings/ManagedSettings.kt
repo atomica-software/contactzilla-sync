@@ -56,12 +56,9 @@ class ManagedSettings @Inject constructor(
         private const val KEY_LOGIN_ACCOUNT_NAME = "login_account_name"
         private const val KEY_ORGANIZATION = "organization"
         
-        // Maximum number of accounts supported
-        const val MAX_ACCOUNTS = 5
-        
-        // Keys for additional accounts
+        // Keys for additional accounts - ALL accounts use _NUMBER suffix for consistency
         private fun getKeyForAccount(accountIndex: Int, baseKey: String): String {
-            return if (accountIndex == 1) baseKey else "${baseKey}_$accountIndex"
+            return "${baseKey}_$accountIndex"
         }
         
         // Debug mode - uses BuildConfig.DEBUG to automatically enable in debug builds
@@ -145,9 +142,9 @@ class ManagedSettings @Inject constructor(
         return restrictions.getString(KEY_ORGANIZATION)
     }
 
-    // Get account configuration for a specific account number (1-5)
+    // Get account configuration for a specific account number (starting from 1)
     fun getAccountConfig(accountIndex: Int): ManagedAccountConfig? {
-        if (accountIndex < 1 || accountIndex > MAX_ACCOUNTS) return null
+        if (accountIndex < 1) return null
         
         // Use debug configuration if debug mode is enabled
         if (DEBUG_MODE) {
@@ -180,18 +177,21 @@ class ManagedSettings @Inject constructor(
         )
     }
     
-    // Get all configured accounts
+    // Get all configured accounts (dynamically discovers all accounts)
     fun getAllAccountConfigs(): List<ManagedAccountConfig> {
         val configs = mutableListOf<ManagedAccountConfig>()
         logger.info("Getting all account configs, DEBUG_MODE = $DEBUG_MODE")
         
-        for (i in 1..MAX_ACCOUNTS) {
-            val config = getAccountConfig(i)
+        var accountIndex = 1
+        while (true) {
+            val config = getAccountConfig(accountIndex)
             if (config != null) {
-                logger.info("Found account config $i: ${config.accountName} - ${config.baseUrl}")
+                logger.info("Found account config $accountIndex: ${config.accountName} - ${config.baseUrl}")
                 configs.add(config)
+                accountIndex++
             } else {
-                logger.info("No account config found for index $i")
+                logger.info("No account config found for index $accountIndex, stopping discovery")
+                break
             }
         }
         
