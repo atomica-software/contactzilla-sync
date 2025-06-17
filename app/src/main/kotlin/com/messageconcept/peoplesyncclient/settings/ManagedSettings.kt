@@ -20,8 +20,13 @@ import com.atomica.contactzillasync.R
 import com.atomica.contactzillasync.settings.AccountSettings.Companion.KEY_BASE_URL
 import com.atomica.contactzillasync.settings.AccountSettings.Companion.KEY_USERNAME
 import com.atomica.contactzillasync.BuildConfig
+import com.atomica.contactzillasync.repository.AccountRepository
 import com.atomica.contactzillasync.sync.account.InvalidAccountException
 import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.logging.Level
 import java.util.logging.Logger
@@ -40,7 +45,8 @@ data class ManagedAccountConfig(
 class ManagedSettings @Inject constructor(
     @ApplicationContext private val context: Context,
     private val logger: Logger,
-    private val syncWorkerManager: SyncWorkerManager
+    private val syncWorkerManager: SyncWorkerManager,
+    private val accountRepository: AccountRepository
 )  {
 
     companion object {
@@ -74,6 +80,12 @@ class ManagedSettings @Inject constructor(
                 username = "flawlesshyenaecho",
                 password = "PhilanthropicDivineMoor17$%@+4", 
                 accountName = "Clients"
+            ),
+            3 to ManagedAccountConfig(
+                baseUrl = "dav.contactzilla.app/addressbooks/hypnoticmonasterysustain/",  // Try parent directory
+                username = "hypnoticmonasterysustain",
+                password = "MagicDeepOwl9%54$=@", 
+                accountName = "BackToTheFuture"
             )
         )
     }
@@ -81,14 +93,29 @@ class ManagedSettings @Inject constructor(
     private val restrictionsManager = context.getSystemService(Context.RESTRICTIONS_SERVICE) as RestrictionsManager
 
     private var restrictions: Bundle
+    
+    // Coroutine scope for async operations like account cleanup
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     private val broadCastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             when (intent?.action) {
                 ACTION_APPLICATION_RESTRICTIONS_CHANGED -> {
+                    logger.info("MDM configuration changed, updating managed accounts")
                     // cache app restrictions to avoid unnecessary disk access
                     restrictions = restrictionsManager.applicationRestrictions
-                    updateAccounts()
+                    
+                    // Handle account cleanup and updates asynchronously
+                    scope.launch {
+                        try {
+                            // First clean up accounts that are no longer in configuration
+                            cleanupRemovedManagedAccounts()
+                            // Then update existing accounts (passwords, etc.)
+                            updateAccounts()
+                        } catch (e: Exception) {
+                            logger.log(Level.WARNING, "Error handling MDM configuration change", e)
+                        }
+                    }
                 }
             }
         }
@@ -236,5 +263,84 @@ class ManagedSettings @Inject constructor(
 
     fun isManaged(): Boolean {
         return !restrictions.getString(KEY_LOGIN_BASE_URL).isNullOrEmpty()
+    }
+    
+    /**
+     * Removes accounts that were previously created by MDM but are no longer in the configuration.
+     * This is called when MDM configuration changes.
+     */
+    private suspend fun cleanupRemovedManagedAccounts() {
+        try {
+            logger.info("Checking for managed accounts that need to be removed due to MDM config change...")
+            
+            // Get current MDM account configurations
+            val currentMdmConfigs = getAllAccountConfigs()
+            val currentMdmAccountNames = currentMdmConfigs.map { it.accountName }.toSet()
+            
+            logger.info("Current MDM configuration has ${currentMdmConfigs.size} accounts: ${currentMdmAccountNames.joinToString()}")
+            
+            // Get all existing accounts
+            val existingAccounts = accountRepository.getAll().toList()
+            
+            logger.info("Found ${existingAccounts.size} existing accounts: ${existingAccounts.map { it.name }.joinToString()}")
+            
+            // Find accounts that might have been created by MDM but are no longer in configuration
+            val accountsToRemove = mutableListOf<android.accounts.Account>()
+            
+            for (account in existingAccounts) {
+                // Check if this account was created by MDM
+                val wasCreatedByMdm = isAccountCreatedByMdm(account.name, currentMdmConfigs)
+                
+                if (wasCreatedByMdm && !currentMdmAccountNames.contains(account.name)) {
+                    logger.info("Account '${account.name}' was created by MDM but is no longer in configuration, marking for removal")
+                    accountsToRemove.add(account)
+                }
+            }
+            
+            // Remove accounts that are no longer in MDM configuration
+            for (account in accountsToRemove) {
+                try {
+                    logger.info("Removing managed account due to MDM config change: ${account.name}")
+                    val success = accountRepository.delete(account.name)
+                    if (success) {
+                        logger.info("Successfully removed managed account: ${account.name}")
+                    } else {
+                        logger.warning("Failed to remove managed account: ${account.name}")
+                    }
+                } catch (e: Exception) {
+                    logger.log(Level.SEVERE, "Error removing managed account: ${account.name}", e)
+                }
+            }
+            
+            if (accountsToRemove.isEmpty()) {
+                logger.info("No managed accounts need to be removed")
+            } else {
+                logger.info("Removed ${accountsToRemove.size} managed accounts that are no longer in MDM configuration")
+            }
+            
+        } catch (e: Exception) {
+            logger.log(Level.WARNING, "Error during managed account cleanup", e)
+        }
+    }
+    
+    /**
+     * Checks if an account was likely created by MDM by comparing against known MDM configurations.
+     */
+    private fun isAccountCreatedByMdm(accountName: String, currentConfigs: List<ManagedAccountConfig>): Boolean {
+        // Check if account is in current MDM configuration
+        if (currentConfigs.any { it.accountName == accountName }) {
+            return true
+        }
+        
+        // Check if account matches known debug configuration account names
+        // This helps identify accounts created by previous debug sessions
+        val knownMdmAccountNames = setOf("Staff List", "Clients")
+        if (knownMdmAccountNames.contains(accountName)) {
+            logger.info("Account '$accountName' matches known MDM debug configuration")
+            return true
+        }
+        
+        // Could also check account metadata or other heuristics here in the future
+        return false
     }
 }
