@@ -27,7 +27,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.messageconcept.contactzillasync"
+        applicationId = "com.atomica.contactzillasync"
 
         //noinspection HighAppVersionCode
         versionCode = 2070040402
