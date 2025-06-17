@@ -48,7 +48,7 @@ Use ADB to set app restrictions directly on the device:
 adb shell am start-foreground-service \
   -n com.android.deviceowner/.DeviceOwnerService \
   --es command SET_APPLICATION_RESTRICTIONS \
-  --es packageName com.messageconcept.contactzillasync \
+  --es packageName com.atomica.contactzillasync \
   --es restrictions '{
     "login_base_url": "https://dav.contactzilla.app/addressbooks/testuser/company",
     "login_user_name": "testuser",
@@ -63,7 +63,7 @@ adb shell am start-foreground-service \
 adb shell am start-foreground-service \
   -n com.android.deviceowner/.DeviceOwnerService \
   --es command SET_APPLICATION_RESTRICTIONS \
-  --es packageName com.messageconcept.contactzillasync \
+  --es packageName com.atomica.contactzillasync \
   --es restrictions '{
     "login_base_url": "https://dav.contactzilla.app/addressbooks/testuser1/company",
     "login_user_name": "testuser1",
@@ -82,7 +82,7 @@ adb shell am start-foreground-service \
 adb shell am start-foreground-service \
   -n com.android.deviceowner/.DeviceOwnerService \
   --es command CLEAR_APPLICATION_RESTRICTIONS \
-  --es packageName com.messageconcept.contactzillasync
+  --es packageName com.atomica.contactzillasync
 ```
 
 ## Option 3: Test Management Console (Advanced)
@@ -104,7 +104,7 @@ Create a simple debug activity to manage test configurations:
 
 ### 2. Access via ADB:
 ```bash
-adb shell am start -n com.messageconcept.contactzillasync/.ui.debug.DebugMdmActivity
+adb shell am start -n com.atomica.contactzillasync/.ui.debug.DebugMdmActivity
 ```
 
 ## Recommended Testing Flow
@@ -112,7 +112,7 @@ adb shell am start -n com.messageconcept.contactzillasync/.ui.debug.DebugMdmActi
 1. **Start with Debug Mode**: Use the hardcoded values for initial testing
 2. **Customize accounts**: Edit `debugConfigs` with your server details
 3. **Test account creation**: 
-   - Clear app data: `adb shell pm clear com.messageconcept.contactzillasync`
+   - Clear app data: `adb shell pm clear com.atomica.contactzillasync`
    - Launch app and observe logs for account creation
 4. **Verify accounts**: Check that accounts appear in the accounts list
 5. **Test sync**: Verify that sync works with the created accounts
@@ -146,7 +146,7 @@ Look for log messages:
 ### Force account recreation:
 ```bash
 # Clear app data to remove existing accounts
-adb shell pm clear com.messageconcept.contactzillasync
+adb shell pm clear com.atomica.contactzillasync
 
 # Or remove specific account via Android Settings
 adb shell am start -a android.settings.SYNC_SETTINGS

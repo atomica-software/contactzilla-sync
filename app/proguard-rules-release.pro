@@ -1,5 +1,5 @@
 
-# R8 usage for PeopleSync:
+# R8 usage for ContactzillaSync:
 #    shrinking        yes (only in release builds)
 #    optimization     yes (on by R8 defaults)
 #      full-mode      no (see gradle.properties)
@@ -10,7 +10,7 @@
 
 # keep rules
 -keep class at.bitfire.** { *; }         # all DAVx⁵ code is required
--keep class com.messageconcept.** { *; } # all PeopleSync code is required
+-keep class com.atomica.** { *; }        # all ContactzillaSync code is required
 -keep class org.xmlpull.** { *; }
 
 # Additional rules which are now required since missing classes can't be ignored in R8 anymore.

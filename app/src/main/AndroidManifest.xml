@@ -135,7 +135,7 @@
             android:name=".ui.account.WifiPermissionsActivity"
             android:parentActivityName=".ui.account.AccountSettingsActivity" />
 
-        <!-- account type "PeopleSync" -->
+        <!-- account type "Contactzilla Sync" -->
         <service
             android:name=".sync.account.AccountAuthenticatorService"
             android:exported="false">
@@ -147,7 +147,7 @@
                 android:resource="@xml/account_authenticator"/>
         </service>
 
-        <!-- account type "PeopleSync Address book" -->
+        <!-- account type "Contactzilla Sync Address book" -->
         <service
             android:name=".sync.account.AddressBookAuthenticatorService"
             android:exported="true"

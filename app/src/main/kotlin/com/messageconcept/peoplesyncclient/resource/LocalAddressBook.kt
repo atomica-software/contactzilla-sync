@@ -42,11 +42,11 @@ import java.util.logging.Logger
 
 /**
  * A local address book. Requires its own Android account, because Android manages contacts per
- * account and there is no such thing as "address books". So, PeopleSync creates a "PeopleSync
+ * account and there is no such thing as "address books". So, ContactzillaSync creates a "ContactzillaSync
  * address book" account for every CardDAV address book.
  *
- * @param account             PeopleSync account which "owns" this address book
- * @param _addressBookAccount Address book account (not: PeopleSync account) storing the actual Android
+ * @param account             ContactzillaSync account which "owns" this address book
+ * @param _addressBookAccount Address book account (not: ContactzillaSync account) storing the actual Android
  * contacts. This is the initial value of [addressBookAccount]. However when the address book is renamed,
  * the new name will only be available in [addressBookAccount], so usually that one should be used.
  * @param provider            Content provider needed to access and modify the address book

@@ -16,7 +16,7 @@ import com.atomica.contactzillasync.R
 
 
 /**
- * Account authenticator for the PeopleSync account type.
+ * Account authenticator for the ContactzillaSync account type.
  */
 class AccountAuthenticatorService: Service() {
 

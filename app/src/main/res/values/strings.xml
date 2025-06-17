@@ -5,12 +5,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- common strings -->
-    <string name="app_name" translatable="false">PeopleSync</string>
+    <string name="app_name" translatable="false">Contactzilla Sync</string>
 
     <string name="account_invalid">Account does not exist (anymore)</string>
-    <string name="account_type" translatable="false">com.messageconcept.peoplesync</string>
-    <string name="account_type_address_book" translatable="false">com.messageconcept.peoplesync.addressbook</string>
-    <string name="account_title_address_book">PeopleSync Address book</string>
+    <string name="account_type" translatable="false">com.atomica.contactzillasync</string>
+    <string name="account_type_address_book" translatable="false">com.atomica.contactzillasync.addressbook</string>
+    <string name="account_title_address_book">Contactzilla Address book</string>
     <string name="account_prefs_use_app">Don\'t change the account here! Directly use the app to manage accounts instead.</string>
     <string name="dialog_delete">Delete</string>
     <string name="dialog_remove">Remove</string>
@@ -39,7 +39,7 @@
     <string name="notification_channel_sync_io_errors_desc">Timeouts, connection problems, etc. (often temporary)</string>
 
     <!-- IntroActivity -->
-    <string name="intro_slogan1">PeopleSync</string>
+    <string name="intro_slogan1">Contactzilla Sync</string>
     <string name="intro_slogan2">All contacts. Everywhere.</string>
     <string name="intro_battery_title">Regular sync intervals</string>
     <string name="intro_battery_text">For synchronization at regular intervals, %s must be allowed to run in the background. Otherwise, Android may pause synchronization at any time.</string>
@@ -128,9 +128,9 @@
     <string name="about_translations">Translations</string>
     <string name="about_libraries">Libraries</string>
     <string name="about_version">Version %1$s (%2$d)</string>
-    <string name="about_copyright" translatable="false">© messageconcept software GmbH</string>
+    <string name="about_copyright" translatable="false">© Atomica Software Inc</string>
     <string name="about_license_info_no_warranty">This program comes with ABSOLUTELY NO WARRANTY. It is free software, and you are welcome to redistribute it under certain conditions.</string>
-    <string name="about_contact_info">messageconcept software GmbH\nGrosse Witschgasse 17\n50676 Cologne, Germany\nPhone +49 221 677855 88\n(no app support)</string>
+    <string name="about_contact_info">For support, please contact support@contactzilla.com</string>
 
     <!-- global settings -->
     <string name="logging_couldnt_create_file">Couldn\'t create log file</string>
@@ -139,7 +139,7 @@
     <string name="logging_notification_disable">Disable</string>
 
     <!-- AccountsScreen -->
-    <string name="navigation_drawer_title">messageconcept PeopleSync</string>
+    <string name="navigation_drawer_title">Contactzilla Sync</string>
     <string name="navigation_drawer_subtitle">CardDAV Sync Adapter</string>
     <string name="navigation_drawer_about">About / License</string>
     <string name="navigation_drawer_beta_feedback">Beta feedback</string>
@@ -516,7 +516,7 @@
     <string name="webdav_provider_root_title">WebDAV mount</string>
 
     <!-- sync -->
-    <string name="sync_error_permissions">PeopleSync permissions</string>
+    <string name="sync_error_permissions">Contactzilla Sync permissions</string>
     <string name="sync_error_permissions_text">Additional permissions required</string>
     <string name="sync_error_tasks_too_old">%s too old</string>
     <string name="sync_error_tasks_required_version">Minimum required version: %1$s</string>

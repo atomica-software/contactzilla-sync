@@ -18,7 +18,7 @@ tasks.cyclonedxBom {
     outputName = "sbom-android-app"
     outputFormat = "json"
     includeLicenseText = false
-    componentName = "PeopleSyncClient"
+    componentName = "ContactzillaSyncClient"
     componentVersion = android.defaultConfig.versionName
 }
 
@@ -30,10 +30,10 @@ android {
         applicationId = "com.atomica.contactzillasync"
 
         //noinspection HighAppVersionCode
-        versionCode = 2070040402
-        versionName = "4.4-2"
+        versionCode = 2070040500
+        versionName = "4.5"
 
-        setProperty("archivesBaseName", "PeopleSyncClient-$versionName")
+        setProperty("archivesBaseName", "ContactzillaSyncClient-$versionName")
 
         minSdk = 24        // Android 7.0
         targetSdk = 35     // Android 15

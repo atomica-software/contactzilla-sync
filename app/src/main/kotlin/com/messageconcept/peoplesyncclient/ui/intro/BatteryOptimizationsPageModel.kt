@@ -95,7 +95,7 @@ class BatteryOptimizationsPageModel @Inject constructor(
         val exempted = isExempted(context)
         uiState = uiState.copy(shouldBeExempted = exempted, isExempted = exempted)
 
-        // if PeopleSync is whitelisted, always show a reminder as soon as it's not whitelisted anymore
+        // if Contactzilla Sync is whitelisted, always show a reminder as soon as it's not whitelisted anymore
         if (exempted)
             settings.remove(HINT_BATTERY_OPTIMIZATIONS)
     }

@@ -1,28 +1,21 @@
-![PeopleSync logo](app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
+![Contactzilla Sync logo](app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
 
-PeopleSync Client App
+Contactzilla Sync Client App
 =====================
 
-Please see the [PeopleSync product website](https://peoplesync.messageconcept.com) for
+Please see the [Contactzilla website](https://contactzilla.com) for
 detailed information about the software.
 
-The software is a CardDAV client for businesses using our PeopleSync server
-software. It synchronizes all address lists from the PeopleSync server. The
-management, which address lists will be synchronized, happens centrally on
-server side by the IT staff. Therefore for the personal usage of CardDAV and
-CalDAV we recommend to use the [DAVx⁵](https://www.davx5.com)
-app with more configuration options.
+The software is a CardDAV client forked from PeopleSync which is forked from DAVx⁵. This product has been amended to work better for our product with MDM solutions. For the personal usage of CardDAV and
+CalDAV we recommend to use the [DAVx⁵](https://www.davx5.com) app with more configuration options.
 
 
-The PeopleSync client app is licensed under the [GPLv3 License](LICENSE).
+The Contactzilla Sync client app is licensed under the [GPLv3 License](LICENSE).
 
-The PeopleSync server software is proprietary commercial software.
-
-Twitter: [@messageconcept](https://twitter.com/messageconcept)
+The Contactzilla server software is a cloud based CardDAV solution for businesses and is proprietary commercial software.
 
 
-The PeopleSync client app is based on [DAVx⁵](https://www.davx5.com) and parts of DAVx⁵ have been
-outsourced into these libraries:
+The Contactzilla Sync client app is based on [PeopleSync](https://www.messageconcept.com/en/products/peoplesync/) which is based on [DAVx⁵](https://www.davx5.com) and parts of DAVx⁵ have been outsourced into these libraries:
 
 * [cert4android](https://github.com/bitfireAT/cert4android) – custom certificate management
 * [dav4jvm](https://github.com/bitfireAT/dav4jvm) – WebDAV/CalDav/CardDAV framework

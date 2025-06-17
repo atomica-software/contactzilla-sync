@@ -40,7 +40,7 @@ import javax.inject.Provider
  * @param abortOnMissingMigration   whether to throw an [IllegalArgumentException] when migrations are missing (useful for testing)
  *
  * @throws InvalidAccountException   on construction when the account doesn't exist (anymore)
- * @throws IllegalArgumentException  when the account is not a PeopleSync account or migrations are missing and [abortOnMissingMigration] is set
+ * @throws IllegalArgumentException  when the account is not a ContactzillaSync account or migrations are missing and [abortOnMissingMigration] is set
  */
 @WorkerThread   
 class AccountSettings @AssistedInject constructor(

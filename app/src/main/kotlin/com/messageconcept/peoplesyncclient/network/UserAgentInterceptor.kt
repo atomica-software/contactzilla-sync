@@ -14,7 +14,7 @@ import java.util.logging.Logger
 
 object UserAgentInterceptor: Interceptor {
 
-    val userAgent = "PeopleSync/${BuildConfig.VERSION_NAME} (dav4jvm; " +
+    val userAgent = "Contactzilla Sync/${BuildConfig.VERSION_NAME} (dav4jvm; " +
             "okhttp/${OkHttp.VERSION}) Android/${Build.VERSION.RELEASE}"
 
     init {

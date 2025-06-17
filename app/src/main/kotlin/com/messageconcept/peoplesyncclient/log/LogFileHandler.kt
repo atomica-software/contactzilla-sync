@@ -67,7 +67,7 @@ class LogFileHandler @Inject constructor(
          */
         fun getDebugLogFile(context: Context): File? {
             val logDir = debugDir(context) ?: return null
-            return File(logDir, "peoplesync-log.txt")
+            return File(logDir, "contactzillasync-log.txt")
         }
 
     }

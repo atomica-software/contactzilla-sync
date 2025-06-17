@@ -136,7 +136,7 @@ class DebugInfoGenerator @Inject constructor(
             val pm = context.packageManager
 
             val packageNames = mutableSetOf(      // we always want info about these packages:
-                BuildConfig.APPLICATION_ID,            // PeopleSync
+                BuildConfig.APPLICATION_ID,            // Contactzilla Sync
             )
             // ... and info about contact and calendar provider
             for (authority in arrayOf(ContactsContract.AUTHORITY, CalendarContract.AUTHORITY))

@@ -13,7 +13,7 @@ object Constants {
 
     const val DAVDROID_GREEN_RGBA = 0xFF8bc34a.toInt()
 
-    val HOMEPAGE_URL = "https://www.messageconcept.com/peoplesync/".toUri()
+    val HOMEPAGE_URL = "https://www.contactzilla.com/".toUri()
     const val HOMEPAGE_PATH_FAQ = "faq"
     const val HOMEPAGE_PATH_FAQ_SYNC_NOT_RUN = "synchronization-is-not-run-as-expected"
     const val HOMEPAGE_PATH_FAQ_LOCATION_PERMISSION = "wifi-ssid-restriction-location-permission"

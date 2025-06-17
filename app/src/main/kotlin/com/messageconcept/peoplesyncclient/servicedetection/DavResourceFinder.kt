@@ -377,8 +377,8 @@ class DavResourceFinder @AssistedInject constructor(
             port = srv.port
             log.info("Found $service service at https://$fqdn:$port")
         } else {
-            // try peoplesync SRV record
-            query = "_peoplesync._tcp.$domain"
+            // try contactzilla sync SRV record
+            query = "_dav._tcp.$domain"
             log.fine("Looking up SRV records for $query")
             srvRecords = dnsRecordResolver.resolve(query, Type.SRV)
             srv = dnsRecordResolver.bestSRVRecord(srvRecords)

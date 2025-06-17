@@ -8,7 +8,7 @@ import com.atomica.contactzillasync.db.SyncState
 
 interface LocalCollection<out T: LocalResource<*>> {
 
-    /** a tag that uniquely identifies the collection (PeopleSync-wide) */
+    /** a tag that uniquely identifies the collection (ContactzillaSync-wide) */
     val tag: String
 
     /** ID of the collection in the database (corresponds to [com.atomica.contactzillasync.db.Collection.id]) */

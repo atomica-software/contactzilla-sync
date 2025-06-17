@@ -94,7 +94,7 @@ abstract class SyncAdapterService: Service() {
      *
      * Although we do not use the sync adapter for syncing anymore, we keep this sole
      * adapter to provide exported services, which allow android system components and calendar,
-     * contacts or task apps to sync via PeopleSync.
+     * contacts or task apps to sync via ContactzillaSync.
      *
      * All Sync Adapter Framework related interaction should happen inside [SyncFrameworkIntegration].
      */
