@@ -13,9 +13,11 @@ import com.atomica.contactzillasync.db.Credentials
 import com.atomica.contactzillasync.repository.AccountRepository
 import com.atomica.contactzillasync.servicedetection.DavResourceFinder
 import com.atomica.contactzillasync.servicedetection.RefreshCollectionsWorker
+import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
 import com.atomica.contactzillasync.settings.AccountSettings
 import com.atomica.contactzillasync.settings.ManagedAccountConfig
 import com.atomica.contactzillasync.settings.ManagedSettings
+import com.atomica.contactzillasync.util.PermissionUtils
 import com.atomica.contactzillasync.startup.StartupPlugin.Companion.PRIORITY_DEFAULT
 import com.atomica.contactzillasync.startup.StartupPlugin.Companion.PRIORITY_HIGHEST
 import at.bitfire.vcard4android.GroupMethod
@@ -41,7 +43,8 @@ class ManagedAccountSetup @Inject constructor(
     private val logger: Logger,
     private val managedSettings: ManagedSettings,
     private val accountRepository: AccountRepository,
-    private val davResourceFinderFactory: DavResourceFinder.Factory
+    private val davResourceFinderFactory: DavResourceFinder.Factory,
+    private val syncWorkerManager: SyncWorkerManager
 ): StartupPlugin {
 
     @Module
@@ -203,6 +206,9 @@ class ManagedAccountSetup @Inject constructor(
                         } catch (e: Exception) {
                             logger.log(Level.WARNING, "Could not verify account metadata", e)
                         }
+                        
+                        // Trigger initial sync for the newly created account (with permission check)
+                        triggerSyncWithPermissionCheck(account, config.accountName)
                     } else {
                         logger.warning("Failed to create managed account: ${config.accountName} - createBlocking returned null")
                     }
@@ -216,5 +222,77 @@ class ManagedAccountSetup @Inject constructor(
         }
         
         logger.info("Finished creating managed accounts")
+        
+        // Trigger a final sync for all newly created accounts to ensure they sync properly
+        try {
+            val createdAccounts = managedSettings.getAllAccountConfigs()
+                .filter { config -> 
+                    withContext(Dispatchers.IO) {
+                        accountRepository.exists(config.accountName)
+                    }
+                }
+            
+            if (createdAccounts.isNotEmpty()) {
+                logger.info("Triggering final sync for ${createdAccounts.size} managed accounts")
+                for (config in createdAccounts) {
+                    val account = accountRepository.fromName(config.accountName)
+                    triggerSyncWithPermissionCheck(account, config.accountName)
+                }
+                logger.info("Final sync requested for all managed accounts")
+            }
+        } catch (e: Exception) {
+            logger.log(Level.WARNING, "Could not trigger final sync for managed accounts", e)
+        }
     }
+    
+    /**
+     * Triggers sync for an account, checking contact permissions first.
+     * If permissions aren't granted, schedules delayed retries.
+     */
+    private suspend fun triggerSyncWithPermissionCheck(account: android.accounts.Account, accountName: String) {
+        try {
+            val hasPermissions = PermissionUtils.havePermissions(context, PermissionUtils.CONTACT_PERMISSIONS)
+            
+            if (hasPermissions) {
+                logger.info("Contact permissions granted, triggering immediate sync for account: $accountName")
+                syncWorkerManager.enqueueOneTimeAllAuthorities(account, manual = true)
+                logger.info("Sync enqueued for account: $accountName")
+            } else {
+                logger.info("Contact permissions not granted yet for account: $accountName, scheduling delayed sync")
+                scheduleDelayedSync(account, accountName)
+            }
+        } catch (e: Exception) {
+            logger.log(Level.WARNING, "Could not trigger sync for $accountName", e)
+        }
+    }
+    
+    /**
+     * Schedules delayed sync retries to wait for contact permissions to be granted.
+     */
+    private suspend fun scheduleDelayedSync(account: android.accounts.Account, accountName: String) {
+        // Try again after 30 seconds, 2 minutes, and 5 minutes
+        val delays = listOf(30_000L, 120_000L, 300_000L) // 30s, 2min, 5min
+        
+        for ((attempt, delayMs) in delays.withIndex()) {
+            delay(delayMs)
+            
+            val hasPermissions = PermissionUtils.havePermissions(context, PermissionUtils.CONTACT_PERMISSIONS)
+            if (hasPermissions) {
+                logger.info("Contact permissions now granted for account: $accountName (attempt ${attempt + 1}), triggering sync")
+                try {
+                    syncWorkerManager.enqueueOneTimeAllAuthorities(account, manual = true)
+                    logger.info("Delayed sync enqueued for account: $accountName")
+                    return // Success, exit retry loop
+                } catch (e: Exception) {
+                    logger.log(Level.WARNING, "Failed to enqueue delayed sync for $accountName", e)
+                }
+            } else {
+                logger.info("Contact permissions still not granted for account: $accountName (attempt ${attempt + 1})")
+            }
+        }
+        
+        // Final attempt after all delays
+        logger.warning("Contact permissions never granted for account: $accountName after all retry attempts")
+    }
+
 } 
