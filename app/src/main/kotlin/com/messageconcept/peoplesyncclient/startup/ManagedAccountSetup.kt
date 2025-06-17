@@ -189,7 +189,7 @@ class ManagedAccountSetup @Inject constructor(
                             accountName = config.accountName,
                             credentials = credentials,
                             config = serviceConfig,
-                            groupMethod = GroupMethod.GROUP_VCARDS // Default group method
+                            groupMethod = GroupMethod.CATEGORIES // Use contact categories instead of separate VCards
                         )
                     }
                     
