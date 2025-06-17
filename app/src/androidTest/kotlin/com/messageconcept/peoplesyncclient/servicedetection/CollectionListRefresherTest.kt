@@ -2,17 +2,17 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.servicedetection
+package com.atomica.contactzillasync.servicedetection
 
 import android.security.NetworkSecurityPolicy
-import com.messageconcept.peoplesyncclient.db.AppDatabase
-import com.messageconcept.peoplesyncclient.db.Collection
-import com.messageconcept.peoplesyncclient.db.HomeSet
-import com.messageconcept.peoplesyncclient.db.Principal
-import com.messageconcept.peoplesyncclient.db.Service
-import com.messageconcept.peoplesyncclient.network.HttpClient
-import com.messageconcept.peoplesyncclient.settings.Settings
-import com.messageconcept.peoplesyncclient.settings.SettingsManager
+import com.atomica.contactzillasync.db.AppDatabase
+import com.atomica.contactzillasync.db.Collection
+import com.atomica.contactzillasync.db.HomeSet
+import com.atomica.contactzillasync.db.Principal
+import com.atomica.contactzillasync.db.Service
+import com.atomica.contactzillasync.network.HttpClient
+import com.atomica.contactzillasync.settings.Settings
+import com.atomica.contactzillasync.settings.SettingsManager
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

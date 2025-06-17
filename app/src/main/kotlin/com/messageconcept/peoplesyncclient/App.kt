@@ -2,16 +2,16 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient
+package com.atomica.contactzillasync
 
 import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
-import com.messageconcept.peoplesyncclient.log.LogManager
-import com.messageconcept.peoplesyncclient.startup.StartupPlugin
-import com.messageconcept.peoplesyncclient.settings.ManagedSettings
-import com.messageconcept.peoplesyncclient.sync.account.AccountsCleanupWorker
-import com.messageconcept.peoplesyncclient.ui.UiUtils
+import com.atomica.contactzillasync.log.LogManager
+import com.atomica.contactzillasync.startup.StartupPlugin
+import com.atomica.contactzillasync.settings.ManagedSettings
+import com.atomica.contactzillasync.sync.account.AccountsCleanupWorker
+import com.atomica.contactzillasync.ui.UiUtils
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers

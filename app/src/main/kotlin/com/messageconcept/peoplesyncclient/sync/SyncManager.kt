@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync
+package com.atomica.contactzillasync.sync
 
 import android.accounts.Account
 import android.content.Context
@@ -27,17 +27,17 @@ import at.bitfire.dav4jvm.property.caldav.GetCTag
 import at.bitfire.dav4jvm.property.caldav.ScheduleTag
 import at.bitfire.dav4jvm.property.webdav.GetETag
 import at.bitfire.dav4jvm.property.webdav.SyncToken
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.db.Collection
-import com.messageconcept.peoplesyncclient.db.SyncState
-import com.messageconcept.peoplesyncclient.network.HttpClient
-import com.messageconcept.peoplesyncclient.repository.AccountRepository
-import com.messageconcept.peoplesyncclient.repository.DavCollectionRepository
-import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
-import com.messageconcept.peoplesyncclient.repository.DavSyncStatsRepository
-import com.messageconcept.peoplesyncclient.resource.LocalCollection
-import com.messageconcept.peoplesyncclient.resource.LocalResource
-import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.db.Collection
+import com.atomica.contactzillasync.db.SyncState
+import com.atomica.contactzillasync.network.HttpClient
+import com.atomica.contactzillasync.repository.AccountRepository
+import com.atomica.contactzillasync.repository.DavCollectionRepository
+import com.atomica.contactzillasync.repository.DavServiceRepository
+import com.atomica.contactzillasync.repository.DavSyncStatsRepository
+import com.atomica.contactzillasync.resource.LocalCollection
+import com.atomica.contactzillasync.resource.LocalResource
+import com.atomica.contactzillasync.sync.account.InvalidAccountException
 import at.bitfire.vcard4android.ContactsStorageException
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher

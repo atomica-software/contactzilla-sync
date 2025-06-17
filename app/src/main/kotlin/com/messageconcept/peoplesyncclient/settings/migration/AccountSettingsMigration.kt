@@ -2,10 +2,10 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.settings.migration
+package com.atomica.contactzillasync.settings.migration
 
 import android.accounts.Account
-import com.messageconcept.peoplesyncclient.settings.AccountSettings
+import com.atomica.contactzillasync.settings.AccountSettings
 
 interface AccountSettingsMigration {
 

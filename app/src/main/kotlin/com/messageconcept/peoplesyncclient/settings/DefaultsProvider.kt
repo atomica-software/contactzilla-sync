@@ -2,9 +2,9 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.settings
+package com.atomica.contactzillasync.settings
 
-import com.messageconcept.peoplesyncclient.TextTable
+import com.atomica.contactzillasync.TextTable
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

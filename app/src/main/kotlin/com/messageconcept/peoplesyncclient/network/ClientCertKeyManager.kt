@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.network
+package com.atomica.contactzillasync.network
 
 import android.content.Context
 import android.security.KeyChain

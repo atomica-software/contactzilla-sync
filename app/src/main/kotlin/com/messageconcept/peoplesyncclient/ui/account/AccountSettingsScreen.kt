@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.account
+package com.atomica.contactzillasync.ui.account
 
 import android.accounts.Account
 import android.app.Activity
@@ -53,17 +53,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.messageconcept.peoplesyncclient.Constants
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.db.Credentials
-import com.messageconcept.peoplesyncclient.ui.AppTheme
-import com.messageconcept.peoplesyncclient.ui.composable.ActionCard
-import com.messageconcept.peoplesyncclient.ui.composable.EditTextInputDialog
-import com.messageconcept.peoplesyncclient.ui.composable.MultipleChoiceInputDialog
-import com.messageconcept.peoplesyncclient.ui.composable.Setting
-import com.messageconcept.peoplesyncclient.ui.composable.SettingsHeader
-import com.messageconcept.peoplesyncclient.ui.composable.SwitchSetting
-import com.messageconcept.peoplesyncclient.util.PermissionUtils
+import com.atomica.contactzillasync.Constants
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.db.Credentials
+import com.atomica.contactzillasync.ui.AppTheme
+import com.atomica.contactzillasync.ui.composable.ActionCard
+import com.atomica.contactzillasync.ui.composable.EditTextInputDialog
+import com.atomica.contactzillasync.ui.composable.MultipleChoiceInputDialog
+import com.atomica.contactzillasync.ui.composable.Setting
+import com.atomica.contactzillasync.ui.composable.SettingsHeader
+import com.atomica.contactzillasync.ui.composable.SwitchSetting
+import com.atomica.contactzillasync.util.PermissionUtils
 import at.bitfire.vcard4android.GroupMethod
 import kotlinx.coroutines.launch
 

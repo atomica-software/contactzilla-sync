@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui
+package com.atomica.contactzillasync.ui
 
 import android.app.Application
 import android.text.Spanned
@@ -17,7 +17,7 @@ import androidx.core.text.HtmlCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.messageconcept.peoplesyncclient.ui.UiUtils.toAnnotatedString
+import com.atomica.contactzillasync.ui.UiUtils.toAnnotatedString
 import com.google.common.io.CharStreams
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

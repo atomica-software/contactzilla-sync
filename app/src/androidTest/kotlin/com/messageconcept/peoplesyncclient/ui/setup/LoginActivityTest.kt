@@ -1,4 +1,4 @@
-package com.messageconcept.peoplesyncclient.ui.setup
+package com.atomica.contactzillasync.ui.setup
 
 import android.content.Intent
 import android.net.Uri

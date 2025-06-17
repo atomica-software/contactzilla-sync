@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.setup
+package com.atomica.contactzillasync.ui.setup
 
 import android.accounts.Account
 import android.content.Context
@@ -11,10 +11,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.messageconcept.peoplesyncclient.repository.AccountRepository
-import com.messageconcept.peoplesyncclient.servicedetection.DavResourceFinder
-import com.messageconcept.peoplesyncclient.settings.AccountSettings
-import com.messageconcept.peoplesyncclient.settings.SettingsManager
+import com.atomica.contactzillasync.repository.AccountRepository
+import com.atomica.contactzillasync.servicedetection.DavResourceFinder
+import com.atomica.contactzillasync.settings.AccountSettings
+import com.atomica.contactzillasync.settings.SettingsManager
 import at.bitfire.vcard4android.GroupMethod
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory

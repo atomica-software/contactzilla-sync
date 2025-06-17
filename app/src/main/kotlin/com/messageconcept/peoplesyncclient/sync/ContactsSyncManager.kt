@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync
+package com.atomica.contactzillasync.sync
 
 import android.accounts.Account
 import android.content.ContentProviderClient
@@ -20,23 +20,23 @@ import at.bitfire.dav4jvm.property.webdav.GetETag
 import at.bitfire.dav4jvm.property.webdav.ResourceType
 import at.bitfire.dav4jvm.property.webdav.SupportedReportSet
 import at.bitfire.dav4jvm.property.webdav.SyncToken
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.db.Collection
-import com.messageconcept.peoplesyncclient.db.SyncState
-import com.messageconcept.peoplesyncclient.di.SyncDispatcher
-import com.messageconcept.peoplesyncclient.network.HttpClient
-import com.messageconcept.peoplesyncclient.resource.LocalAddress
-import com.messageconcept.peoplesyncclient.resource.LocalAddressBook
-import com.messageconcept.peoplesyncclient.resource.LocalContact
-import com.messageconcept.peoplesyncclient.resource.LocalGroup
-import com.messageconcept.peoplesyncclient.resource.LocalResource
-import com.messageconcept.peoplesyncclient.resource.workaround.ContactDirtyVerifier
-import com.messageconcept.peoplesyncclient.settings.AccountSettings
-import com.messageconcept.peoplesyncclient.sync.groups.CategoriesStrategy
-import com.messageconcept.peoplesyncclient.sync.groups.VCard4Strategy
-import com.messageconcept.peoplesyncclient.util.DavUtils
-import com.messageconcept.peoplesyncclient.util.DavUtils.lastSegment
-import com.messageconcept.peoplesyncclient.util.DavUtils.sameTypeAs
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.db.Collection
+import com.atomica.contactzillasync.db.SyncState
+import com.atomica.contactzillasync.di.SyncDispatcher
+import com.atomica.contactzillasync.network.HttpClient
+import com.atomica.contactzillasync.resource.LocalAddress
+import com.atomica.contactzillasync.resource.LocalAddressBook
+import com.atomica.contactzillasync.resource.LocalContact
+import com.atomica.contactzillasync.resource.LocalGroup
+import com.atomica.contactzillasync.resource.LocalResource
+import com.atomica.contactzillasync.resource.workaround.ContactDirtyVerifier
+import com.atomica.contactzillasync.settings.AccountSettings
+import com.atomica.contactzillasync.sync.groups.CategoriesStrategy
+import com.atomica.contactzillasync.sync.groups.VCard4Strategy
+import com.atomica.contactzillasync.util.DavUtils
+import com.atomica.contactzillasync.util.DavUtils.lastSegment
+import com.atomica.contactzillasync.util.DavUtils.sameTypeAs
 import at.bitfire.vcard4android.Contact
 import at.bitfire.vcard4android.GroupMethod
 import dagger.assisted.Assisted

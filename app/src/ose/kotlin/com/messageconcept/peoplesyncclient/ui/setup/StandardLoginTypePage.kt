@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.setup
+package com.atomica.contactzillasync.ui.setup
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -19,11 +19,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.text.HtmlCompat
-import com.messageconcept.peoplesyncclient.Constants
-import com.messageconcept.peoplesyncclient.Constants.withStatParams
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.ui.UiUtils.toAnnotatedString
-import com.messageconcept.peoplesyncclient.ui.composable.Assistant
+import com.atomica.contactzillasync.Constants
+import com.atomica.contactzillasync.Constants.withStatParams
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.ui.UiUtils.toAnnotatedString
+import com.atomica.contactzillasync.ui.composable.Assistant
 
 @Composable
 fun StandardLoginTypePage(

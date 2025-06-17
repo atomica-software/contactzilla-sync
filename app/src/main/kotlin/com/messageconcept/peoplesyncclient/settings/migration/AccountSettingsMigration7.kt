@@ -2,14 +2,14 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.settings.migration
+package com.atomica.contactzillasync.settings.migration
 
 import android.accounts.Account
 import android.accounts.AccountManager
 import android.content.Context
 import android.provider.CalendarContract
-import com.messageconcept.peoplesyncclient.settings.AccountSettings
-import com.messageconcept.peoplesyncclient.sync.account.setAndVerifyUserData
+import com.atomica.contactzillasync.settings.AccountSettings
+import com.atomica.contactzillasync.sync.account.setAndVerifyUserData
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

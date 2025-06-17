@@ -27,7 +27,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.messageconcept.peoplesyncclient"
+        applicationId = "com.messageconcept.contactzillasync"
 
         //noinspection HighAppVersionCode
         versionCode = 2070040402
@@ -38,7 +38,7 @@ android {
         minSdk = 24        // Android 7.0
         targetSdk = 35     // Android 15
 
-        testInstrumentationRunner = "com.messageconcept.peoplesyncclient.HiltTestRunner"
+        testInstrumentationRunner = "com.atomica.contactzillasync.HiltTestRunner"
     }
 
     java {
@@ -60,7 +60,7 @@ android {
     }
 
     // Java namespace for our classes (not to be confused with Android package ID)
-    namespace = "com.messageconcept.peoplesyncclient"
+    namespace = "com.atomica.contactzillasync"
 
     flavorDimensions += "distribution"
     productFlavors {

@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.intro
+package com.atomica.contactzillasync.ui.intro
 
 import android.content.Context
 import android.content.IntentFilter
@@ -14,10 +14,10 @@ import androidx.compose.runtime.setValue
 import androidx.core.content.getSystemService
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.messageconcept.peoplesyncclient.BuildConfig
-import com.messageconcept.peoplesyncclient.settings.SettingsManager
-import com.messageconcept.peoplesyncclient.util.PermissionUtils
-import com.messageconcept.peoplesyncclient.util.broadcastReceiverFlow
+import com.atomica.contactzillasync.BuildConfig
+import com.atomica.contactzillasync.settings.SettingsManager
+import com.atomica.contactzillasync.util.PermissionUtils
+import com.atomica.contactzillasync.util.broadcastReceiverFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch

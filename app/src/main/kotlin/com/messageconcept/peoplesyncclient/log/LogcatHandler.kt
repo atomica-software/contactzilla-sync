@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.log
+package com.atomica.contactzillasync.log
 
 import android.os.Build
 import android.util.Log
-import com.messageconcept.peoplesyncclient.BuildConfig
+import com.atomica.contactzillasync.BuildConfig
 import com.google.common.base.Ascii
 import java.util.logging.Handler
 import java.util.logging.Level

@@ -2,15 +2,15 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.servicedetection
+package com.atomica.contactzillasync.servicedetection
 
 import android.security.NetworkSecurityPolicy
 import at.bitfire.dav4jvm.DavResource
 import at.bitfire.dav4jvm.property.carddav.AddressbookHomeSet
 import at.bitfire.dav4jvm.property.webdav.ResourceType
-import com.messageconcept.peoplesyncclient.db.Credentials
-import com.messageconcept.peoplesyncclient.network.HttpClient
-import com.messageconcept.peoplesyncclient.servicedetection.DavResourceFinder.Configuration.ServiceInfo
+import com.atomica.contactzillasync.db.Credentials
+import com.atomica.contactzillasync.network.HttpClient
+import com.atomica.contactzillasync.servicedetection.DavResourceFinder.Configuration.ServiceInfo
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import okhttp3.mockwebserver.Dispatcher

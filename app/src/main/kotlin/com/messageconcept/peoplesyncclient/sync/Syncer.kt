@@ -2,22 +2,22 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync
+package com.atomica.contactzillasync.sync
 
 import android.accounts.Account
 import android.content.ContentProviderClient
 import android.content.Context
 import android.os.DeadObjectException
 import androidx.annotation.VisibleForTesting
-import com.messageconcept.peoplesyncclient.db.Collection
-import com.messageconcept.peoplesyncclient.db.ServiceType
-import com.messageconcept.peoplesyncclient.network.HttpClient
-import com.messageconcept.peoplesyncclient.repository.DavCollectionRepository
-import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
-import com.messageconcept.peoplesyncclient.resource.LocalCollection
-import com.messageconcept.peoplesyncclient.resource.LocalDataStore
-import com.messageconcept.peoplesyncclient.servicedetection.CollectionListRefresher
-import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
+import com.atomica.contactzillasync.db.Collection
+import com.atomica.contactzillasync.db.ServiceType
+import com.atomica.contactzillasync.network.HttpClient
+import com.atomica.contactzillasync.repository.DavCollectionRepository
+import com.atomica.contactzillasync.repository.DavServiceRepository
+import com.atomica.contactzillasync.resource.LocalCollection
+import com.atomica.contactzillasync.resource.LocalDataStore
+import com.atomica.contactzillasync.servicedetection.CollectionListRefresher
+import com.atomica.contactzillasync.sync.account.InvalidAccountException
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.runBlocking
 import java.util.logging.Level
@@ -99,7 +99,7 @@ abstract class Syncer<StoreType: LocalDataStore<CollectionType>, CollectionType:
 
     /**
      * Finds sync enabled collections in database. They contain collection info which might have
-     * been updated by collection refresh [com.messageconcept.peoplesyncclient.servicedetection.DavResourceFinder].
+     * been updated by collection refresh [com.atomica.contactzillasync.servicedetection.DavResourceFinder].
      *
      * @return The sync enabled database collections as hash map identified by their ID
      */

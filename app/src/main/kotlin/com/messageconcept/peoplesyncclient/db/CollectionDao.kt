@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.db
+package com.atomica.contactzillasync.db
 
 import androidx.paging.PagingSource
 import androidx.room.Dao

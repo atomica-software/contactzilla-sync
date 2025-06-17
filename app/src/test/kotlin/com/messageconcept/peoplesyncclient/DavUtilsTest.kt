@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient
+package com.atomica.contactzillasync
 
-import com.messageconcept.peoplesyncclient.util.DavUtils
-import com.messageconcept.peoplesyncclient.util.DavUtils.lastSegment
-import com.messageconcept.peoplesyncclient.util.DavUtils.parent
+import com.atomica.contactzillasync.util.DavUtils
+import com.atomica.contactzillasync.util.DavUtils.lastSegment
+import com.atomica.contactzillasync.util.DavUtils.parent
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.MediaType.Companion.toMediaType
 import org.junit.Assert

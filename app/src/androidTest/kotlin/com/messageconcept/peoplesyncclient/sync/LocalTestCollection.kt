@@ -2,10 +2,10 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync
+package com.atomica.contactzillasync.sync
 
-import com.messageconcept.peoplesyncclient.db.SyncState
-import com.messageconcept.peoplesyncclient.resource.LocalCollection
+import com.atomica.contactzillasync.db.SyncState
+import com.atomica.contactzillasync.resource.LocalCollection
 
 class LocalTestCollection(
     override val dbCollectionId: Long = 0L

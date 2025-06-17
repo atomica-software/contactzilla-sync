@@ -2,9 +2,9 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync
+package com.atomica.contactzillasync.sync
 
-import com.messageconcept.peoplesyncclient.resource.LocalResource
+import com.atomica.contactzillasync.resource.LocalResource
 import io.mockk.mockk
 import okhttp3.HttpUrl
 import org.junit.Assert.assertEquals

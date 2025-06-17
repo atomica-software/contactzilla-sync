@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.repository
+package com.atomica.contactzillasync.repository
 
-import com.messageconcept.peoplesyncclient.db.AppDatabase
-import com.messageconcept.peoplesyncclient.db.Service
-import com.messageconcept.peoplesyncclient.db.ServiceType
+import com.atomica.contactzillasync.db.AppDatabase
+import com.atomica.contactzillasync.db.Service
+import com.atomica.contactzillasync.db.ServiceType
 import javax.inject.Inject
 
 class DavServiceRepository @Inject constructor(

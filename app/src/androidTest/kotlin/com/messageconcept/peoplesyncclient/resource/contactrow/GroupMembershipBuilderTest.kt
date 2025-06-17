@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.resource.contactrow
+package com.atomica.contactzillasync.resource.contactrow
 
 import android.Manifest
 import android.accounts.Account
@@ -13,7 +13,7 @@ import android.provider.ContactsContract
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
-import com.messageconcept.peoplesyncclient.resource.LocalTestAddressBookProvider
+import com.atomica.contactzillasync.resource.LocalTestAddressBookProvider
 import at.bitfire.vcard4android.Contact
 import at.bitfire.vcard4android.GroupMethod
 import dagger.hilt.android.qualifiers.ApplicationContext

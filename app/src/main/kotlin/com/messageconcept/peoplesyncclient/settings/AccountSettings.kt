@@ -1,7 +1,7 @@
 /*
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
-package com.messageconcept.peoplesyncclient.settings
+package com.atomica.contactzillasync.settings
 
 import android.accounts.Account
 import android.accounts.AccountManager
@@ -10,16 +10,16 @@ import android.os.Bundle
 import android.os.Looper
 import androidx.annotation.WorkerThread
 import androidx.core.os.bundleOf
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.db.Credentials
-import com.messageconcept.peoplesyncclient.settings.AccountSettings.Companion.CREDENTIALS_LOCK
-import com.messageconcept.peoplesyncclient.settings.AccountSettings.Companion.CREDENTIALS_LOCK_AT_LOGIN_AND_SETTINGS
-import com.messageconcept.peoplesyncclient.settings.migration.AccountSettingsMigration
-import com.messageconcept.peoplesyncclient.sync.AutomaticSyncManager
-import com.messageconcept.peoplesyncclient.sync.SyncDataType
-import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
-import com.messageconcept.peoplesyncclient.sync.account.setAndVerifyUserData
-import com.messageconcept.peoplesyncclient.util.trimToNull
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.db.Credentials
+import com.atomica.contactzillasync.settings.AccountSettings.Companion.CREDENTIALS_LOCK
+import com.atomica.contactzillasync.settings.AccountSettings.Companion.CREDENTIALS_LOCK_AT_LOGIN_AND_SETTINGS
+import com.atomica.contactzillasync.settings.migration.AccountSettingsMigration
+import com.atomica.contactzillasync.sync.AutomaticSyncManager
+import com.atomica.contactzillasync.sync.SyncDataType
+import com.atomica.contactzillasync.sync.account.InvalidAccountException
+import com.atomica.contactzillasync.sync.account.setAndVerifyUserData
+import com.atomica.contactzillasync.util.trimToNull
 import at.bitfire.vcard4android.GroupMethod
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -71,7 +71,7 @@ class AccountSettings @AssistedInject constructor(
     init {
         val allowedAccountTypes = arrayOf(
             context.getString(R.string.account_type),
-            "com.messageconcept.peoplesyncclient.test"      // R.strings.account_type_test in androidTest
+            "com.atomica.contactzillasync.test"      // R.strings.account_type_test in androidTest
         )
         if (!allowedAccountTypes.contains(account.type))
             throw IllegalArgumentException("Invalid account type for AccountSettings(): ${account.type}")

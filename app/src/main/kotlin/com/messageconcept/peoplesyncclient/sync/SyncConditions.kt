@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync
+package com.atomica.contactzillasync.sync
 
 import android.content.Context
 import android.content.Intent
@@ -10,10 +10,10 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
 import androidx.core.content.getSystemService
-import com.messageconcept.peoplesyncclient.settings.AccountSettings
-import com.messageconcept.peoplesyncclient.ui.NotificationRegistry
-import com.messageconcept.peoplesyncclient.ui.account.WifiPermissionsActivity
-import com.messageconcept.peoplesyncclient.util.PermissionUtils
+import com.atomica.contactzillasync.settings.AccountSettings
+import com.atomica.contactzillasync.ui.NotificationRegistry
+import com.atomica.contactzillasync.ui.account.WifiPermissionsActivity
+import com.atomica.contactzillasync.util.PermissionUtils
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

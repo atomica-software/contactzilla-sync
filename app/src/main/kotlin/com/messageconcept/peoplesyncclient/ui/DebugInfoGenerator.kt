@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui
+package com.atomica.contactzillasync.ui
 
 import android.accounts.Account
 import android.accounts.AccountManager
@@ -32,20 +32,20 @@ import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.WorkQuery
 import at.bitfire.dav4jvm.exception.DavException
-import com.messageconcept.peoplesyncclient.BuildConfig
-import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.TextTable
-import com.messageconcept.peoplesyncclient.db.AppDatabase
-import com.messageconcept.peoplesyncclient.repository.AccountRepository
-import com.messageconcept.peoplesyncclient.resource.LocalAddressBook
-import com.messageconcept.peoplesyncclient.settings.AccountSettings
-import com.messageconcept.peoplesyncclient.settings.AccountSettings.Companion.KEY_BASE_URL
-import com.messageconcept.peoplesyncclient.settings.AccountSettings.Companion.KEY_USERNAME
-import com.messageconcept.peoplesyncclient.settings.SettingsManager
-import com.messageconcept.peoplesyncclient.sync.SyncDataType
-import com.messageconcept.peoplesyncclient.sync.SyncFrameworkIntegration
-import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker
+import com.atomica.contactzillasync.BuildConfig
+import com.atomica.contactzillasync.sync.account.InvalidAccountException
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.TextTable
+import com.atomica.contactzillasync.db.AppDatabase
+import com.atomica.contactzillasync.repository.AccountRepository
+import com.atomica.contactzillasync.resource.LocalAddressBook
+import com.atomica.contactzillasync.settings.AccountSettings
+import com.atomica.contactzillasync.settings.AccountSettings.Companion.KEY_BASE_URL
+import com.atomica.contactzillasync.settings.AccountSettings.Companion.KEY_USERNAME
+import com.atomica.contactzillasync.settings.SettingsManager
+import com.atomica.contactzillasync.sync.SyncDataType
+import com.atomica.contactzillasync.sync.SyncFrameworkIntegration
+import com.atomica.contactzillasync.sync.worker.BaseSyncWorker
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.PrintWriter
 import java.io.Writer

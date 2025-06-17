@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.atomica.contactzillasync",
+  "variantName": "oseRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 2070040402,
+      "versionName": "4.4-2-ps",
+      "outputFile": "PeopleSyncClient-4.4-2-ose-release.apk"
+    }
+  ],
+  "elementType": "File",
+  "baselineProfiles": [
+    {
+      "minApi": 28,
+      "maxApi": 30,
+      "baselineProfiles": [
+        "baselineProfiles/1/PeopleSyncClient-4.4-2-ose-release.dm"
+      ]
+    },
+    {
+      "minApi": 31,
+      "maxApi": 2147483647,
+      "baselineProfiles": [
+        "baselineProfiles/0/PeopleSyncClient-4.4-2-ose-release.dm"
+      ]
+    }
+  ],
+  "minSdkVersionForDexing": 24
+}

@@ -2,21 +2,21 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.account
+package com.atomica.contactzillasync.ui.account
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.messageconcept.peoplesyncclient.db.AppDatabase
-import com.messageconcept.peoplesyncclient.db.Collection
-import com.messageconcept.peoplesyncclient.repository.AccountRepository
-import com.messageconcept.peoplesyncclient.repository.DavCollectionRepository
-import com.messageconcept.peoplesyncclient.repository.DavSyncStatsRepository
-import com.messageconcept.peoplesyncclient.settings.Settings
-import com.messageconcept.peoplesyncclient.settings.SettingsManager
-import com.messageconcept.peoplesyncclient.util.DavUtils.lastSegment
+import com.atomica.contactzillasync.db.AppDatabase
+import com.atomica.contactzillasync.db.Collection
+import com.atomica.contactzillasync.repository.AccountRepository
+import com.atomica.contactzillasync.repository.DavCollectionRepository
+import com.atomica.contactzillasync.repository.DavSyncStatsRepository
+import com.atomica.contactzillasync.settings.Settings
+import com.atomica.contactzillasync.settings.SettingsManager
+import com.atomica.contactzillasync.util.DavUtils.lastSegment
 import dagger.Lazy
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory

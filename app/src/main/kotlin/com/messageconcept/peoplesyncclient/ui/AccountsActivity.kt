@@ -2,16 +2,16 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui
+package com.atomica.contactzillasync.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import com.messageconcept.peoplesyncclient.settings.ManagedSettings
-import com.messageconcept.peoplesyncclient.ui.account.AccountActivity
-import com.messageconcept.peoplesyncclient.ui.intro.IntroActivity
-import com.messageconcept.peoplesyncclient.ui.setup.LoginActivity
+import com.atomica.contactzillasync.settings.ManagedSettings
+import com.atomica.contactzillasync.ui.account.AccountActivity
+import com.atomica.contactzillasync.ui.intro.IntroActivity
+import com.atomica.contactzillasync.ui.setup.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

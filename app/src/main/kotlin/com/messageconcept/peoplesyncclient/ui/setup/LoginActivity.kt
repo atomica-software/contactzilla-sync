@@ -2,14 +2,14 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.setup
+package com.atomica.contactzillasync.ui.setup
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import com.messageconcept.peoplesyncclient.db.Credentials
-import com.messageconcept.peoplesyncclient.ui.account.AccountActivity
+import com.atomica.contactzillasync.db.Credentials
+import com.atomica.contactzillasync.ui.account.AccountActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.net.URI
 import java.net.URISyntaxException

@@ -2,13 +2,13 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.composable
+package com.atomica.contactzillasync.ui.composable
 
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.ui.platform.AndroidUriHandler
 import androidx.compose.ui.platform.UriHandler
-import com.messageconcept.peoplesyncclient.R
+import com.atomica.contactzillasync.R
 import java.util.logging.Level
 import java.util.logging.Logger
 

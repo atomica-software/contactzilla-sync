@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync.worker
+package com.atomica.contactzillasync.sync.worker
 
 import android.accounts.Account
 import android.content.Context
@@ -11,9 +11,9 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.ForegroundInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.sync.SyncDataType
-import com.messageconcept.peoplesyncclient.ui.NotificationRegistry
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.sync.SyncDataType
+import com.atomica.contactzillasync.ui.NotificationRegistry
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 

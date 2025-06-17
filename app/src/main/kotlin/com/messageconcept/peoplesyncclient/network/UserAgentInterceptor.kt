@@ -2,10 +2,10 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.network
+package com.atomica.contactzillasync.network
 
 import android.os.Build
-import com.messageconcept.peoplesyncclient.BuildConfig
+import com.atomica.contactzillasync.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttp
 import okhttp3.Response

@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.account
+package com.atomica.contactzillasync.ui.account
 
-import com.messageconcept.peoplesyncclient.db.HomeSet
-import com.messageconcept.peoplesyncclient.db.Service
-import com.messageconcept.peoplesyncclient.repository.DavHomeSetRepository
+import com.atomica.contactzillasync.db.HomeSet
+import com.atomica.contactzillasync.db.Service
+import com.atomica.contactzillasync.repository.DavHomeSetRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest

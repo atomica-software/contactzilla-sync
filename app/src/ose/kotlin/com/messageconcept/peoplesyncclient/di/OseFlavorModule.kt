@@ -2,17 +2,17 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.di
+package com.atomica.contactzillasync.di
 
-import com.messageconcept.peoplesyncclient.ui.intro.OseIntroPageFactory
+import com.atomica.contactzillasync.ui.intro.OseIntroPageFactory
 
-import com.messageconcept.peoplesyncclient.ui.AboutActivity
-import com.messageconcept.peoplesyncclient.ui.AccountsDrawerHandler
-import com.messageconcept.peoplesyncclient.ui.OpenSourceLicenseInfoProvider
-import com.messageconcept.peoplesyncclient.ui.OseAccountsDrawerHandler
-import com.messageconcept.peoplesyncclient.ui.intro.IntroPageFactory
-import com.messageconcept.peoplesyncclient.ui.setup.LoginTypesProvider
-import com.messageconcept.peoplesyncclient.ui.setup.StandardLoginTypesProvider
+import com.atomica.contactzillasync.ui.AboutActivity
+import com.atomica.contactzillasync.ui.AccountsDrawerHandler
+import com.atomica.contactzillasync.ui.OpenSourceLicenseInfoProvider
+import com.atomica.contactzillasync.ui.OseAccountsDrawerHandler
+import com.atomica.contactzillasync.ui.intro.IntroPageFactory
+import com.atomica.contactzillasync.ui.setup.LoginTypesProvider
+import com.atomica.contactzillasync.ui.setup.StandardLoginTypesProvider
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

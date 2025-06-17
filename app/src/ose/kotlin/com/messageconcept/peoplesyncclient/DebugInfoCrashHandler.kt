@@ -2,10 +2,10 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  **************************************************************************************************/
 
-package com.messageconcept.peoplesyncclient
+package com.atomica.contactzillasync
 
 import android.content.Context
-import com.messageconcept.peoplesyncclient.ui.DebugInfoActivity
+import com.atomica.contactzillasync.ui.DebugInfoActivity
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

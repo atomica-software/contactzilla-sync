@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.account
+package com.atomica.contactzillasync.ui.account
 
 import android.accounts.Account
 import android.content.Intent
@@ -13,7 +13,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.res.stringResource
 import androidx.core.app.TaskStackBuilder
-import com.messageconcept.peoplesyncclient.R
+import com.atomica.contactzillasync.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

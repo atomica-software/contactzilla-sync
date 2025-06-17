@@ -2,12 +2,12 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.repository
+package com.atomica.contactzillasync.repository
 
 import android.content.Context
 import android.content.pm.PackageManager
-import com.messageconcept.peoplesyncclient.db.AppDatabase
-import com.messageconcept.peoplesyncclient.db.SyncStats
+import com.atomica.contactzillasync.db.AppDatabase
+import com.atomica.contactzillasync.db.SyncStats
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

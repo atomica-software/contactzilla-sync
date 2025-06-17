@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui
+package com.atomica.contactzillasync.ui
 
 import android.Manifest
 import android.accounts.Account
@@ -75,16 +75,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.messageconcept.peoplesyncclient.BuildConfig
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.ui.account.AccountProgress
-import com.messageconcept.peoplesyncclient.ui.composable.ActionCard
-import com.messageconcept.peoplesyncclient.ui.composable.ProgressBar
+import com.atomica.contactzillasync.BuildConfig
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.ui.account.AccountProgress
+import com.atomica.contactzillasync.ui.composable.ActionCard
+import com.atomica.contactzillasync.ui.composable.ProgressBar
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
-import com.messageconcept.peoplesyncclient.ui.UiUtils.isPortrait
-import com.messageconcept.peoplesyncclient.ui.composable.NotificationCard
+import com.atomica.contactzillasync.ui.UiUtils.isPortrait
+import com.atomica.contactzillasync.ui.composable.NotificationCard
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

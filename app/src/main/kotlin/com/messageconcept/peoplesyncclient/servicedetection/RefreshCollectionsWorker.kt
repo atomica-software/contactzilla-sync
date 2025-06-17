@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.servicedetection
+package com.atomica.contactzillasync.servicedetection
 
 import android.accounts.Account
 import android.app.PendingIntent
@@ -23,14 +23,14 @@ import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import at.bitfire.dav4jvm.exception.UnauthorizedException
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.network.HttpClient
-import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
-import com.messageconcept.peoplesyncclient.servicedetection.RefreshCollectionsWorker.Companion.ARG_SERVICE_ID
-import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
-import com.messageconcept.peoplesyncclient.ui.DebugInfoActivity
-import com.messageconcept.peoplesyncclient.ui.NotificationRegistry
-import com.messageconcept.peoplesyncclient.ui.account.AccountSettingsActivity
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.network.HttpClient
+import com.atomica.contactzillasync.repository.DavServiceRepository
+import com.atomica.contactzillasync.servicedetection.RefreshCollectionsWorker.Companion.ARG_SERVICE_ID
+import com.atomica.contactzillasync.sync.account.InvalidAccountException
+import com.atomica.contactzillasync.ui.DebugInfoActivity
+import com.atomica.contactzillasync.ui.NotificationRegistry
+import com.atomica.contactzillasync.ui.account.AccountSettingsActivity
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.map

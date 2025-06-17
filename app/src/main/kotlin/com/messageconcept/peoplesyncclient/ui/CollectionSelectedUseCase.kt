@@ -2,16 +2,16 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui
+package com.atomica.contactzillasync.ui
 
 import android.accounts.Account
-import com.messageconcept.peoplesyncclient.di.ApplicationScope
-import com.messageconcept.peoplesyncclient.di.DefaultDispatcher
-import com.messageconcept.peoplesyncclient.repository.AccountRepository
-import com.messageconcept.peoplesyncclient.repository.DavCollectionRepository
-import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
-import com.messageconcept.peoplesyncclient.sync.worker.SyncWorkerManager
-import com.messageconcept.peoplesyncclient.ui.CollectionSelectedUseCase.Companion.DELAY_MS
+import com.atomica.contactzillasync.di.ApplicationScope
+import com.atomica.contactzillasync.di.DefaultDispatcher
+import com.atomica.contactzillasync.repository.AccountRepository
+import com.atomica.contactzillasync.repository.DavCollectionRepository
+import com.atomica.contactzillasync.repository.DavServiceRepository
+import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
+import com.atomica.contactzillasync.ui.CollectionSelectedUseCase.Companion.DELAY_MS
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job

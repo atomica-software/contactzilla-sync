@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.util
+package com.atomica.contactzillasync.util
 
 import okhttp3.HttpUrl
 import okhttp3.MediaType

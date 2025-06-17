@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.network
+package com.atomica.contactzillasync.network
 
 import android.security.NetworkSecurityPolicy
 import dagger.hilt.android.testing.HiltAndroidRule

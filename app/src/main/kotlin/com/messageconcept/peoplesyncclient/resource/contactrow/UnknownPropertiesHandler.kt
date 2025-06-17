@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.resource.contactrow
+package com.atomica.contactzillasync.resource.contactrow
 
 import android.content.ContentValues
 import at.bitfire.vcard4android.Contact

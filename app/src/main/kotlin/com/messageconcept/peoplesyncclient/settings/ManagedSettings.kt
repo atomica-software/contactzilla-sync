@@ -6,7 +6,7 @@
  * http://www.gnu.org/licenses/gpl.html
  */
 
-package com.messageconcept.peoplesyncclient.settings
+package com.atomica.contactzillasync.settings
 
 import android.accounts.AccountManager
 import android.content.BroadcastReceiver
@@ -16,11 +16,11 @@ import android.content.Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED
 import android.content.IntentFilter
 import android.content.RestrictionsManager
 import android.os.Bundle
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.settings.AccountSettings.Companion.KEY_BASE_URL
-import com.messageconcept.peoplesyncclient.settings.AccountSettings.Companion.KEY_USERNAME
-import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
-import com.messageconcept.peoplesyncclient.sync.worker.SyncWorkerManager
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.settings.AccountSettings.Companion.KEY_BASE_URL
+import com.atomica.contactzillasync.settings.AccountSettings.Companion.KEY_USERNAME
+import com.atomica.contactzillasync.sync.account.InvalidAccountException
+import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.logging.Level
 import java.util.logging.Logger

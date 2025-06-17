@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.account
+package com.atomica.contactzillasync.ui.account
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -51,11 +51,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.repository.DavSyncStatsRepository
-import com.messageconcept.peoplesyncclient.ui.AppTheme
-import com.messageconcept.peoplesyncclient.ui.composable.ExceptionInfoDialog
-import com.messageconcept.peoplesyncclient.ui.composable.ProgressBar
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.repository.DavSyncStatsRepository
+import com.atomica.contactzillasync.ui.AppTheme
+import com.atomica.contactzillasync.ui.composable.ExceptionInfoDialog
+import com.atomica.contactzillasync.ui.composable.ProgressBar
 import java.time.Instant
 import java.time.ZoneId
 import java.time.ZonedDateTime

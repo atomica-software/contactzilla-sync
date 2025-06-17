@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync.account
+package com.atomica.contactzillasync.sync.account
 
 import android.accounts.Account
 import android.accounts.AccountManager
@@ -10,12 +10,12 @@ import android.content.Context
 import android.os.Bundle
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.testing.TestListenableWorkerBuilder
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.TestUtils
-import com.messageconcept.peoplesyncclient.db.AppDatabase
-import com.messageconcept.peoplesyncclient.db.Service
-import com.messageconcept.peoplesyncclient.resource.LocalAddressBook
-import com.messageconcept.peoplesyncclient.settings.SettingsManager
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.TestUtils
+import com.atomica.contactzillasync.db.AppDatabase
+import com.atomica.contactzillasync.db.Service
+import com.atomica.contactzillasync.resource.LocalAddressBook
+import com.atomica.contactzillasync.settings.SettingsManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

@@ -2,14 +2,14 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync.account
+package com.atomica.contactzillasync.sync.account
 
 import android.accounts.Account
 import android.accounts.AccountManager
 import android.content.Context
 import android.os.Bundle
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.settings.SettingsManager
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.settings.SettingsManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

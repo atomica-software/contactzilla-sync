@@ -6,7 +6,7 @@
  * http://www.gnu.org/licenses/gpl.html
  */
 
-package com.messageconcept.peoplesyncclient.settings
+package com.atomica.contactzillasync.settings
 
 object SettingsUtils {
     fun<T> filterPassword(key: String, value: T): T {

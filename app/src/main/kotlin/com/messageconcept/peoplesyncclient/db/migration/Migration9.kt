@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.db.migration
+package com.atomica.contactzillasync.db.migration
 
 import androidx.room.migration.Migration
 import dagger.Module

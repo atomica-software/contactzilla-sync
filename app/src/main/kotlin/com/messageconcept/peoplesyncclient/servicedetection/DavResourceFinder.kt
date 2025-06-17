@@ -1,7 +1,7 @@
 /*
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
-package com.messageconcept.peoplesyncclient.servicedetection
+package com.atomica.contactzillasync.servicedetection
 
 import android.app.ActivityManager
 import android.content.Context
@@ -26,11 +26,11 @@ import at.bitfire.dav4jvm.property.webdav.CurrentUserPrivilegeSet
 import at.bitfire.dav4jvm.property.webdav.DisplayName
 import at.bitfire.dav4jvm.property.webdav.HrefListProperty
 import at.bitfire.dav4jvm.property.webdav.ResourceType
-import com.messageconcept.peoplesyncclient.db.Collection
-import com.messageconcept.peoplesyncclient.db.Credentials
-import com.messageconcept.peoplesyncclient.log.StringHandler
-import com.messageconcept.peoplesyncclient.network.DnsRecordResolver
-import com.messageconcept.peoplesyncclient.network.HttpClient
+import com.atomica.contactzillasync.db.Collection
+import com.atomica.contactzillasync.db.Credentials
+import com.atomica.contactzillasync.log.StringHandler
+import com.atomica.contactzillasync.network.DnsRecordResolver
+import com.atomica.contactzillasync.network.HttpClient
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

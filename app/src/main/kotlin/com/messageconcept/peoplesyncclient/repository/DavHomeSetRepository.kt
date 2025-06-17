@@ -2,13 +2,13 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.repository
+package com.atomica.contactzillasync.repository
 
 import android.accounts.Account
 import androidx.room.Transaction
-import com.messageconcept.peoplesyncclient.db.AppDatabase
-import com.messageconcept.peoplesyncclient.db.HomeSet
-import com.messageconcept.peoplesyncclient.db.Service
+import com.atomica.contactzillasync.db.AppDatabase
+import com.atomica.contactzillasync.db.HomeSet
+import com.atomica.contactzillasync.db.Service
 import javax.inject.Inject
 
 class DavHomeSetRepository @Inject constructor(

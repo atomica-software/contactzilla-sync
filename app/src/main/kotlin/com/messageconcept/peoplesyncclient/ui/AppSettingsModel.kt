@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui
+package com.atomica.contactzillasync.ui
 
 import android.content.Context
 import android.content.IntentFilter
@@ -12,14 +12,14 @@ import androidx.core.content.getSystemService
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import at.bitfire.cert4android.CustomCertStore
-import com.messageconcept.peoplesyncclient.BuildConfig
-import com.messageconcept.peoplesyncclient.di.IoDispatcher
-import com.messageconcept.peoplesyncclient.repository.PreferenceRepository
-import com.messageconcept.peoplesyncclient.settings.Settings
-import com.messageconcept.peoplesyncclient.settings.SettingsManager
-import com.messageconcept.peoplesyncclient.ui.intro.BatteryOptimizationsPageModel
-import com.messageconcept.peoplesyncclient.util.PermissionUtils
-import com.messageconcept.peoplesyncclient.util.broadcastReceiverFlow
+import com.atomica.contactzillasync.BuildConfig
+import com.atomica.contactzillasync.di.IoDispatcher
+import com.atomica.contactzillasync.repository.PreferenceRepository
+import com.atomica.contactzillasync.settings.Settings
+import com.atomica.contactzillasync.settings.SettingsManager
+import com.atomica.contactzillasync.ui.intro.BatteryOptimizationsPageModel
+import com.atomica.contactzillasync.util.PermissionUtils
+import com.atomica.contactzillasync.util.broadcastReceiverFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher

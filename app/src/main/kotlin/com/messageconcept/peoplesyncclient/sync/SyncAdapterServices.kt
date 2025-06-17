@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync
+package com.atomica.contactzillasync.sync
 
 import android.accounts.Account
 import android.accounts.AccountManager
@@ -17,15 +17,15 @@ import android.os.Bundle
 import android.os.IBinder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
-import com.messageconcept.peoplesyncclient.BuildConfig
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.repository.DavCollectionRepository
-import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
-import com.messageconcept.peoplesyncclient.resource.LocalAddressBook.Companion.USER_DATA_COLLECTION_ID
-import com.messageconcept.peoplesyncclient.settings.AccountSettings
-import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
-import com.messageconcept.peoplesyncclient.sync.worker.BaseSyncWorker
-import com.messageconcept.peoplesyncclient.sync.worker.SyncWorkerManager
+import com.atomica.contactzillasync.BuildConfig
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.repository.DavCollectionRepository
+import com.atomica.contactzillasync.repository.DavServiceRepository
+import com.atomica.contactzillasync.resource.LocalAddressBook.Companion.USER_DATA_COLLECTION_ID
+import com.atomica.contactzillasync.settings.AccountSettings
+import com.atomica.contactzillasync.sync.account.InvalidAccountException
+import com.atomica.contactzillasync.sync.worker.BaseSyncWorker
+import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.android.qualifiers.ApplicationContext

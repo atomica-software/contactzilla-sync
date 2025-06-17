@@ -2,9 +2,9 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.di
+package com.atomica.contactzillasync.di
 
-import com.messageconcept.peoplesyncclient.di.TestCoroutineDispatchersModule.standardTestDispatcher
+import com.atomica.contactzillasync.di.TestCoroutineDispatchersModule.standardTestDispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
@@ -18,7 +18,7 @@ import kotlinx.coroutines.test.setMain
 /**
  * Provides test dispatchers to be injected instead of the normal ones.
  *
- * The [standardTestDispatcher] is set as main dispatcher in [com.messageconcept.peoplesyncclient.HiltTestRunner],
+ * The [standardTestDispatcher] is set as main dispatcher in [com.atomica.contactzillasync.HiltTestRunner],
  * so that tests can just use [kotlinx.coroutines.test.runTest] without providing [standardTestDispatcher].
  */
 @Module

@@ -2,10 +2,10 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.repository
+package com.atomica.contactzillasync.repository
 
-import com.messageconcept.peoplesyncclient.db.HomeSet
-import com.messageconcept.peoplesyncclient.db.Service
+import com.atomica.contactzillasync.db.HomeSet
+import com.atomica.contactzillasync.db.Service
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import okhttp3.HttpUrl.Companion.toHttpUrl

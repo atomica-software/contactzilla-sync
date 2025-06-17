@@ -2,16 +2,16 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.account
+package com.atomica.contactzillasync.ui.account
 
 import android.accounts.Account
 import android.content.Context
 import androidx.work.WorkInfo
-import com.messageconcept.peoplesyncclient.db.Service
-import com.messageconcept.peoplesyncclient.servicedetection.RefreshCollectionsWorker
-import com.messageconcept.peoplesyncclient.sync.SyncDataType
-import com.messageconcept.peoplesyncclient.sync.worker.OneTimeSyncWorker
-import com.messageconcept.peoplesyncclient.sync.worker.SyncWorkerManager
+import com.atomica.contactzillasync.db.Service
+import com.atomica.contactzillasync.servicedetection.RefreshCollectionsWorker
+import com.atomica.contactzillasync.sync.SyncDataType
+import com.atomica.contactzillasync.sync.worker.OneTimeSyncWorker
+import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

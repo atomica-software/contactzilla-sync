@@ -143,7 +143,7 @@
     <string name="navigation_drawer_support_project">Support the project</string>
     <string name="navigation_drawer_contribute">How to contribute</string>
     <string name="navigation_drawer_privacy_policy">Privacy policy</string>
-    <string name="account_list_welcome">Welcome to PeopleSync!</string>
+    <string name="account_list_welcome">Welcome to Contactzilla Sync!</string>
     <string name="account_list_empty">Connect to your server and keep your contacts synchronized.</string>
     <string name="accounts_sync_all">Sync all accounts</string>
 
@@ -446,7 +446,7 @@
     <string name="collection_url">Address (URL)</string>
 
     <!-- debugging and DebugInfoActivity -->
-    <string name="authority_debug_provider" translatable="false">com.messageconcept.peoplesyncclient.debug</string>
+    <string name="authority_debug_provider" translatable="false">com.atomica.contactzillasync.debug</string>
     <string name="debug_info_title">Debug info</string>
     <string name="debug_info_archive_caption">ZIP archive</string>
     <string name="debug_info_archive_subtitle">Contains debug info and logs</string>
@@ -480,7 +480,7 @@
     <string name="exception_show_details">Show details</string>
 
     <!-- WebDAV accounts -->
-    <string name="webdav_authority" translatable="false">com.messageconcept.peoplesyncclient.webdav</string>
+    <string name="webdav_authority" translatable="false">com.atomica.contactzillasync.webdav</string>
     <string name="webdav_mounts_title">WebDAV mounts</string>
     <string name="webdav_mounts_quota_used_available">Quota used: %1$s / available: %2$s</string>
     <string name="webdav_mounts_share_content">Share content</string>

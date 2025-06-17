@@ -2,14 +2,14 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.intro
+package com.atomica.contactzillasync.ui.intro
 
 import android.content.Context
 import androidx.compose.runtime.Composable
-import com.messageconcept.peoplesyncclient.ui.PermissionsModel
-import com.messageconcept.peoplesyncclient.ui.PermissionsScreen
-import com.messageconcept.peoplesyncclient.util.PermissionUtils
-import com.messageconcept.peoplesyncclient.util.PermissionUtils.CONTACT_PERMISSIONS
+import com.atomica.contactzillasync.ui.PermissionsModel
+import com.atomica.contactzillasync.ui.PermissionsScreen
+import com.atomica.contactzillasync.util.PermissionUtils
+import com.atomica.contactzillasync.util.PermissionUtils.CONTACT_PERMISSIONS
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 

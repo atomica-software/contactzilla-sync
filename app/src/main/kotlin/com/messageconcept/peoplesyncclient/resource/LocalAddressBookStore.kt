@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.resource
+package com.atomica.contactzillasync.resource
 
 import android.accounts.Account
 import android.accounts.AccountManager
@@ -13,14 +13,14 @@ import androidx.annotation.OpenForTesting
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
 import androidx.core.os.bundleOf
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.db.Collection
-import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
-import com.messageconcept.peoplesyncclient.settings.Settings
-import com.messageconcept.peoplesyncclient.settings.SettingsManager
-import com.messageconcept.peoplesyncclient.sync.account.SystemAccountUtils
-import com.messageconcept.peoplesyncclient.sync.account.setAndVerifyUserData
-import com.messageconcept.peoplesyncclient.util.DavUtils.lastSegment
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.db.Collection
+import com.atomica.contactzillasync.repository.DavServiceRepository
+import com.atomica.contactzillasync.settings.Settings
+import com.atomica.contactzillasync.settings.SettingsManager
+import com.atomica.contactzillasync.sync.account.SystemAccountUtils
+import com.atomica.contactzillasync.sync.account.setAndVerifyUserData
+import com.atomica.contactzillasync.util.DavUtils.lastSegment
 import com.google.common.base.CharMatcher
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.logging.Level

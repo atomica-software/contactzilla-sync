@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui
+package com.atomica.contactzillasync.ui
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
@@ -67,14 +67,14 @@ import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.messageconcept.peoplesyncclient.Constants
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.settings.Settings
-import com.messageconcept.peoplesyncclient.ui.composable.EditTextInputDialog
-import com.messageconcept.peoplesyncclient.ui.composable.MultipleChoiceInputDialog
-import com.messageconcept.peoplesyncclient.ui.composable.Setting
-import com.messageconcept.peoplesyncclient.ui.composable.SettingsHeader
-import com.messageconcept.peoplesyncclient.ui.composable.SwitchSetting
+import com.atomica.contactzillasync.Constants
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.settings.Settings
+import com.atomica.contactzillasync.ui.composable.EditTextInputDialog
+import com.atomica.contactzillasync.ui.composable.MultipleChoiceInputDialog
+import com.atomica.contactzillasync.ui.composable.Setting
+import com.atomica.contactzillasync.ui.composable.SettingsHeader
+import com.atomica.contactzillasync.ui.composable.SwitchSetting
 import kotlinx.coroutines.launch
 
 @Composable

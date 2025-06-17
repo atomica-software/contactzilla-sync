@@ -2,13 +2,13 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync.groups
+package com.atomica.contactzillasync.sync.groups
 
 import android.content.ContentUris
 import android.provider.ContactsContract
-import com.messageconcept.peoplesyncclient.resource.LocalAddressBook
-import com.messageconcept.peoplesyncclient.resource.LocalGroup
-import com.messageconcept.peoplesyncclient.sync.ContactsSyncManager.Companion.disjunct
+import com.atomica.contactzillasync.resource.LocalAddressBook
+import com.atomica.contactzillasync.resource.LocalGroup
+import com.atomica.contactzillasync.sync.ContactsSyncManager.Companion.disjunct
 import at.bitfire.vcard4android.BatchOperation
 import at.bitfire.vcard4android.Contact
 import java.io.FileNotFoundException

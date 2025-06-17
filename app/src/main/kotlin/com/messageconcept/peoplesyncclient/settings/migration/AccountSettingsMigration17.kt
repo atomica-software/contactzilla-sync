@@ -2,19 +2,19 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.settings.migration
+package com.atomica.contactzillasync.settings.migration
 
 import android.accounts.Account
 import android.accounts.AccountManager
 import android.content.Context
 import android.provider.ContactsContract
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.db.Service
-import com.messageconcept.peoplesyncclient.repository.DavCollectionRepository
-import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
-import com.messageconcept.peoplesyncclient.resource.LocalAddressBook
-import com.messageconcept.peoplesyncclient.resource.LocalAddressBookStore
-import com.messageconcept.peoplesyncclient.sync.account.setAndVerifyUserData
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.db.Service
+import com.atomica.contactzillasync.repository.DavCollectionRepository
+import com.atomica.contactzillasync.repository.DavServiceRepository
+import com.atomica.contactzillasync.resource.LocalAddressBook
+import com.atomica.contactzillasync.resource.LocalAddressBookStore
+import com.atomica.contactzillasync.sync.account.setAndVerifyUserData
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

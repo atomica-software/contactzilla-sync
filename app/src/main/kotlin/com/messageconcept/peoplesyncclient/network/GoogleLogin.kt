@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.network
+package com.atomica.contactzillasync.network
 
 import android.net.Uri
-import com.messageconcept.peoplesyncclient.BuildConfig
-import com.messageconcept.peoplesyncclient.db.Credentials
+import com.atomica.contactzillasync.BuildConfig
+import com.atomica.contactzillasync.db.Credentials
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

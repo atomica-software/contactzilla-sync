@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.resource
+package com.atomica.contactzillasync.resource
 
 import android.accounts.Account
 import android.content.ContentProviderClient
-import com.messageconcept.peoplesyncclient.db.Collection
+import com.atomica.contactzillasync.db.Collection
 
 /**
  * Represents a local data store for a specific collection type.

@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.resource.workaround
+package com.atomica.contactzillasync.resource.workaround
 
 import android.content.ContentValues
-import com.messageconcept.peoplesyncclient.resource.LocalAddressBook
-import com.messageconcept.peoplesyncclient.resource.LocalContact
+import com.atomica.contactzillasync.resource.LocalAddressBook
+import com.atomica.contactzillasync.resource.LocalContact
 import at.bitfire.vcard4android.BatchOperation
 
 /**
@@ -21,7 +21,7 @@ interface ContactDirtyVerifier {
      * Checks whether contacts which are marked as "dirty" are really dirty, i.e. their data has changed.
      * If contacts are not really dirty (because only the metadata like "last contacted" changed), the "dirty" flag is removed.
      *
-     * Intended to be called by [com.messageconcept.peoplesyncclient.sync.ContactsSyncManager.prepare].
+     * Intended to be called by [com.atomica.contactzillasync.sync.ContactsSyncManager.prepare].
      *
      * @param addressBook   the address book
      * @param isUpload      whether this sync is an upload

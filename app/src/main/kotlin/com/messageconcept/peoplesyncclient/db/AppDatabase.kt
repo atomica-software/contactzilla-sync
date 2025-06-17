@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.db
+package com.atomica.contactzillasync.db
 
 import android.accounts.AccountManager
 import android.app.PendingIntent
@@ -20,12 +20,12 @@ import androidx.room.TypeConverters
 import androidx.room.migration.AutoMigrationSpec
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.TextTable
-import com.messageconcept.peoplesyncclient.db.migration.AutoMigration12
-import com.messageconcept.peoplesyncclient.db.migration.AutoMigration16
-import com.messageconcept.peoplesyncclient.ui.AccountsActivity
-import com.messageconcept.peoplesyncclient.ui.NotificationRegistry
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.TextTable
+import com.atomica.contactzillasync.db.migration.AutoMigration12
+import com.atomica.contactzillasync.db.migration.AutoMigration16
+import com.atomica.contactzillasync.ui.AccountsActivity
+import com.atomica.contactzillasync.ui.NotificationRegistry
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

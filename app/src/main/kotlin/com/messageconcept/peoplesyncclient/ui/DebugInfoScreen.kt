@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui
+package com.atomica.contactzillasync.ui
 
 import android.accounts.Account
 import androidx.compose.foundation.layout.Column
@@ -45,9 +45,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import at.bitfire.dav4jvm.exception.DavException
 import at.bitfire.dav4jvm.exception.HttpException
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.ui.composable.CardWithImage
-import com.messageconcept.peoplesyncclient.ui.composable.ProgressBar
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.ui.composable.CardWithImage
+import com.atomica.contactzillasync.ui.composable.ProgressBar
 import java.io.File
 import java.io.IOError
 import java.io.IOException

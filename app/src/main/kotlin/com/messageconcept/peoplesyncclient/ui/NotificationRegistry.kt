@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui
+package com.atomica.contactzillasync.ui
 
 import android.Manifest.permission.POST_NOTIFICATIONS
 import android.app.Notification
@@ -19,7 +19,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.TaskStackBuilder
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
-import com.messageconcept.peoplesyncclient.R
+import com.atomica.contactzillasync.R
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.logging.Logger
 import javax.inject.Inject

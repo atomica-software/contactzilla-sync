@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync
+package com.atomica.contactzillasync.sync
 
 import android.accounts.Account
 import android.content.Context
@@ -12,14 +12,14 @@ import at.bitfire.dav4jvm.PropStat
 import at.bitfire.dav4jvm.Response
 import at.bitfire.dav4jvm.Response.HrefRelation
 import at.bitfire.dav4jvm.property.webdav.GetETag
-import com.messageconcept.peoplesyncclient.TestUtils
-import com.messageconcept.peoplesyncclient.TestUtils.assertWithin
-import com.messageconcept.peoplesyncclient.db.Collection
-import com.messageconcept.peoplesyncclient.db.SyncState
-import com.messageconcept.peoplesyncclient.network.HttpClient
-import com.messageconcept.peoplesyncclient.repository.DavSyncStatsRepository
-import com.messageconcept.peoplesyncclient.settings.AccountSettings
-import com.messageconcept.peoplesyncclient.sync.account.TestAccount
+import com.atomica.contactzillasync.TestUtils
+import com.atomica.contactzillasync.TestUtils.assertWithin
+import com.atomica.contactzillasync.db.Collection
+import com.atomica.contactzillasync.db.SyncState
+import com.atomica.contactzillasync.network.HttpClient
+import com.atomica.contactzillasync.repository.DavSyncStatsRepository
+import com.atomica.contactzillasync.settings.AccountSettings
+import com.atomica.contactzillasync.sync.account.TestAccount
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule

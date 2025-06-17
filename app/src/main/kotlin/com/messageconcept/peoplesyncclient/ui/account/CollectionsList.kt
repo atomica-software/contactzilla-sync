@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.account
+package com.atomica.contactzillasync.ui.account
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -50,9 +50,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemKey
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.db.Collection
-import com.messageconcept.peoplesyncclient.ui.AppTheme
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.db.Collection
+import com.atomica.contactzillasync.ui.AppTheme
 import okhttp3.HttpUrl.Companion.toHttpUrl
 
 @Composable

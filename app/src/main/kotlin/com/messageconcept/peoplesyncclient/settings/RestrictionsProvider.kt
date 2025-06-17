@@ -6,12 +6,12 @@
  * http://www.gnu.org/licenses/gpl.html
  */
 
-package com.messageconcept.peoplesyncclient.settings
+package com.atomica.contactzillasync.settings
 
 import android.content.*
 import android.content.Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED
 import android.os.Bundle
-import com.messageconcept.peoplesyncclient.TextTable
+import com.atomica.contactzillasync.TextTable
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

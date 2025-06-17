@@ -2,12 +2,12 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.setup
+package com.atomica.contactzillasync.ui.setup
 
 import android.content.Intent
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import com.messageconcept.peoplesyncclient.ui.setup.LoginTypesProvider.LoginAction
+import com.atomica.contactzillasync.ui.setup.LoginTypesProvider.LoginAction
 import java.util.logging.Logger
 import javax.inject.Inject
 

@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.log
+package com.atomica.contactzillasync.log
 
 import android.app.PendingIntent
 import android.content.Context
@@ -11,10 +11,10 @@ import android.os.Process
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.TaskStackBuilder
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.ui.AppSettingsActivity
-import com.messageconcept.peoplesyncclient.ui.DebugInfoActivity
-import com.messageconcept.peoplesyncclient.ui.NotificationRegistry
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.ui.AppSettingsActivity
+import com.atomica.contactzillasync.ui.DebugInfoActivity
+import com.atomica.contactzillasync.ui.NotificationRegistry
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.Closeable
 import java.io.File

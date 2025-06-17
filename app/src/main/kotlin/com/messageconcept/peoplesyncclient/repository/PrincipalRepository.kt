@@ -2,10 +2,10 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.repository
+package com.atomica.contactzillasync.repository
 
-import com.messageconcept.peoplesyncclient.db.AppDatabase
-import com.messageconcept.peoplesyncclient.db.Principal
+import com.atomica.contactzillasync.db.AppDatabase
+import com.atomica.contactzillasync.db.Principal
 import javax.inject.Inject
 
 class PrincipalRepository @Inject constructor(

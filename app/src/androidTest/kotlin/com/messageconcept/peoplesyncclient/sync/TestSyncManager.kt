@@ -2,19 +2,19 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync
+package com.atomica.contactzillasync.sync
 
 import android.accounts.Account
 import at.bitfire.dav4jvm.DavCollection
 import at.bitfire.dav4jvm.MultiResponseCallback
 import at.bitfire.dav4jvm.Response
 import at.bitfire.dav4jvm.property.caldav.GetCTag
-import com.messageconcept.peoplesyncclient.db.Collection
-import com.messageconcept.peoplesyncclient.db.SyncState
-import com.messageconcept.peoplesyncclient.di.SyncDispatcher
-import com.messageconcept.peoplesyncclient.network.HttpClient
-import com.messageconcept.peoplesyncclient.resource.LocalResource
-import com.messageconcept.peoplesyncclient.util.DavUtils.lastSegment
+import com.atomica.contactzillasync.db.Collection
+import com.atomica.contactzillasync.db.SyncState
+import com.atomica.contactzillasync.di.SyncDispatcher
+import com.atomica.contactzillasync.network.HttpClient
+import com.atomica.contactzillasync.resource.LocalResource
+import com.atomica.contactzillasync.util.DavUtils.lastSegment
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

@@ -2,14 +2,14 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync
+package com.atomica.contactzillasync.sync
 
 import android.accounts.Account
 import android.provider.CalendarContract
-import com.messageconcept.peoplesyncclient.db.Service
-import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
-import com.messageconcept.peoplesyncclient.settings.AccountSettings
-import com.messageconcept.peoplesyncclient.sync.worker.SyncWorkerManager
+import com.atomica.contactzillasync.db.Service
+import com.atomica.contactzillasync.repository.DavServiceRepository
+import com.atomica.contactzillasync.settings.AccountSettings
+import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import javax.inject.Provider

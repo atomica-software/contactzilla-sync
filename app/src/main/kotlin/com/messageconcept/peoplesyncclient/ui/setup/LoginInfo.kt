@@ -2,9 +2,9 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui.setup
+package com.atomica.contactzillasync.ui.setup
 
-import com.messageconcept.peoplesyncclient.db.Credentials
+import com.atomica.contactzillasync.db.Credentials
 import at.bitfire.vcard4android.GroupMethod
 import java.net.URI
 

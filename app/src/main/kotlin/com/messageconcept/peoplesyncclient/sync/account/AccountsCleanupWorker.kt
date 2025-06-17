@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.sync.account
+package com.atomica.contactzillasync.sync.account
 
 import android.accounts.AccountManager
 import android.content.Context
@@ -14,10 +14,10 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.db.AppDatabase
-import com.messageconcept.peoplesyncclient.repository.AccountRepository
-import com.messageconcept.peoplesyncclient.resource.LocalAddressBook
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.db.AppDatabase
+import com.atomica.contactzillasync.repository.AccountRepository
+import com.atomica.contactzillasync.resource.LocalAddressBook
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

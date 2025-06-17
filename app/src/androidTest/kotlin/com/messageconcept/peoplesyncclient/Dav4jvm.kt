@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient
+package com.atomica.contactzillasync
 
 import android.util.Xml
 import at.bitfire.dav4jvm.XmlUtils

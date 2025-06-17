@@ -2,9 +2,9 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.di
+package com.atomica.contactzillasync.di
 
-import com.messageconcept.peoplesyncclient.log.LogcatHandler
+import com.atomica.contactzillasync.log.LogcatHandler
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent

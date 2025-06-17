@@ -2,12 +2,12 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.resource.contactrow
+package com.atomica.contactzillasync.resource.contactrow
 
 import android.content.ContentValues
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership
-import com.messageconcept.peoplesyncclient.resource.LocalContact
-import com.messageconcept.peoplesyncclient.util.trimToNull
+import com.atomica.contactzillasync.resource.LocalContact
+import com.atomica.contactzillasync.util.trimToNull
 import at.bitfire.vcard4android.Contact
 import at.bitfire.vcard4android.GroupMethod
 import at.bitfire.vcard4android.contactrow.DataRowHandler

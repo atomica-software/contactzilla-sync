@@ -2,14 +2,14 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.startup
+package com.atomica.contactzillasync.startup
 
 import android.content.Context
 import android.os.Build
 import android.os.StrictMode
-import com.messageconcept.peoplesyncclient.BuildConfig
-import com.messageconcept.peoplesyncclient.startup.StartupPlugin.Companion.PRIORITY_DEFAULT
-import com.messageconcept.peoplesyncclient.startup.StartupPlugin.Companion.PRIORITY_HIGHEST
+import com.atomica.contactzillasync.BuildConfig
+import com.atomica.contactzillasync.startup.StartupPlugin.Companion.PRIORITY_DEFAULT
+import com.atomica.contactzillasync.startup.StartupPlugin.Companion.PRIORITY_HIGHEST
 import dagger.Binds
 import dagger.BindsOptionalOf
 import dagger.Module

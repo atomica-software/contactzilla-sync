@@ -2,13 +2,13 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.db
+package com.atomica.contactzillasync.db
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.messageconcept.peoplesyncclient.util.DavUtils.lastSegment
+import com.atomica.contactzillasync.util.DavUtils.lastSegment
 import okhttp3.HttpUrl
 
 @Entity(tableName = "homeset",

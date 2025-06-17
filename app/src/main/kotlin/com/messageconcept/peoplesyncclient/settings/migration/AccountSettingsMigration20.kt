@@ -2,17 +2,17 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.settings.migration
+package com.atomica.contactzillasync.settings.migration
 
 import android.accounts.Account
 import android.accounts.AccountManager
 import android.content.Context
 import androidx.annotation.OpenForTesting
 import androidx.core.content.contentValuesOf
-import com.messageconcept.peoplesyncclient.db.Service
-import com.messageconcept.peoplesyncclient.repository.DavCollectionRepository
-import com.messageconcept.peoplesyncclient.repository.DavServiceRepository
-import com.messageconcept.peoplesyncclient.resource.LocalAddressBookStore
+import com.atomica.contactzillasync.db.Service
+import com.atomica.contactzillasync.repository.DavCollectionRepository
+import com.atomica.contactzillasync.repository.DavServiceRepository
+import com.atomica.contactzillasync.resource.LocalAddressBookStore
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -24,7 +24,7 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 /**
- * [com.messageconcept.peoplesyncclient.sync.Syncer] now users collection IDs instead of URLs to match
+ * [com.atomica.contactzillasync.sync.Syncer] now users collection IDs instead of URLs to match
  * local and remote (database) collections.
  *
  * This migration writes the database collection IDs to the local collections. If we wouldn't do that,

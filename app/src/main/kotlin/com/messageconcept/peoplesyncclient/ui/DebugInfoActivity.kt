@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui
+package com.atomica.contactzillasync.ui
 
 import android.accounts.Account
 import android.content.Context
@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
 import androidx.core.content.FileProvider
 import androidx.core.content.IntentCompat
-import com.messageconcept.peoplesyncclient.BuildConfig
-import com.messageconcept.peoplesyncclient.R
+import com.atomica.contactzillasync.BuildConfig
+import com.atomica.contactzillasync.R
 import com.google.common.base.Ascii
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.HttpUrl

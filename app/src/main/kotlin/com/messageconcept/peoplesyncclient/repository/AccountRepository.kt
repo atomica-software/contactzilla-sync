@@ -2,27 +2,27 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.repository
+package com.atomica.contactzillasync.repository
 
 import android.accounts.Account
 import android.accounts.AccountManager
 import android.accounts.OnAccountsUpdateListener
 import android.content.Context
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.db.Credentials
-import com.messageconcept.peoplesyncclient.db.HomeSet
-import com.messageconcept.peoplesyncclient.db.Service
-import com.messageconcept.peoplesyncclient.db.ServiceType
-import com.messageconcept.peoplesyncclient.resource.LocalAddressBookStore
-import com.messageconcept.peoplesyncclient.servicedetection.DavResourceFinder
-import com.messageconcept.peoplesyncclient.servicedetection.RefreshCollectionsWorker
-import com.messageconcept.peoplesyncclient.settings.AccountSettings
-import com.messageconcept.peoplesyncclient.sync.AutomaticSyncManager
-import com.messageconcept.peoplesyncclient.sync.SyncDataType
-import com.messageconcept.peoplesyncclient.sync.account.AccountsCleanupWorker
-import com.messageconcept.peoplesyncclient.sync.account.InvalidAccountException
-import com.messageconcept.peoplesyncclient.sync.account.SystemAccountUtils
-import com.messageconcept.peoplesyncclient.sync.worker.SyncWorkerManager
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.db.Credentials
+import com.atomica.contactzillasync.db.HomeSet
+import com.atomica.contactzillasync.db.Service
+import com.atomica.contactzillasync.db.ServiceType
+import com.atomica.contactzillasync.resource.LocalAddressBookStore
+import com.atomica.contactzillasync.servicedetection.DavResourceFinder
+import com.atomica.contactzillasync.servicedetection.RefreshCollectionsWorker
+import com.atomica.contactzillasync.settings.AccountSettings
+import com.atomica.contactzillasync.sync.AutomaticSyncManager
+import com.atomica.contactzillasync.sync.SyncDataType
+import com.atomica.contactzillasync.sync.account.AccountsCleanupWorker
+import com.atomica.contactzillasync.sync.account.InvalidAccountException
+import com.atomica.contactzillasync.sync.account.SystemAccountUtils
+import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
 import at.bitfire.vcard4android.GroupMethod
 import dagger.Lazy
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -38,7 +38,7 @@ import javax.inject.Inject
  * Repository for managing CardDAV accounts.
  *
  * *Note:* This class is not related to address book accounts, which are managed by
- * [com.messageconcept.peoplesyncclient.resource.LocalAddressBook].
+ * [com.atomica.contactzillasync.resource.LocalAddressBook].
  */
 class AccountRepository @Inject constructor(
     private val accountSettingsFactory: AccountSettings.Factory,

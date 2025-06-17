@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.messageconcept.peoplesyncclient.ui
+package com.atomica.contactzillasync.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -47,12 +47,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.messageconcept.peoplesyncclient.BuildConfig
-import com.messageconcept.peoplesyncclient.Constants
-import com.messageconcept.peoplesyncclient.Constants.withStatParams
-import com.messageconcept.peoplesyncclient.R
-import com.messageconcept.peoplesyncclient.di.IoDispatcher
-import com.messageconcept.peoplesyncclient.ui.composable.PixelBoxes
+import com.atomica.contactzillasync.BuildConfig
+import com.atomica.contactzillasync.Constants
+import com.atomica.contactzillasync.Constants.withStatParams
+import com.atomica.contactzillasync.R
+import com.atomica.contactzillasync.di.IoDispatcher
+import com.atomica.contactzillasync.ui.composable.PixelBoxes
 import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
 import dagger.BindsOptionalOf
