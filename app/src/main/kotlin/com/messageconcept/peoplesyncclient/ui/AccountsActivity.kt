@@ -25,6 +25,9 @@ class AccountsActivity: AppCompatActivity() {
     @Inject
     lateinit var managedSettings: ManagedSettings
 
+    @Inject
+    lateinit var startupPermissionManager: StartupPermissionManager
+
     private val introActivityLauncher = registerForActivityResult(IntroActivity.Contract) { cancelled ->
         if (cancelled)
             finish()
@@ -34,6 +37,12 @@ class AccountsActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Setup startup permission handling
+        startupPermissionManager.setupPermissionLaunchers(this)
+        
+        // Check and request permissions on startup
+        startupPermissionManager.checkAndRequestPermissions(this)
+
         // handle "Sync all" intent from launcher shortcut
         val syncAccounts = intent.action == Intent.ACTION_SYNC
 
@@ -41,7 +50,10 @@ class AccountsActivity: AppCompatActivity() {
             AccountsScreen(
                 initialSyncAccounts = syncAccounts,
                 onShowAppIntro = {
-                    introActivityLauncher.launch(null)
+                    // Only show intro if contacts permissions are still missing
+                    if (startupPermissionManager.shouldShowIntroPages()) {
+                        introActivityLauncher.launch(null)
+                    }
                 },
                 accountsDrawerHandler = accountsDrawerHandler,
                 onAddAccount = {

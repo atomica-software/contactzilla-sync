@@ -43,9 +43,14 @@
     <string name="intro_slogan2">All contacts. Everywhere.</string>
     <string name="intro_battery_title">Regular sync intervals</string>
     <string name="intro_battery_text">For synchronization at regular intervals, %s must be allowed to run in the background. Otherwise, Android may pause synchronization at any time.</string>
+    <string name="intro_battery_text_direct">%s needs to run in the background to keep your contacts synchronized. Please allow background running to ensure automatic sync works properly.</string>
+    <string name="intro_battery_allow_background">Allow Background Running</string>
+    <string name="intro_battery_exempted">Background running is enabled! Your contacts will sync automatically.</string>
+    <string name="intro_battery_manual_instruction">If the dialog doesn\'t appear, you can manually allow background running in battery settings.</string>
     <string name="intro_battery_dont_show">I don\'t need regular sync intervals.*</string>
     <string name="intro_autostart_title">%s compatibility</string>
-    <string name="intro_autostart_text">This device probably blocks synchronization. If you\'re affected, you can only resolve this manually.</string>
+    <string name="intro_autostart_text">%s also needs autostart permission on %s devices. You may need to enable this manually in your device settings.</string>
+    <string name="intro_autostart_more_info">More Information</string>
     <string name="intro_autostart_dont_show">I have done the required settings. Don\'t remind me anymore.*</string>
     <string name="intro_leave_unchecked">* Leave unchecked to be reminded later. Can be reset in app settings / %s.</string>
     <string name="intro_more_info">More information</string>
@@ -72,6 +77,13 @@
     <!-- PermissionsActivity -->
     <string name="permissions_title">Permissions</string>
     <string name="permissions_text">%s requires permissions to work properly.</string>
+    <string name="permissions_essential_title">Essential Permissions</string>
+    <string name="permissions_essential_text">%s needs these permissions to sync your contacts and run properly. Please grant them to continue.</string>
+    <string name="permissions_grant_essential">Grant Essential Permissions</string>
+    <string name="permissions_allow_background_running">Allow Background Running</string>
+    <string name="permissions_all_granted">All permissions granted! You\'re ready to go.</string>
+    <string name="permissions_background_settings_unavailable">Background settings not available</string>
+    <string name="permissions_contacts_required">Contact permissions are required for %s to sync your contacts. Please grant them in Settings.</string>
     <string name="permissions_all_title">All of the below</string>
     <string name="permissions_all_status_off">Use this to enable all features (recommended)</string>
     <string name="permissions_all_status_on">All permissions granted</string>

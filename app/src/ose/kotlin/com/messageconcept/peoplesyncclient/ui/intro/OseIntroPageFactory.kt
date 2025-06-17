@@ -12,7 +12,6 @@ class OseIntroPageFactory @Inject constructor(
 ): IntroPageFactory {
 
     override val introPages = arrayOf(
-        WelcomePage(),
         permissionsIntroPage,
         batteryOptimizationsPage
     )
