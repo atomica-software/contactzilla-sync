@@ -65,6 +65,12 @@
         android:restrictionType="string"
         android:title="@string/organization"/>
 
+    <restriction
+        android:key="managed_by"
+        android:restrictionType="string"
+        android:title="@string/managed_by_title"
+        android:description="@string/managed_by_description"/>
+
     <!-- Account 1 (Primary) -->
     <restriction
         android:description="@string/login_account_name_description"

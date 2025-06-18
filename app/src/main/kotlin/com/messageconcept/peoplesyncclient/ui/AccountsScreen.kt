@@ -126,6 +126,7 @@ fun AccountsScreen(
         onShowAccount = onShowAccount,
         onManagePermissions = onManagePermissions,
         isManaged = model.isManaged.collectAsStateWithLifecycle(false).value,
+        managedBy = model.managedBy.collectAsStateWithLifecycle("your organization").value,
         internetUnavailable = !model.networkAvailable.collectAsStateWithLifecycle(false).value,
         batterySaverActive = model.batterySaverActive.collectAsStateWithLifecycle(false).value,
         dataSaverActive = model.dataSaverEnabled.collectAsStateWithLifecycle(false).value,
@@ -147,6 +148,7 @@ fun AccountsScreen(
     onShowAccount: (Account) -> Unit = {},
     onManagePermissions: () -> Unit = {},
     isManaged: Boolean = false,
+    managedBy: String = "your organization",
     internetUnavailable: Boolean = false,
     batterySaverActive: Boolean = false,
     dataSaverActive: Boolean = false,
@@ -293,6 +295,7 @@ fun AccountsScreen(
                             val context = LocalContext.current
                             SyncWarnings(
                                 managedWarning = isManaged,
+                                managedBy = managedBy,
                                 notificationsWarning = notificationsPermissionState?.status?.isGranted == false,
                                 onManagePermissions = onManagePermissions,
                                 internetWarning = internetUnavailable,
@@ -514,6 +517,7 @@ fun AccountList_Preview_Syncing() {
 @Composable
 fun SyncWarnings(
     managedWarning: Boolean,
+    managedBy: String = "your organization",
     notificationsWarning: Boolean = true,
     onManagePermissions: () -> Unit = {},
     internetWarning: Boolean = true,
@@ -534,7 +538,7 @@ fun SyncWarnings(
                 icon = Icons.Default.Settings,
                 modifier = Modifier.padding(vertical = 4.dp)
             ) {
-                Text(stringResource(R.string.account_list_managed_configuration))
+                Text(stringResource(R.string.account_list_managed_configuration, managedBy))
             }
         if (notificationsWarning)
             ActionCard(
@@ -626,6 +630,7 @@ fun SyncWarnings_Preview() {
     AppTheme {
         SyncWarnings(
             managedWarning = true,
+            managedBy = "Acme Corporation IT Department",
             notificationsWarning = true,
             internetWarning = true,
             batterySaverActive = true,

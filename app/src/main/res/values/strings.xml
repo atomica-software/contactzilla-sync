@@ -581,10 +581,12 @@
     <string name="distrust_system_certs_title">Distrust system certificates</string>
     <string name="default_sync_interval">Default sync interval</string>
     <string name="organization">Organization name</string>
+    <string name="managed_by_title">Managed By</string>
+    <string name="managed_by_description">Organization or entity managing the account settings (defaults to "your organization")</string>
     <string name="wifi_only_title">Sync over WiFi only</string>
     <string name="wifi_only_ssids_title">WiFi SSID restriction</string>
 
     <!-- managed configurations -->
     <string name="login_type_managed">Please login</string>
-    <string name="account_list_managed_configuration">Account settings are managed by your organization.</string>
+    <string name="account_list_managed_configuration">Account settings are managed by %s.</string>
 </resources>

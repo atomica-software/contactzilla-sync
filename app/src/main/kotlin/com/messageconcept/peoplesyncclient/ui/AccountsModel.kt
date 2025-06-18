@@ -157,6 +157,14 @@ class AccountsModel @AssistedInject constructor(
             immediate = true
         ).map { managedSettings.hasManagedAccounts() }
 
+    /** the entity managing the accounts (for display in UI) **/
+    val managedBy =
+        broadcastReceiverFlow(
+            context = context,
+            filter = IntentFilter(ACTION_APPLICATION_RESTRICTIONS_CHANGED),
+            immediate = true
+        ).map { managedSettings.getManagedBy() }
+
     /** whether a usable network connection is available (sync framework won't run synchronization otherwise) */
     val networkAvailable = callbackFlow<Boolean> {
         val networkCallback = object: ConnectivityManager.NetworkCallback() {

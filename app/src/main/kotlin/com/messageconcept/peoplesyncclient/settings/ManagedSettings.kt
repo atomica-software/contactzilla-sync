@@ -55,6 +55,7 @@ class ManagedSettings @Inject constructor(
         private const val KEY_LOGIN_PASSWORD = "login_password"
         private const val KEY_LOGIN_ACCOUNT_NAME = "login_account_name"
         private const val KEY_ORGANIZATION = "organization"
+        private const val KEY_MANAGED_BY = "managed_by"
         
         // Keys for additional accounts - ALL accounts use _NUMBER suffix for consistency
         private fun getKeyForAccount(accountIndex: Int, baseKey: String): String {
@@ -63,6 +64,9 @@ class ManagedSettings @Inject constructor(
         
         // Debug mode - uses BuildConfig.DEBUG to automatically enable in debug builds
         private val DEBUG_MODE = BuildConfig.DEBUG
+        
+        // Debug managed_by value for testing
+        private const val DEBUG_MANAGED_BY = "Acme Corporation IT Department"
         
                 // Test configurations for debug mode  
         private val debugConfigs = mapOf(
@@ -140,6 +144,15 @@ class ManagedSettings @Inject constructor(
 
     fun getOrganization(): String? {
         return restrictions.getString(KEY_ORGANIZATION)
+    }
+
+    fun getManagedBy(): String {
+        // Use debug value if debug mode is enabled
+        if (DEBUG_MODE) {
+            return DEBUG_MANAGED_BY
+        }
+        
+        return restrictions.getString(KEY_MANAGED_BY) ?: "your organization"
     }
 
     // Get account configuration for a specific account number (starting from 1)
