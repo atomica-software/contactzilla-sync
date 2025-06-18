@@ -133,7 +133,7 @@ class AboutActivity: AppCompatActivity() {
                                 scope.launch { state.scrollToPage(0) }
                             }) {
                                 Text(
-                                    stringResource(R.string.app_name),
+                                    "About",
                                     modifier = Modifier.padding(8.dp)
                                 )
                             }
@@ -306,13 +306,6 @@ fun AboutApp(licenseInfoProvider: AboutActivity.AppLicenseInfoProvider? = null) 
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 8.dp)
-        )
-
-        PixelBoxes(
-            arrayOf(Color(0xFFFCF434), Color.White, Color(0xFF9C59D1), Color.Black),
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(16.dp)
         )
 
         licenseInfoProvider?.LicenseInfo()
