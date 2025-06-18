@@ -235,7 +235,7 @@ fun BrandingHeader() {
     Column(
         Modifier
             .statusBarsPadding()
-            .background(Color.DarkGray)
+            .background(MaterialTheme.colorScheme.primary)
             .fillMaxWidth()
             .padding(16.dp)
     ) {
@@ -249,7 +249,7 @@ fun BrandingHeader() {
             Icon(
                 painterResource(R.drawable.ic_launcher_foreground),
                 stringResource(R.string.app_name),
-                tint = M3ColorScheme.primaryLight,
+                tint = Color.Black,
                 modifier = Modifier
                     .scale(1.5f)
                     .size(64.dp)
