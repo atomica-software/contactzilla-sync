@@ -448,6 +448,7 @@ fun AccountList(
                             Icon(
                                 imageVector = Icons.Default.AccountCircle,
                                 contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onPrimary,
                                 modifier = Modifier
                                     .align(Alignment.CenterHorizontally)
                                     .size(48.dp)
@@ -456,6 +457,7 @@ fun AccountList(
                             Text(
                                 text = account.name,
                                 style = MaterialTheme.typography.titleLarge,
+                                color = MaterialTheme.colorScheme.onPrimary,
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .padding(top = 4.dp)
