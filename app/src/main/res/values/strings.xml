@@ -551,6 +551,12 @@
     <string name="login_account_name_description">Account name</string>
     <string name="login_account_name_title">Account name</string>
     
+    <!-- Account 1 -->
+    <string name="login_base_url_title_1">Base URL (Account 1)</string>
+    <string name="login_user_name_title_1">Username (Account 1)</string>
+    <string name="login_password_title_1">Password (Account 1)</string>
+    <string name="login_account_name_title_1">Account name (Account 1)</string>
+    
     <!-- Account 2 -->
     <string name="login_base_url_title_2">Base URL (Account 2)</string>
     <string name="login_user_name_title_2">Username (Account 2)</string>

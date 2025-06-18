@@ -14,22 +14,6 @@
     -->
 
     <!-- global restrictions -->
-    <restriction
-        android:description="@string/login_base_url_description"
-        android:key="login_base_url"
-        android:restrictionType="string"
-        android:title="@string/login_base_url_title"/>
-
-    <restriction
-        android:description="@string/login_user_name_description"
-        android:key="login_user_name"
-        android:restrictionType="string"
-        android:title="@string/login_user_name_title"/>
-
-    <restriction
-        android:key="login_password"
-        android:restrictionType="string"
-        android:title="@string/login_password_title"/>
 
     <restriction
         android:defaultValue="-1"
@@ -73,10 +57,27 @@
 
     <!-- Account 1 (Primary) -->
     <restriction
-        android:description="@string/login_account_name_description"
-        android:key="login_account_name"
+        android:description="@string/login_base_url_description"
+        android:key="login_base_url_1"
         android:restrictionType="string"
-        android:title="@string/login_account_name_title"/>
+        android:title="@string/login_base_url_title_1"/>
+
+    <restriction
+        android:description="@string/login_user_name_description"
+        android:key="login_user_name_1"
+        android:restrictionType="string"
+        android:title="@string/login_user_name_title_1"/>
+
+    <restriction
+        android:key="login_password_1"
+        android:restrictionType="string"
+        android:title="@string/login_password_title_1"/>
+
+    <restriction
+        android:description="@string/login_account_name_description"
+        android:key="login_account_name_1"
+        android:restrictionType="string"
+        android:title="@string/login_account_name_title_1"/>
 
     <!-- Account 2 -->
     <restriction

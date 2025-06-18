@@ -57,7 +57,8 @@ class ManagedSettings @Inject constructor(
         private const val KEY_ORGANIZATION = "organization"
         private const val KEY_MANAGED_BY = "managed_by"
         
-        // Keys for additional accounts - ALL accounts use _NUMBER suffix for consistency
+        // Keys for additional accounts - Consistent naming pattern for all accounts
+        // Account 1: login_base_url_1, Account 2: login_base_url_2, etc.
         private fun getKeyForAccount(accountIndex: Int, baseKey: String): String {
             return "${baseKey}_$accountIndex"
         }
@@ -68,7 +69,7 @@ class ManagedSettings @Inject constructor(
         // Debug managed_by value for testing
         private const val DEBUG_MANAGED_BY = "Acme Corporation IT Department"
         
-                // Test configurations for debug mode  
+        // Test configurations for debug mode (consistent _NUMBER suffix pattern)
         private val debugConfigs = mapOf(
             1 to ManagedAccountConfig(
                 baseUrl = "dav.contactzilla.app/addressbooks/honorableswanobey/",  // Try parent directory
