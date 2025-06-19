@@ -110,6 +110,98 @@ class ManagedAccountSetup @Inject constructor(
 
     override fun priorityAsync(): Int = PRIORITY_DEFAULT
 
+    /**
+     * Creates a single managed account from the given configuration.
+     * This method can be used by QR code setup or other account creation flows.
+     * 
+     * @param config The account configuration to create
+     * @return true if the account was created successfully, false otherwise
+     */
+    suspend fun createSingleManagedAccount(config: ManagedAccountConfig): Boolean {
+        return withContext(Dispatchers.IO) {
+            try {
+                logger.info("Creating single managed account: ${config.accountName} (URL: ${config.baseUrl}, User: ${config.username})")
+                
+                // Check if account already exists
+                val accountExists = accountRepository.exists(config.accountName)
+                if (accountExists) {
+                    logger.info("Account ${config.accountName} already exists, skipping creation")
+                    return@withContext false
+                }
+                
+                // Create credentials
+                val credentials = Credentials(
+                    username = config.username,
+                    password = config.password
+                )
+                
+                // Parse base URL - add https:// if missing
+                val baseUri = try {
+                    val url = if (!config.baseUrl.startsWith("http://") && !config.baseUrl.startsWith("https://")) {
+                        "https://${config.baseUrl}"
+                    } else {
+                        config.baseUrl
+                    }
+                    logger.info("Using URL: $url for account ${config.accountName}")
+                    URI(url)
+                } catch (e: Exception) {
+                    logger.log(Level.WARNING, "Invalid base URL for account ${config.accountName}: ${config.baseUrl}", e)
+                    return@withContext false
+                }
+                
+                logger.info("Starting service discovery for ${config.accountName} at ${baseUri}")
+                
+                // Perform service discovery
+                val serviceConfig = try {
+                    davResourceFinderFactory.create(baseUri, credentials).use { finder ->
+                        finder.findInitialConfiguration()
+                    }
+                } catch (e: Exception) {
+                    logger.log(Level.WARNING, "Service discovery failed for account ${config.accountName}", e)
+                    return@withContext false
+                }
+                
+                if (serviceConfig == null) {
+                    logger.warning("Service discovery returned null for account ${config.accountName}")
+                    return@withContext false
+                }
+                
+                logger.info("Service discovery completed for ${config.accountName}. CardDAV: ${serviceConfig.cardDAV != null}")
+                
+                if (serviceConfig.cardDAV != null) {
+                    // Create the account
+                    logger.info("Creating account ${config.accountName} with CardDAV service")
+                    
+                    val account = accountRepository.createBlocking(
+                        accountName = config.accountName,
+                        credentials = credentials,
+                        config = serviceConfig,
+                        groupMethod = GroupMethod.CATEGORIES // Use contact categories instead of separate VCards
+                    )
+                    
+                    if (account != null) {
+                        logger.info("Successfully created managed account: ${config.accountName}")
+                        
+                        // Trigger initial sync for the newly created account (with permission check)
+                        triggerSyncWithPermissionCheck(account, config.accountName)
+                        
+                        return@withContext true
+                    } else {
+                        logger.warning("Failed to create managed account: ${config.accountName} - createBlocking returned null")
+                        return@withContext false
+                    }
+                } else {
+                    logger.warning("No CardDAV service found for managed account: ${config.accountName}")
+                    return@withContext false
+                }
+                
+            } catch (e: Exception) {
+                logger.log(Level.SEVERE, "Error creating single managed account: ${config.accountName}", e)
+                return@withContext false
+            }
+        }
+    }
+
     private suspend fun createManagedAccountsAsync() {
         val managedAccountConfigs = managedSettings.getAllAccountConfigs()
         

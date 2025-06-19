@@ -161,7 +161,7 @@ class ManagedSettings @Inject constructor(
         if (accountIndex < 1) return null
         
         // Use debug configuration if debug mode is enabled
-        if (DEBUG_MODE) {
+        if (DEBUG_MODE && 1==2) {
             logger.info("Debug mode enabled, checking for debug config $accountIndex")
             val debugConfig = debugConfigs[accountIndex]
             if (debugConfig != null) {

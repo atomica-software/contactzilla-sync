@@ -17,12 +17,12 @@ class StandardLoginTypesProvider @Inject constructor(
 
     companion object {
         val genericLoginTypes = listOf(
-            UrlLogin,
+            QrLogin,
             EmailLogin
         )
     }
 
-    override val defaultLoginType = UrlLogin
+    override val defaultLoginType = QrLogin
 
     override fun intentToInitialLoginType(intent: Intent): LoginAction =
         intent.data?.normalizeScheme().let { uri ->
@@ -32,7 +32,7 @@ class StandardLoginTypesProvider @Inject constructor(
                 uri?.scheme == "mailto" ->
                     LoginAction(EmailLogin, true)
                 listOf("carddavs", "http", "https").any { uri?.scheme == it } ->
-                    LoginAction(UrlLogin, true)
+                    LoginAction(EmailLogin, true) // Redirect URL intents to email login
                 else -> {
                     logger.warning("Did not understand login intent: $intent")
                     LoginAction(defaultLoginType, false) // Don't skip login type page if intent is unclear

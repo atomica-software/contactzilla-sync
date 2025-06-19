@@ -298,6 +298,12 @@
     <string name="login_password_show">Show password</string>
     <string name="login_password_optional">Password*</string>
     <string name="login_type_url">Login with URL and user name</string>
+    <string name="login_type_qr">Scan Contactzilla QR setup code</string>
+    <string name="login_qr_scan_title">Scan QR Code</string>
+    <string name="login_qr_scan_instructions">Point your camera at the Contactzilla QR setup code to automatically configure your account</string>
+    <string name="login_qr_scan_error">Unable to scan QR code. Please try again.</string>
+    <string name="login_qr_config_error">Unable to load configuration from QR code. Please check the QR code and try again.</string>
+    <string name="login_qr_accounts_created">Successfully configured %d account(s) from QR code</string>
     <string name="login_user_name">User name</string>
     <string name="login_user_name_optional">User name*</string>
     <string name="login_base_url">Base URL</string>
