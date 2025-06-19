@@ -10,7 +10,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.atomica.contactzillasync.settings.ManagedSettings
 import com.atomica.contactzillasync.ui.account.AccountActivity
-import com.atomica.contactzillasync.ui.intro.IntroActivity
+
 import com.atomica.contactzillasync.ui.setup.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -28,10 +28,7 @@ class AccountsActivity: AppCompatActivity() {
     @Inject
     lateinit var startupPermissionManager: StartupPermissionManager
 
-    private val introActivityLauncher = registerForActivityResult(IntroActivity.Contract) { cancelled ->
-        if (cancelled)
-            finish()
-    }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,10 +47,8 @@ class AccountsActivity: AppCompatActivity() {
             AccountsScreen(
                 initialSyncAccounts = syncAccounts,
                 onShowAppIntro = {
-                    // Only show intro if contacts permissions are still missing
-                    if (startupPermissionManager.shouldShowIntroPages()) {
-                        introActivityLauncher.launch(null)
-                    }
+                    // Intro screens disabled - StartupPermissionManager handles all permissions directly
+                    // This callback should never be triggered since all intro pages return DONT_SHOW
                 },
                 accountsDrawerHandler = accountsDrawerHandler,
                 onAddAccount = {

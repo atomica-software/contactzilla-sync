@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 2070040502,
-      "versionName": "4.5.2-ps",
-      "outputFile": "ContactzillaSyncClient-4.5.2-ose-release.apk"
+      "versionCode": 2070040505,
+      "versionName": "4.5.5-ps",
+      "outputFile": "ContactzillaSyncClient-4.5.5-ose-release.apk"
     }
   ],
   "elementType": "File",
@@ -22,14 +22,14 @@
       "minApi": 28,
       "maxApi": 30,
       "baselineProfiles": [
-        "baselineProfiles/1/ContactzillaSyncClient-4.5.2-ose-release.dm"
+        "baselineProfiles/1/ContactzillaSyncClient-4.5.5-ose-release.dm"
       ]
     },
     {
       "minApi": 31,
       "maxApi": 2147483647,
       "baselineProfiles": [
-        "baselineProfiles/0/ContactzillaSyncClient-4.5.2-ose-release.dm"
+        "baselineProfiles/0/ContactzillaSyncClient-4.5.5-ose-release.dm"
       ]
     }
   ],

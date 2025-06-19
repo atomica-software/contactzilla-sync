@@ -7,13 +7,10 @@ package com.atomica.contactzillasync.ui.intro
 import javax.inject.Inject
 
 class OseIntroPageFactory @Inject constructor(
-    batteryOptimizationsPage: BatteryOptimizationsPage,
-    permissionsIntroPage: PermissionsIntroPage
 ): IntroPageFactory {
 
-    override val introPages = arrayOf(
-        permissionsIntroPage,
-        batteryOptimizationsPage
+    override val introPages = arrayOf<IntroPage>(
+        // All intro pages removed - functionality handled by StartupPermissionManager
     )
 
 }

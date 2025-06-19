@@ -161,7 +161,7 @@ class StartupPermissionManager @Inject constructor(
     }
 
     fun shouldShowIntroPages(): Boolean {
-        // Only show intro if contacts permissions are missing
-        return !hasContactPermissions()
+        // Intro pages completely disabled - all permissions handled directly
+        return false
     }
 } 

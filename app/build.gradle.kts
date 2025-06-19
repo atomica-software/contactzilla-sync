@@ -30,8 +30,8 @@ android {
         applicationId = "com.atomica.contactzillasync"
 
         //noinspection HighAppVersionCode
-        versionCode = 2070040502
-        versionName = "4.5.2"
+        versionCode = 2070040505
+        versionName = "4.5.5"
 
         setProperty("archivesBaseName", "ContactzillaSyncClient-$versionName")
 

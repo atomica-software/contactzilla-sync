@@ -133,14 +133,9 @@ class AccountsModel @AssistedInject constructor(
     // other UI state
 
     val showAppIntro: Flow<Boolean> = flow<Boolean> {
-        val anyShowAlwaysPage = introPageFactory.introPages.any { introPage ->
-            val policy = introPage.getShowPolicy()
-            logger.fine("Intro page ${introPage::class.java.name} policy = $policy")
-
-            policy == IntroPage.ShowPolicy.SHOW_ALWAYS
-        }
-
-        emit(anyShowAlwaysPage)
+        // Intro screens completely disabled - always return false
+        logger.fine("Intro screens completely disabled")
+        emit(false)
     }.flowOn(Dispatchers.Default)
 
 
