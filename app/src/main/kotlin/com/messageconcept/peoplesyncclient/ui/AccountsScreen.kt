@@ -408,12 +408,6 @@ fun AccountList(
                         .fillMaxWidth()
                         .padding(top = 16.dp, bottom = 32.dp)
                 )
-                Text(
-                    text = stringResource(R.string.account_list_empty),
-                    style = MaterialTheme.typography.headlineSmall,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
-                )
             }
         else
             for ((account, progress) in accounts)
