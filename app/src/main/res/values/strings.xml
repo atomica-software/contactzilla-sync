@@ -131,6 +131,7 @@
     <string name="about_copyright" translatable="false">© Atomica Software Inc</string>
     <string name="about_license_info_no_warranty">This program comes with ABSOLUTELY NO WARRANTY. It is free software, and you are welcome to redistribute it under certain conditions.</string>
     <string name="about_contact_info">For support, please contact support@contactzilla.com</string>
+    <string name="about_project_acknowledgment"><![CDATA[This project is based on the work from messageconcept software GmbH (<a href="https://github.com/messageconcept/PeopleSyncClient">PeopleSync</a>) and bitfire web engineering GmbH (<a href="https://github.com/bitfireAT/davx5-ose">DAVx⁵</a>). Their respective copyrights are retained and respected. Please consider supporting their projects.]]></string>
 
     <!-- global settings -->
     <string name="logging_couldnt_create_file">Couldn\'t create log file</string>

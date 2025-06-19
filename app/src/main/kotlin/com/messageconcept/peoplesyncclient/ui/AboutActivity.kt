@@ -45,6 +45,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.text.HtmlCompat
+import com.atomica.contactzillasync.ui.UiUtils.toAnnotatedString
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.atomica.contactzillasync.BuildConfig
@@ -301,8 +303,21 @@ fun AboutApp(licenseInfoProvider: AboutActivity.AppLicenseInfoProvider? = null) 
         )
 
         Text(
+            text = HtmlCompat.fromHtml(
+                stringResource(R.string.about_project_acknowledgment),
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+            ).toAnnotatedString(),
+            style = MaterialTheme.typography.bodyMedium,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+        )
+
+        Text(
             stringResource(R.string.about_license_info_no_warranty),
             style = MaterialTheme.typography.bodyLarge,
+            textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 8.dp)
