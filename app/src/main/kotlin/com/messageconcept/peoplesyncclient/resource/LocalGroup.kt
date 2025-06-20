@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.resource
+package com.atomicasoftware.contactzillasync.resource
 
 import android.content.ContentUris
 import android.content.ContentValues
@@ -14,7 +14,7 @@ import android.provider.ContactsContract.Groups
 import android.provider.ContactsContract.RawContacts
 import android.provider.ContactsContract.RawContacts.Data
 import androidx.core.content.contentValuesOf
-import com.atomica.contactzillasync.util.trimToNull
+import com.atomicasoftware.contactzillasync.util.trimToNull
 import at.bitfire.vcard4android.AndroidAddressBook
 import at.bitfire.vcard4android.AndroidContact
 import at.bitfire.vcard4android.AndroidGroup

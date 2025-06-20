@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.log
+package com.atomicasoftware.contactzillasync.log
 
 import com.google.common.base.Ascii
 import java.io.PrintWriter

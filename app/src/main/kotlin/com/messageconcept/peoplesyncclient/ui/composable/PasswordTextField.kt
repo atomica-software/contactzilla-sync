@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.composable
+package com.atomicasoftware.contactzillasync.ui.composable
 
 import androidx.compose.foundation.focusGroup
 import androidx.compose.foundation.text.KeyboardActions
@@ -25,7 +25,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
-import com.atomica.contactzillasync.R
+import com.atomicasoftware.contactzillasync.R
 
 @Composable
 fun PasswordTextField(

@@ -2,16 +2,16 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.account
+package com.atomicasoftware.contactzillasync.ui.account
 
 import android.accounts.Account
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.atomica.contactzillasync.db.HomeSet
-import com.atomica.contactzillasync.repository.DavCollectionRepository
-import com.atomica.contactzillasync.repository.DavHomeSetRepository
+import com.atomicasoftware.contactzillasync.db.HomeSet
+import com.atomicasoftware.contactzillasync.repository.DavCollectionRepository
+import com.atomicasoftware.contactzillasync.repository.DavHomeSetRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

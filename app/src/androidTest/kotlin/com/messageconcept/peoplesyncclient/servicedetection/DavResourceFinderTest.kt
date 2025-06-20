@@ -2,15 +2,15 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.servicedetection
+package com.atomicasoftware.contactzillasync.servicedetection
 
 import android.security.NetworkSecurityPolicy
 import at.bitfire.dav4jvm.DavResource
 import at.bitfire.dav4jvm.property.carddav.AddressbookHomeSet
 import at.bitfire.dav4jvm.property.webdav.ResourceType
-import com.atomica.contactzillasync.db.Credentials
-import com.atomica.contactzillasync.network.HttpClient
-import com.atomica.contactzillasync.servicedetection.DavResourceFinder.Configuration.ServiceInfo
+import com.atomicasoftware.contactzillasync.db.Credentials
+import com.atomicasoftware.contactzillasync.network.HttpClient
+import com.atomicasoftware.contactzillasync.servicedetection.DavResourceFinder.Configuration.ServiceInfo
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import okhttp3.mockwebserver.Dispatcher

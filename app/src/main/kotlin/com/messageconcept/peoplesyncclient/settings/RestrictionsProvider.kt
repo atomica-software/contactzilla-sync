@@ -6,12 +6,12 @@
  * http://www.gnu.org/licenses/gpl.html
  */
 
-package com.atomica.contactzillasync.settings
+package com.atomicasoftware.contactzillasync.settings
 
 import android.content.*
 import android.content.Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED
 import android.os.Bundle
-import com.atomica.contactzillasync.TextTable
+import com.atomicasoftware.contactzillasync.TextTable
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

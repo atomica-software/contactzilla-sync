@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui
+package com.atomicasoftware.contactzillasync.ui
 
 import android.Manifest
 import android.content.Context
@@ -16,10 +16,10 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
-import com.atomica.contactzillasync.BuildConfig
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.util.PermissionUtils
-import com.atomica.contactzillasync.util.PermissionUtils.CONTACT_PERMISSIONS
+import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.util.PermissionUtils
+import com.atomicasoftware.contactzillasync.util.PermissionUtils.CONTACT_PERMISSIONS
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.logging.Logger
 import javax.inject.Inject

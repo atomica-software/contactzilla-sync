@@ -2,16 +2,16 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings.migration
+package com.atomicasoftware.contactzillasync.settings.migration
 
 import android.accounts.Account
 import android.accounts.AccountManager
 import android.content.Context
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.db.AppDatabase
-import com.atomica.contactzillasync.db.Service
-import com.atomica.contactzillasync.resource.LocalAddressBook
-import com.atomica.contactzillasync.sync.account.setAndVerifyUserData
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.resource.LocalAddressBook
+import com.atomicasoftware.contactzillasync.sync.account.setAndVerifyUserData
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -28,7 +28,7 @@ import javax.inject.Inject
  *
  * However, it turned out that the account binding is needed even with collection IDs for the case
  * that the collection is not available in the database anymore (for instance, because it has been
- * removed on the server). In that case, the [com.atomica.contactzillasync.sync.Syncer] still needs to get
+ * removed on the server). In that case, the [com.atomicasoftware.contactzillasync.sync.Syncer] still needs to get
  * a list of all address book accounts that belong to the account, and not _all_ address books.
  *
  * So this migration again assigns address book accounts to accounts.

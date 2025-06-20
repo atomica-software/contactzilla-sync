@@ -2,14 +2,14 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings.migration
+package com.atomicasoftware.contactzillasync.settings.migration
 
 import android.accounts.Account
 import android.content.Context
 import androidx.work.WorkManager
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.sync.SyncDataType
-import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.sync.SyncDataType
+import com.atomicasoftware.contactzillasync.sync.worker.SyncWorkerManager
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

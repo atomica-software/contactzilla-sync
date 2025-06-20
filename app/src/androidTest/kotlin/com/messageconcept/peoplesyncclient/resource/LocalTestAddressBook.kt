@@ -2,15 +2,15 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.resource
+package com.atomicasoftware.contactzillasync.resource
 
 import android.accounts.Account
 import android.content.ContentProviderClient
 import android.content.Context
-import com.atomica.contactzillasync.repository.DavCollectionRepository
-import com.atomica.contactzillasync.repository.DavServiceRepository
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.sync.SyncFrameworkIntegration
+import com.atomicasoftware.contactzillasync.repository.DavCollectionRepository
+import com.atomicasoftware.contactzillasync.repository.DavServiceRepository
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.sync.SyncFrameworkIntegration
 import at.bitfire.vcard4android.GroupMethod
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory

@@ -2,9 +2,9 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings
+package com.atomicasoftware.contactzillasync.settings
 
-import com.atomica.contactzillasync.TextTable
+import com.atomicasoftware.contactzillasync.TextTable
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

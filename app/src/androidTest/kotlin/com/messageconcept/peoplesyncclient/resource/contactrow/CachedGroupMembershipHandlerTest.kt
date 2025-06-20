@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.resource.contactrow
+package com.atomicasoftware.contactzillasync.resource.contactrow
 
 import android.Manifest
 import android.accounts.Account
@@ -12,8 +12,8 @@ import android.content.Context
 import android.provider.ContactsContract
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
-import com.atomica.contactzillasync.resource.LocalContact
-import com.atomica.contactzillasync.resource.LocalTestAddressBookProvider
+import com.atomicasoftware.contactzillasync.resource.LocalContact
+import com.atomicasoftware.contactzillasync.resource.LocalTestAddressBookProvider
 import at.bitfire.vcard4android.CachedGroupMembership
 import at.bitfire.vcard4android.Contact
 import at.bitfire.vcard4android.GroupMethod

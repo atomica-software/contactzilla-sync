@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui
+package com.atomicasoftware.contactzillasync.ui
 
 import android.content.Context
 import android.content.Intent
@@ -37,9 +37,9 @@ import androidx.core.content.getSystemService
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.text.getSpans
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.settings.Settings
-import com.atomica.contactzillasync.settings.SettingsManager
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.settings.Settings
+import com.atomicasoftware.contactzillasync.settings.SettingsManager
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors

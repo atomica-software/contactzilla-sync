@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.intro
+package com.atomicasoftware.contactzillasync.ui.intro
 
 import androidx.compose.runtime.Composable
 

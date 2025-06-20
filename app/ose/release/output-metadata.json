@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.atomica.contactzillasync",
+  "applicationId": "com.atomicasoftware.contactzillasync",
   "variantName": "oseRelease",
   "elements": [
     {

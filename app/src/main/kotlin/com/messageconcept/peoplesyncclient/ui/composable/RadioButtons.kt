@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.composable
+package com.atomicasoftware.contactzillasync.ui.composable
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.atomica.contactzillasync.ui.AppTheme
+import com.atomicasoftware.contactzillasync.ui.AppTheme
 
 @Composable
 fun RadioButtons(

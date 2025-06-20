@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.resource
+package com.atomicasoftware.contactzillasync.resource
 
 import android.content.ContentValues
 import android.os.RemoteException
@@ -10,12 +10,12 @@ import android.provider.ContactsContract
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership
 import android.provider.ContactsContract.RawContacts.Data
 import androidx.core.content.contentValuesOf
-import com.atomica.contactzillasync.BuildConfig
-import com.atomica.contactzillasync.resource.contactrow.CachedGroupMembershipHandler
-import com.atomica.contactzillasync.resource.contactrow.GroupMembershipBuilder
-import com.atomica.contactzillasync.resource.contactrow.GroupMembershipHandler
-import com.atomica.contactzillasync.resource.contactrow.UnknownPropertiesBuilder
-import com.atomica.contactzillasync.resource.contactrow.UnknownPropertiesHandler
+import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.resource.contactrow.CachedGroupMembershipHandler
+import com.atomicasoftware.contactzillasync.resource.contactrow.GroupMembershipBuilder
+import com.atomicasoftware.contactzillasync.resource.contactrow.GroupMembershipHandler
+import com.atomicasoftware.contactzillasync.resource.contactrow.UnknownPropertiesBuilder
+import com.atomicasoftware.contactzillasync.resource.contactrow.UnknownPropertiesHandler
 import at.bitfire.vcard4android.AndroidAddressBook
 import at.bitfire.vcard4android.AndroidContact
 import at.bitfire.vcard4android.AndroidContactFactory

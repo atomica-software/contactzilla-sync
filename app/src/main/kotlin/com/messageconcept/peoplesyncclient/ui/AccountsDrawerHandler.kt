@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui
+package com.atomicasoftware.contactzillasync.ui
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -50,8 +50,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
-import com.atomica.contactzillasync.BuildConfig
-import com.atomica.contactzillasync.R
+import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.R
 import kotlinx.coroutines.launch
 import java.net.URI
 

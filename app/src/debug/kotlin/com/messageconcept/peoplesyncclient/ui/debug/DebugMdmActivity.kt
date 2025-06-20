@@ -6,7 +6,7 @@
  * http://www.gnu.org/licenses/gpl.html
  */
 
-package com.atomica.contactzillasync.ui.debug
+package com.atomicasoftware.contactzillasync.ui.debug
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -24,7 +24,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.atomica.contactzillasync.ui.AppTheme
+import com.atomicasoftware.contactzillasync.ui.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

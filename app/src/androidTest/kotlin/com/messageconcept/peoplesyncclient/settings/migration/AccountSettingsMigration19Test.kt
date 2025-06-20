@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings.migration
+package com.atomicasoftware.contactzillasync.settings.migration
 
 import android.accounts.Account
 import android.content.Context
@@ -11,7 +11,7 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.WorkManager
 import androidx.work.testing.WorkManagerTestInitHelper
-import com.atomica.contactzillasync.sync.AutomaticSyncManager
+import com.atomicasoftware.contactzillasync.sync.AutomaticSyncManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -70,7 +70,7 @@ class AccountSettingsMigration19Test {
         migration.migrate(account)
 
         verify {
-            workManager.cancelUniqueWork("periodic-sync com.atomica.contactzillasync.addressbooks Test/Some")
+            workManager.cancelUniqueWork("periodic-sync com.atomicasoftware.contactzillasync.addressbooks Test/Some")
 
             automaticSyncManager.updateAutomaticSync(account)
         }

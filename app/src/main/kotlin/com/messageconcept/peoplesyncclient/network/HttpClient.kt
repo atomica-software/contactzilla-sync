@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.network
+package com.atomicasoftware.contactzillasync.network
 
 import android.accounts.Account
 import android.content.Context
@@ -10,12 +10,12 @@ import androidx.annotation.WorkerThread
 import at.bitfire.cert4android.CustomCertManager
 import at.bitfire.dav4jvm.BasicDigestAuthHandler
 import at.bitfire.dav4jvm.UrlUtils
-import com.atomica.contactzillasync.db.Credentials
-import com.atomica.contactzillasync.di.IoDispatcher
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.settings.Settings
-import com.atomica.contactzillasync.settings.SettingsManager
-import com.atomica.contactzillasync.ui.ForegroundTracker
+import com.atomicasoftware.contactzillasync.db.Credentials
+import com.atomicasoftware.contactzillasync.di.IoDispatcher
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.settings.Settings
+import com.atomicasoftware.contactzillasync.settings.SettingsManager
+import com.atomicasoftware.contactzillasync.ui.ForegroundTracker
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -151,7 +151,7 @@ class HttpClient(
          * @param account   the account to take authentication from
          * @param onlyHost  if set: only authenticate for this host name
          *
-         * @throws com.atomica.contactzillasync.sync.account.InvalidAccountException     when the account doesn't exist
+         * @throws com.atomicasoftware.contactzillasync.sync.account.InvalidAccountException     when the account doesn't exist
          */
         @WorkerThread
         fun fromAccount(account: Account, onlyHost: String? = null): Builder {
@@ -169,7 +169,7 @@ class HttpClient(
         /**
          * Same as [fromAccount], but can be called on any thread.
          *
-         * @throws com.atomica.contactzillasync.sync.account.InvalidAccountException     when the account doesn't exist
+         * @throws com.atomicasoftware.contactzillasync.sync.account.InvalidAccountException     when the account doesn't exist
          */
         suspend fun fromAccountAsync(account: Account, onlyHost: String? = null): Builder = withContext(ioDispatcher) {
             fromAccount(account, onlyHost)

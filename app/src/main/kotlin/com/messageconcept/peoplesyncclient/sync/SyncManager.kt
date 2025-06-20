@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync
+package com.atomicasoftware.contactzillasync.sync
 
 import android.accounts.Account
 import android.content.Context
@@ -27,17 +27,17 @@ import at.bitfire.dav4jvm.property.caldav.GetCTag
 import at.bitfire.dav4jvm.property.caldav.ScheduleTag
 import at.bitfire.dav4jvm.property.webdav.GetETag
 import at.bitfire.dav4jvm.property.webdav.SyncToken
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.db.Collection
-import com.atomica.contactzillasync.db.SyncState
-import com.atomica.contactzillasync.network.HttpClient
-import com.atomica.contactzillasync.repository.AccountRepository
-import com.atomica.contactzillasync.repository.DavCollectionRepository
-import com.atomica.contactzillasync.repository.DavServiceRepository
-import com.atomica.contactzillasync.repository.DavSyncStatsRepository
-import com.atomica.contactzillasync.resource.LocalCollection
-import com.atomica.contactzillasync.resource.LocalResource
-import com.atomica.contactzillasync.sync.account.InvalidAccountException
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.db.Collection
+import com.atomicasoftware.contactzillasync.db.SyncState
+import com.atomicasoftware.contactzillasync.network.HttpClient
+import com.atomicasoftware.contactzillasync.repository.AccountRepository
+import com.atomicasoftware.contactzillasync.repository.DavCollectionRepository
+import com.atomicasoftware.contactzillasync.repository.DavServiceRepository
+import com.atomicasoftware.contactzillasync.repository.DavSyncStatsRepository
+import com.atomicasoftware.contactzillasync.resource.LocalCollection
+import com.atomicasoftware.contactzillasync.resource.LocalResource
+import com.atomicasoftware.contactzillasync.sync.account.InvalidAccountException
 import at.bitfire.vcard4android.ContactsStorageException
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher

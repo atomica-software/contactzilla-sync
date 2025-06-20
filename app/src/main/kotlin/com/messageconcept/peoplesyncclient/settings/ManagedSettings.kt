@@ -6,7 +6,7 @@
  * http://www.gnu.org/licenses/gpl.html
  */
 
-package com.atomica.contactzillasync.settings
+package com.atomicasoftware.contactzillasync.settings
 
 import android.accounts.AccountManager
 import android.content.BroadcastReceiver
@@ -16,13 +16,13 @@ import android.content.Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED
 import android.content.IntentFilter
 import android.content.RestrictionsManager
 import android.os.Bundle
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.settings.AccountSettings.Companion.KEY_BASE_URL
-import com.atomica.contactzillasync.settings.AccountSettings.Companion.KEY_USERNAME
-import com.atomica.contactzillasync.BuildConfig
-import com.atomica.contactzillasync.repository.AccountRepository
-import com.atomica.contactzillasync.sync.account.InvalidAccountException
-import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.settings.AccountSettings.Companion.KEY_BASE_URL
+import com.atomicasoftware.contactzillasync.settings.AccountSettings.Companion.KEY_USERNAME
+import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.repository.AccountRepository
+import com.atomicasoftware.contactzillasync.sync.account.InvalidAccountException
+import com.atomicasoftware.contactzillasync.sync.worker.SyncWorkerManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

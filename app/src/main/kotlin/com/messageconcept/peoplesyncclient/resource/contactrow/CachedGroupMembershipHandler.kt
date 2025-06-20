@@ -2,10 +2,10 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.resource.contactrow
+package com.atomicasoftware.contactzillasync.resource.contactrow
 
 import android.content.ContentValues
-import com.atomica.contactzillasync.resource.LocalContact
+import com.atomicasoftware.contactzillasync.resource.LocalContact
 import at.bitfire.vcard4android.CachedGroupMembership
 import at.bitfire.vcard4android.Contact
 import at.bitfire.vcard4android.GroupMethod

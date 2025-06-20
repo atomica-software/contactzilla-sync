@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.repository
+package com.atomicasoftware.contactzillasync.repository
 
 import android.accounts.Account
 import android.content.Context
@@ -20,14 +20,14 @@ import at.bitfire.dav4jvm.property.carddav.NS_CARDDAV
 import at.bitfire.dav4jvm.property.webdav.DisplayName
 import at.bitfire.dav4jvm.property.webdav.NS_WEBDAV
 import at.bitfire.dav4jvm.property.webdav.ResourceType
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.db.AppDatabase
-import com.atomica.contactzillasync.db.Collection
-import com.atomica.contactzillasync.db.CollectionType
-import com.atomica.contactzillasync.db.HomeSet
-import com.atomica.contactzillasync.network.HttpClient
-import com.atomica.contactzillasync.servicedetection.RefreshCollectionsWorker
-import com.atomica.contactzillasync.util.DavUtils
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.db.Collection
+import com.atomicasoftware.contactzillasync.db.CollectionType
+import com.atomicasoftware.contactzillasync.db.HomeSet
+import com.atomicasoftware.contactzillasync.network.HttpClient
+import com.atomicasoftware.contactzillasync.servicedetection.RefreshCollectionsWorker
+import com.atomicasoftware.contactzillasync.util.DavUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runInterruptible

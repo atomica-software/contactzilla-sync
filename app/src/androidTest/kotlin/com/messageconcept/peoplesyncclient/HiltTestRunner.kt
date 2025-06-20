@@ -2,15 +2,15 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync
+package com.atomicasoftware.contactzillasync
 
 import android.app.Application
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import androidx.test.runner.AndroidJUnitRunner
-import com.atomica.contactzillasync.di.TestCoroutineDispatchersModule
-import com.atomica.contactzillasync.sync.SyncAdapterService
+import com.atomicasoftware.contactzillasync.di.TestCoroutineDispatchersModule
+import com.atomicasoftware.contactzillasync.sync.SyncAdapterService
 import dagger.hilt.android.testing.HiltTestApplication
 
 @Suppress("unused")

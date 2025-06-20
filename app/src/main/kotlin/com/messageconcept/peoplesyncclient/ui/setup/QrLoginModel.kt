@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.setup
+package com.atomicasoftware.contactzillasync.ui.setup
 
 import android.content.Context
 import androidx.compose.runtime.getValue
@@ -10,10 +10,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.repository.AccountRepository
-import com.atomica.contactzillasync.settings.ManagedAccountConfig
-import com.atomica.contactzillasync.startup.ManagedAccountSetup
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.repository.AccountRepository
+import com.atomicasoftware.contactzillasync.settings.ManagedAccountConfig
+import com.atomicasoftware.contactzillasync.startup.ManagedAccountSetup
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -21,7 +21,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import com.atomica.contactzillasync.network.HttpClient
+import com.atomicasoftware.contactzillasync.network.HttpClient
 import okhttp3.Request
 import org.json.JSONArray
 import org.json.JSONObject

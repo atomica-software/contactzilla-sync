@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.widget
+package com.atomicasoftware.contactzillasync.ui.widget
 
 import android.content.Context
 import android.widget.Toast
@@ -28,8 +28,8 @@ import androidx.glance.layout.size
 import androidx.glance.text.Text
 import androidx.glance.text.TextDefaults
 import androidx.glance.unit.ColorProvider
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.ui.M3ColorScheme
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.ui.M3ColorScheme
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors

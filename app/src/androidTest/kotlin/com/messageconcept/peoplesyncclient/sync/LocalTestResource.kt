@@ -2,9 +2,9 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync
+package com.atomicasoftware.contactzillasync.sync
 
-import com.atomica.contactzillasync.resource.LocalResource
+import com.atomicasoftware.contactzillasync.resource.LocalResource
 
 class LocalTestResource: LocalResource<Any> {
 

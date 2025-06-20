@@ -2,14 +2,14 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings.migration
+package com.atomicasoftware.contactzillasync.settings.migration
 
 import android.accounts.Account
 import android.accounts.AccountManager
 import android.content.Context
 import android.provider.CalendarContract
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.sync.account.setAndVerifyUserData
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.sync.account.setAndVerifyUserData
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

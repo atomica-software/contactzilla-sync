@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings
+package com.atomicasoftware.contactzillasync.settings
 
 import androidx.annotation.AnyThread
 import java.io.Writer

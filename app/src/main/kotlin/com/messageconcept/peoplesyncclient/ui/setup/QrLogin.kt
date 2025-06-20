@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.setup
+package com.atomicasoftware.contactzillasync.ui.setup
 
 import android.Manifest
 import android.content.Context
@@ -34,8 +34,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.ui.composable.Assistant
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.ui.composable.Assistant
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState

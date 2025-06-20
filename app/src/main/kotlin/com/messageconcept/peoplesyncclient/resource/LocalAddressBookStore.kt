@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.resource
+package com.atomicasoftware.contactzillasync.resource
 
 import android.accounts.Account
 import android.accounts.AccountManager
@@ -13,14 +13,14 @@ import androidx.annotation.OpenForTesting
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
 import androidx.core.os.bundleOf
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.db.Collection
-import com.atomica.contactzillasync.repository.DavServiceRepository
-import com.atomica.contactzillasync.settings.Settings
-import com.atomica.contactzillasync.settings.SettingsManager
-import com.atomica.contactzillasync.sync.account.SystemAccountUtils
-import com.atomica.contactzillasync.sync.account.setAndVerifyUserData
-import com.atomica.contactzillasync.util.DavUtils.lastSegment
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.db.Collection
+import com.atomicasoftware.contactzillasync.repository.DavServiceRepository
+import com.atomicasoftware.contactzillasync.settings.Settings
+import com.atomicasoftware.contactzillasync.settings.SettingsManager
+import com.atomicasoftware.contactzillasync.sync.account.SystemAccountUtils
+import com.atomicasoftware.contactzillasync.sync.account.setAndVerifyUserData
+import com.atomicasoftware.contactzillasync.util.DavUtils.lastSegment
 import com.google.common.base.CharMatcher
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.logging.Level

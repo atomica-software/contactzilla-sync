@@ -2,14 +2,14 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync
+package com.atomicasoftware.contactzillasync.sync
 
 import android.accounts.Account
 import android.provider.CalendarContract
-import com.atomica.contactzillasync.db.Service
-import com.atomica.contactzillasync.repository.DavServiceRepository
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
+import com.atomicasoftware.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.repository.DavServiceRepository
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.sync.worker.SyncWorkerManager
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import javax.inject.Provider

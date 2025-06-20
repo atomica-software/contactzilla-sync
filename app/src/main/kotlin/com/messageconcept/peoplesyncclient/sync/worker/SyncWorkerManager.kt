@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync.worker
+package com.atomicasoftware.contactzillasync.sync.worker
 
 import android.accounts.Account
 import android.content.Context
@@ -22,17 +22,17 @@ import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.WorkQuery
 import androidx.work.WorkRequest
-import com.atomica.contactzillasync.sync.ResyncType
-import com.atomica.contactzillasync.sync.SyncDataType
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.INPUT_ACCOUNT_NAME
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.INPUT_ACCOUNT_TYPE
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.INPUT_DATA_TYPE
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.INPUT_MANUAL
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.INPUT_RESYNC
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.INPUT_UPLOAD
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.RESYNC_ENTRIES
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.RESYNC_LIST
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.commonTag
+import com.atomicasoftware.contactzillasync.sync.ResyncType
+import com.atomicasoftware.contactzillasync.sync.SyncDataType
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.INPUT_ACCOUNT_NAME
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.INPUT_ACCOUNT_TYPE
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.INPUT_DATA_TYPE
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.INPUT_MANUAL
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.INPUT_RESYNC
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.INPUT_UPLOAD
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.RESYNC_ENTRIES
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.RESYNC_LIST
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.commonTag
 import dagger.Lazy
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow

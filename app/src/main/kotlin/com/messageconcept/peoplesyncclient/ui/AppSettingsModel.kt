@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui
+package com.atomicasoftware.contactzillasync.ui
 
 import android.content.Context
 import android.content.IntentFilter
@@ -12,14 +12,14 @@ import androidx.core.content.getSystemService
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import at.bitfire.cert4android.CustomCertStore
-import com.atomica.contactzillasync.BuildConfig
-import com.atomica.contactzillasync.di.IoDispatcher
-import com.atomica.contactzillasync.repository.PreferenceRepository
-import com.atomica.contactzillasync.settings.Settings
-import com.atomica.contactzillasync.settings.SettingsManager
-import com.atomica.contactzillasync.ui.intro.BatteryOptimizationsPageModel
-import com.atomica.contactzillasync.util.PermissionUtils
-import com.atomica.contactzillasync.util.broadcastReceiverFlow
+import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.di.IoDispatcher
+import com.atomicasoftware.contactzillasync.repository.PreferenceRepository
+import com.atomicasoftware.contactzillasync.settings.Settings
+import com.atomicasoftware.contactzillasync.settings.SettingsManager
+import com.atomicasoftware.contactzillasync.ui.intro.BatteryOptimizationsPageModel
+import com.atomicasoftware.contactzillasync.util.PermissionUtils
+import com.atomicasoftware.contactzillasync.util.broadcastReceiverFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher

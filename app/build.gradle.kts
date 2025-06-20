@@ -27,18 +27,18 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.atomica.contactzillasync"
+        applicationId = "com.atomicasoftware.contactzillasync"
 
         //noinspection HighAppVersionCode
-        versionCode = 2070040505
-        versionName = "4.5.5"
+        versionCode = 2070040506
+        versionName = "4.5.6"
 
         setProperty("archivesBaseName", "ContactzillaSyncClient-$versionName")
 
         minSdk = 24        // Android 7.0
         targetSdk = 35     // Android 15
 
-        testInstrumentationRunner = "com.atomica.contactzillasync.HiltTestRunner"
+        testInstrumentationRunner = "com.atomicasoftware.contactzillasync.HiltTestRunner"
     }
 
     java {
@@ -60,7 +60,7 @@ android {
     }
 
     // Java namespace for our classes (not to be confused with Android package ID)
-    namespace = "com.atomica.contactzillasync"
+    namespace = "com.atomicasoftware.contactzillasync"
 
     flavorDimensions += "distribution"
     productFlavors {

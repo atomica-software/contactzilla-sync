@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync
+package com.atomicasoftware.contactzillasync.sync
 
 /**
  * Used to signal that re-synchronization is requested during a sync.

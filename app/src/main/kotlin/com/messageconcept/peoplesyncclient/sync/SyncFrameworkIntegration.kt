@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync
+package com.atomicasoftware.contactzillasync.sync
 
 import android.accounts.Account
 import android.content.ContentResolver

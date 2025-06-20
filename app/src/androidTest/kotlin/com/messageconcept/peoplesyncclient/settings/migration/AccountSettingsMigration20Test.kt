@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings.migration
+package com.atomicasoftware.contactzillasync.settings.migration
 
 import android.Manifest
 import android.accounts.Account
@@ -11,12 +11,12 @@ import android.content.Context
 import androidx.core.content.contentValuesOf
 import androidx.core.database.getLongOrNull
 import androidx.test.rule.GrantPermissionRule
-import com.atomica.contactzillasync.db.AppDatabase
-import com.atomica.contactzillasync.db.Collection
-import com.atomica.contactzillasync.db.Service
-import com.atomica.contactzillasync.resource.LocalAddressBook
-import com.atomica.contactzillasync.resource.LocalTestAddressBookProvider
-import com.atomica.contactzillasync.sync.account.setAndVerifyUserData
+import com.atomicasoftware.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.db.Collection
+import com.atomicasoftware.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.resource.LocalAddressBook
+import com.atomicasoftware.contactzillasync.resource.LocalTestAddressBookProvider
+import com.atomicasoftware.contactzillasync.sync.account.setAndVerifyUserData
 import at.bitfire.vcard4android.GroupMethod
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule

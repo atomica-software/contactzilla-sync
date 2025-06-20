@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui
+package com.atomicasoftware.contactzillasync.ui
 
 import android.Manifest
 import android.content.Intent
@@ -38,11 +38,11 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.atomica.contactzillasync.BuildConfig
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.ui.composable.CardWithImage
-import com.atomica.contactzillasync.ui.composable.PermissionSwitchRow
-import com.atomica.contactzillasync.util.PermissionUtils
+import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.ui.composable.CardWithImage
+import com.atomicasoftware.contactzillasync.ui.composable.PermissionSwitchRow
+import com.atomicasoftware.contactzillasync.util.PermissionUtils
 import java.util.logging.Level
 import java.util.logging.Logger
 
@@ -75,7 +75,7 @@ fun PermissionsScreen(
 }
 
 /**
- * Used by [PermissionsScreen] and directly embedded in [com.atomica.contactzillasync.ui.intro.PermissionsIntroPage].
+ * Used by [PermissionsScreen] and directly embedded in [com.atomicasoftware.contactzillasync.ui.intro.PermissionsIntroPage].
  */
 @Composable
 fun PermissionsScreen(

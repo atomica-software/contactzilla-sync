@@ -2,9 +2,9 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.di
+package com.atomicasoftware.contactzillasync.di
 
-import com.atomica.contactzillasync.log.LogcatHandler
+import com.atomicasoftware.contactzillasync.log.LogcatHandler
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent

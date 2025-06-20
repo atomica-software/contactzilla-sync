@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui
+package com.atomicasoftware.contactzillasync.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -46,15 +46,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.text.HtmlCompat
-import com.atomica.contactzillasync.ui.UiUtils.toAnnotatedString
+import com.atomicasoftware.contactzillasync.ui.UiUtils.toAnnotatedString
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.atomica.contactzillasync.BuildConfig
-import com.atomica.contactzillasync.Constants
-import com.atomica.contactzillasync.Constants.withStatParams
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.di.IoDispatcher
-import com.atomica.contactzillasync.ui.composable.PixelBoxes
+import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.Constants
+import com.atomicasoftware.contactzillasync.Constants.withStatParams
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.di.IoDispatcher
+import com.atomicasoftware.contactzillasync.ui.composable.PixelBoxes
 import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
 import dagger.BindsOptionalOf

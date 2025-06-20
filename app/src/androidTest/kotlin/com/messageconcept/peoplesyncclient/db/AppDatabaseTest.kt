@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.db
+package com.atomicasoftware.contactzillasync.db
 
 import android.content.Context
 import androidx.room.Room

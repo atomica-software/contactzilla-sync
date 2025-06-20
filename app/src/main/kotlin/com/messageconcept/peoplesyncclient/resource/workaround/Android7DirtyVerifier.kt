@@ -2,13 +2,13 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.resource.workaround
+package com.atomicasoftware.contactzillasync.resource.workaround
 
 import android.content.ContentValues
 import android.os.Build
-import com.atomica.contactzillasync.resource.LocalAddressBook
-import com.atomica.contactzillasync.resource.LocalContact
-import com.atomica.contactzillasync.resource.LocalContact.Companion.COLUMN_HASHCODE
+import com.atomicasoftware.contactzillasync.resource.LocalAddressBook
+import com.atomicasoftware.contactzillasync.resource.LocalContact
+import com.atomicasoftware.contactzillasync.resource.LocalContact.Companion.COLUMN_HASHCODE
 import at.bitfire.vcard4android.BatchOperation
 import dagger.Module
 import dagger.Provides

@@ -2,13 +2,13 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.resource
+package com.atomicasoftware.contactzillasync.resource
 
 import android.accounts.Account
 import android.accounts.AccountManager
 import android.content.ContentProviderClient
 import android.content.Context
-import com.atomica.contactzillasync.R
+import com.atomicasoftware.contactzillasync.R
 import at.bitfire.vcard4android.GroupMethod
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.junit.Assert.assertTrue

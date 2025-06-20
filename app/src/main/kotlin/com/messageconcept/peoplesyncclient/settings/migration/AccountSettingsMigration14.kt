@@ -2,13 +2,13 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings.migration
+package com.atomicasoftware.contactzillasync.settings.migration
 
 import android.accounts.Account
 import android.content.ContentResolver
 import android.provider.CalendarContract
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.sync.SyncDataType
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.sync.SyncDataType
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -31,7 +31,7 @@ class AccountSettingsMigration14 @Inject constructor(
         ContentResolver.cancelSync(account, null)
 
         val authorities = listOf(
-            "com.atomica.contactzillasync.addressbooks",
+            "com.atomicasoftware.contactzillasync.addressbooks",
         )
 
         // Disable periodic syncs (sync adapter framework)

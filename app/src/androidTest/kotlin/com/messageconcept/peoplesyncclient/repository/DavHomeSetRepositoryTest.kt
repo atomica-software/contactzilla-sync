@@ -2,10 +2,10 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.repository
+package com.atomicasoftware.contactzillasync.repository
 
-import com.atomica.contactzillasync.db.HomeSet
-import com.atomica.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.db.HomeSet
+import com.atomicasoftware.contactzillasync.db.Service
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import okhttp3.HttpUrl.Companion.toHttpUrl

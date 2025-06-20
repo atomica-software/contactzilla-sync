@@ -2,16 +2,16 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings.migration
+package com.atomicasoftware.contactzillasync.settings.migration
 
 import android.accounts.Account
 import android.accounts.AccountManager
 import android.content.Context
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.db.AppDatabase
-import com.atomica.contactzillasync.db.Collection
-import com.atomica.contactzillasync.db.Service
-import com.atomica.contactzillasync.resource.LocalAddressBook
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.db.Collection
+import com.atomicasoftware.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.resource.LocalAddressBook
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

@@ -1,4 +1,4 @@
-package com.atomica.contactzillasync.ui.setup
+package com.atomicasoftware.contactzillasync.ui.setup
 
 import android.content.Intent
 import android.net.Uri

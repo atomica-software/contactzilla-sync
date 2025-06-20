@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.setup
+package com.atomicasoftware.contactzillasync.ui.setup
 
 import android.accounts.Account
 import android.net.Uri
@@ -27,10 +27,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.atomica.contactzillasync.Constants
-import com.atomica.contactzillasync.Constants.withStatParams
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.ui.AppTheme
+import com.atomicasoftware.contactzillasync.Constants
+import com.atomicasoftware.contactzillasync.Constants.withStatParams
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.ui.AppTheme
 
 @Composable
 fun LoginScreen(

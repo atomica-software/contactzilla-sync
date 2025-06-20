@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.composable
+package com.atomicasoftware.contactzillasync.ui.composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -27,8 +27,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.ui.UiUtils.isPortrait
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.ui.UiUtils.isPortrait
 
 @Composable
 fun CardWithImage(

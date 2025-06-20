@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync.worker
+package com.atomicasoftware.contactzillasync.sync.worker
 
 import android.accounts.Account
 import android.content.Context
@@ -15,19 +15,19 @@ import androidx.work.Data
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.sync.AddressBookSyncer
-import com.atomica.contactzillasync.sync.ResyncType
-import com.atomica.contactzillasync.sync.SyncConditions
-import com.atomica.contactzillasync.sync.SyncDataType
-import com.atomica.contactzillasync.sync.SyncResult
-import com.atomica.contactzillasync.sync.account.InvalidAccountException
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.NO_RESYNC
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.RESYNC_ENTRIES
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.RESYNC_LIST
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker.Companion.commonTag
-import com.atomica.contactzillasync.ui.NotificationRegistry
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.sync.AddressBookSyncer
+import com.atomicasoftware.contactzillasync.sync.ResyncType
+import com.atomicasoftware.contactzillasync.sync.SyncConditions
+import com.atomicasoftware.contactzillasync.sync.SyncDataType
+import com.atomicasoftware.contactzillasync.sync.SyncResult
+import com.atomicasoftware.contactzillasync.sync.account.InvalidAccountException
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.NO_RESYNC
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.RESYNC_ENTRIES
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.RESYNC_LIST
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker.Companion.commonTag
+import com.atomicasoftware.contactzillasync.ui.NotificationRegistry
 import dagger.Lazy
 import kotlinx.coroutines.delay
 import java.util.Collections

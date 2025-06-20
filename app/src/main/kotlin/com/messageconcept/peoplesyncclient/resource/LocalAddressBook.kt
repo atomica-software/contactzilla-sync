@@ -1,7 +1,7 @@
 /*
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
-package com.atomica.contactzillasync.resource
+package com.atomicasoftware.contactzillasync.resource
 
 import android.accounts.Account
 import android.accounts.AccountManager
@@ -16,16 +16,16 @@ import android.provider.ContactsContract.Groups
 import android.provider.ContactsContract.RawContacts
 import androidx.annotation.OpenForTesting
 import androidx.core.content.contentValuesOf
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.db.SyncState
-import com.atomica.contactzillasync.repository.DavCollectionRepository
-import com.atomica.contactzillasync.repository.DavServiceRepository
-import com.atomica.contactzillasync.resource.LocalAddressBook.Companion.USER_DATA_READ_ONLY
-import com.atomica.contactzillasync.resource.workaround.ContactDirtyVerifier
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.sync.SyncFrameworkIntegration
-import com.atomica.contactzillasync.sync.account.SystemAccountUtils
-import com.atomica.contactzillasync.sync.account.setAndVerifyUserData
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.db.SyncState
+import com.atomicasoftware.contactzillasync.repository.DavCollectionRepository
+import com.atomicasoftware.contactzillasync.repository.DavServiceRepository
+import com.atomicasoftware.contactzillasync.resource.LocalAddressBook.Companion.USER_DATA_READ_ONLY
+import com.atomicasoftware.contactzillasync.resource.workaround.ContactDirtyVerifier
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.sync.SyncFrameworkIntegration
+import com.atomicasoftware.contactzillasync.sync.account.SystemAccountUtils
+import com.atomicasoftware.contactzillasync.sync.account.setAndVerifyUserData
 import at.bitfire.vcard4android.AndroidAddressBook
 import at.bitfire.vcard4android.AndroidContact
 import at.bitfire.vcard4android.AndroidGroup
@@ -338,7 +338,7 @@ open class LocalAddressBook @AssistedInject constructor(
         const val USER_DATA_ACCOUNT_TYPE = "account_type"
 
         /**
-         * ID of the corresponding database [com.atomica.contactzillasync.db.Collection].
+         * ID of the corresponding database [com.atomicasoftware.contactzillasync.db.Collection].
          *
          * User data of the address book account (Long).
          */

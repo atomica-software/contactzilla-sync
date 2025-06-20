@@ -2,9 +2,9 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync
+package com.atomicasoftware.contactzillasync
 
-import com.atomica.contactzillasync.network.HttpClient
+import com.atomicasoftware.contactzillasync.network.HttpClient
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import okhttp3.Request

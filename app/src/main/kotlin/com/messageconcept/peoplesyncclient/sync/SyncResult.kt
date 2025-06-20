@@ -2,12 +2,12 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync
+package com.atomicasoftware.contactzillasync.sync
 
 /**
  * This class represents the results of a sync operation from [Syncer].
  *
- * Used by [com.atomica.contactzillasync.sync.worker.BaseSyncWorker] to determine whether or not there will be retries etc.
+ * Used by [com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker] to determine whether or not there will be retries etc.
  */
 data class SyncResult(
     // hard errors by Syncer

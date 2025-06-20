@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.account
+package com.atomicasoftware.contactzillasync.ui.account
 
-import com.atomica.contactzillasync.db.HomeSet
-import com.atomica.contactzillasync.db.Service
-import com.atomica.contactzillasync.repository.DavHomeSetRepository
+import com.atomicasoftware.contactzillasync.db.HomeSet
+import com.atomicasoftware.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.repository.DavHomeSetRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest

@@ -2,13 +2,13 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.repository
+package com.atomicasoftware.contactzillasync.repository
 
 import android.accounts.Account
 import androidx.room.Transaction
-import com.atomica.contactzillasync.db.AppDatabase
-import com.atomica.contactzillasync.db.HomeSet
-import com.atomica.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.db.HomeSet
+import com.atomicasoftware.contactzillasync.db.Service
 import javax.inject.Inject
 
 class DavHomeSetRepository @Inject constructor(

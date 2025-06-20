@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.composable
+package com.atomicasoftware.contactzillasync.ui.composable
 
 import android.os.Build
 import android.security.KeyChain
@@ -22,7 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.atomica.contactzillasync.R
+import com.atomicasoftware.contactzillasync.R
 import kotlinx.coroutines.launch
 
 @Composable

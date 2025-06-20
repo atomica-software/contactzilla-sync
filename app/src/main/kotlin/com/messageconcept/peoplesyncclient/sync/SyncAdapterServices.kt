@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync
+package com.atomicasoftware.contactzillasync.sync
 
 import android.accounts.Account
 import android.accounts.AccountManager
@@ -17,15 +17,15 @@ import android.os.Bundle
 import android.os.IBinder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
-import com.atomica.contactzillasync.BuildConfig
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.repository.DavCollectionRepository
-import com.atomica.contactzillasync.repository.DavServiceRepository
-import com.atomica.contactzillasync.resource.LocalAddressBook.Companion.USER_DATA_COLLECTION_ID
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.sync.account.InvalidAccountException
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker
-import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
+import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.repository.DavCollectionRepository
+import com.atomicasoftware.contactzillasync.repository.DavServiceRepository
+import com.atomicasoftware.contactzillasync.resource.LocalAddressBook.Companion.USER_DATA_COLLECTION_ID
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.sync.account.InvalidAccountException
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker
+import com.atomicasoftware.contactzillasync.sync.worker.SyncWorkerManager
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.android.qualifiers.ApplicationContext

@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.repository
+package com.atomicasoftware.contactzillasync.repository
 
-import com.atomica.contactzillasync.db.AppDatabase
-import com.atomica.contactzillasync.db.Service
-import com.atomica.contactzillasync.db.ServiceType
+import com.atomicasoftware.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.db.ServiceType
 import javax.inject.Inject
 
 class DavServiceRepository @Inject constructor(

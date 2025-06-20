@@ -2,10 +2,10 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings.migration
+package com.atomicasoftware.contactzillasync.settings.migration
 
 import android.accounts.Account
-import com.atomica.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
 
 interface AccountSettingsMigration {
 

@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.setup
+package com.atomicasoftware.contactzillasync.ui.setup
 
 import android.accounts.Account
 import android.content.Context
@@ -11,10 +11,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.atomica.contactzillasync.repository.AccountRepository
-import com.atomica.contactzillasync.servicedetection.DavResourceFinder
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.settings.SettingsManager
+import com.atomicasoftware.contactzillasync.repository.AccountRepository
+import com.atomicasoftware.contactzillasync.servicedetection.DavResourceFinder
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.settings.SettingsManager
 import at.bitfire.vcard4android.GroupMethod
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory

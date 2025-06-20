@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui
+package com.atomicasoftware.contactzillasync.ui
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
@@ -67,14 +67,14 @@ import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.atomica.contactzillasync.Constants
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.settings.Settings
-import com.atomica.contactzillasync.ui.composable.EditTextInputDialog
-import com.atomica.contactzillasync.ui.composable.MultipleChoiceInputDialog
-import com.atomica.contactzillasync.ui.composable.Setting
-import com.atomica.contactzillasync.ui.composable.SettingsHeader
-import com.atomica.contactzillasync.ui.composable.SwitchSetting
+import com.atomicasoftware.contactzillasync.Constants
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.settings.Settings
+import com.atomicasoftware.contactzillasync.ui.composable.EditTextInputDialog
+import com.atomicasoftware.contactzillasync.ui.composable.MultipleChoiceInputDialog
+import com.atomicasoftware.contactzillasync.ui.composable.Setting
+import com.atomicasoftware.contactzillasync.ui.composable.SettingsHeader
+import com.atomicasoftware.contactzillasync.ui.composable.SwitchSetting
 import kotlinx.coroutines.launch
 
 @Composable

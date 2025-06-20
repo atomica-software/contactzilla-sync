@@ -6,16 +6,16 @@
  * http://www.gnu.org/licenses/gpl.html
  */
 
-package com.atomica.contactzillasync.ui.setup
+package com.atomicasoftware.contactzillasync.ui.setup
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.atomica.contactzillasync.db.Credentials
-import com.atomica.contactzillasync.settings.ManagedSettings
-import com.atomica.contactzillasync.util.DavUtils.toURIorNull
-import com.atomica.contactzillasync.util.trimToNull
+import com.atomicasoftware.contactzillasync.db.Credentials
+import com.atomicasoftware.contactzillasync.settings.ManagedSettings
+import com.atomicasoftware.contactzillasync.util.DavUtils.toURIorNull
+import com.atomicasoftware.contactzillasync.util.trimToNull
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

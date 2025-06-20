@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync
+package com.atomicasoftware.contactzillasync.sync
 
 import android.accounts.Account
 import android.content.Context
@@ -12,14 +12,14 @@ import at.bitfire.dav4jvm.PropStat
 import at.bitfire.dav4jvm.Response
 import at.bitfire.dav4jvm.Response.HrefRelation
 import at.bitfire.dav4jvm.property.webdav.GetETag
-import com.atomica.contactzillasync.TestUtils
-import com.atomica.contactzillasync.TestUtils.assertWithin
-import com.atomica.contactzillasync.db.Collection
-import com.atomica.contactzillasync.db.SyncState
-import com.atomica.contactzillasync.network.HttpClient
-import com.atomica.contactzillasync.repository.DavSyncStatsRepository
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.sync.account.TestAccount
+import com.atomicasoftware.contactzillasync.TestUtils
+import com.atomicasoftware.contactzillasync.TestUtils.assertWithin
+import com.atomicasoftware.contactzillasync.db.Collection
+import com.atomicasoftware.contactzillasync.db.SyncState
+import com.atomicasoftware.contactzillasync.network.HttpClient
+import com.atomicasoftware.contactzillasync.repository.DavSyncStatsRepository
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.sync.account.TestAccount
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule

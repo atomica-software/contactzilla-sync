@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.repository
+package com.atomicasoftware.contactzillasync.repository
 
 import android.content.Context
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
@@ -17,7 +17,7 @@ import javax.inject.Inject
 /**
  * Repository to access preferences. Preferences are stored in a shared preferences file
  * and reflect settings that are very low-level and are therefore not covered by
- * [com.atomica.contactzillasync.settings.SettingsManager].
+ * [com.atomicasoftware.contactzillasync.settings.SettingsManager].
  */
 class PreferenceRepository @Inject constructor(
     @ApplicationContext context: Context

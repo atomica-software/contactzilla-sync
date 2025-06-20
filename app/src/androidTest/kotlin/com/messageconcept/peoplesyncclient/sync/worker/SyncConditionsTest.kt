@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync.worker
+package com.atomicasoftware.contactzillasync.sync.worker
 
 import android.accounts.Account
 import android.content.Context
@@ -16,9 +16,9 @@ import android.net.NetworkCapabilities.TRANSPORT_WIFI
 import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
 import androidx.core.content.getSystemService
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.sync.SyncConditions
-import com.atomica.contactzillasync.util.PermissionUtils
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.sync.SyncConditions
+import com.atomicasoftware.contactzillasync.util.PermissionUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

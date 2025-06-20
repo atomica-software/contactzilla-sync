@@ -2,12 +2,12 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings
+package com.atomicasoftware.contactzillasync.settings
 
 import android.util.NoSuchPropertyException
 import androidx.annotation.AnyThread
 import androidx.annotation.VisibleForTesting
-import com.atomica.contactzillasync.settings.SettingsManager.OnChangeListener
+import com.atomicasoftware.contactzillasync.settings.SettingsManager.OnChangeListener
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow

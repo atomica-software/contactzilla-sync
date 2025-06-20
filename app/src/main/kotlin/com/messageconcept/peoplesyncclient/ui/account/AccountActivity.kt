@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.account
+package com.atomicasoftware.contactzillasync.ui.account
 
 import AccountScreen
 import android.accounts.Account
@@ -11,8 +11,8 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.ui.AccountsActivity
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.ui.AccountsActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.logging.Logger
 import javax.inject.Inject

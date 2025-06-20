@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync
+package com.atomicasoftware.contactzillasync
 
 import org.junit.rules.TestRule
 import org.junit.runner.Description

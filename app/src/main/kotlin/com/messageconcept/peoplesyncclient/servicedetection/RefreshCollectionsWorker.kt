@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.servicedetection
+package com.atomicasoftware.contactzillasync.servicedetection
 
 import android.accounts.Account
 import android.app.PendingIntent
@@ -23,14 +23,14 @@ import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import at.bitfire.dav4jvm.exception.UnauthorizedException
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.network.HttpClient
-import com.atomica.contactzillasync.repository.DavServiceRepository
-import com.atomica.contactzillasync.servicedetection.RefreshCollectionsWorker.Companion.ARG_SERVICE_ID
-import com.atomica.contactzillasync.sync.account.InvalidAccountException
-import com.atomica.contactzillasync.ui.DebugInfoActivity
-import com.atomica.contactzillasync.ui.NotificationRegistry
-import com.atomica.contactzillasync.ui.account.AccountSettingsActivity
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.network.HttpClient
+import com.atomicasoftware.contactzillasync.repository.DavServiceRepository
+import com.atomicasoftware.contactzillasync.servicedetection.RefreshCollectionsWorker.Companion.ARG_SERVICE_ID
+import com.atomicasoftware.contactzillasync.sync.account.InvalidAccountException
+import com.atomicasoftware.contactzillasync.ui.DebugInfoActivity
+import com.atomicasoftware.contactzillasync.ui.NotificationRegistry
+import com.atomicasoftware.contactzillasync.ui.account.AccountSettingsActivity
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.map

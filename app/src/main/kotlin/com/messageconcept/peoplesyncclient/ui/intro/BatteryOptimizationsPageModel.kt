@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.intro
+package com.atomicasoftware.contactzillasync.ui.intro
 
 import android.content.Context
 import android.content.IntentFilter
@@ -14,10 +14,10 @@ import androidx.compose.runtime.setValue
 import androidx.core.content.getSystemService
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.atomica.contactzillasync.BuildConfig
-import com.atomica.contactzillasync.settings.SettingsManager
-import com.atomica.contactzillasync.util.PermissionUtils
-import com.atomica.contactzillasync.util.broadcastReceiverFlow
+import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.settings.SettingsManager
+import com.atomicasoftware.contactzillasync.util.PermissionUtils
+import com.atomicasoftware.contactzillasync.util.broadcastReceiverFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch

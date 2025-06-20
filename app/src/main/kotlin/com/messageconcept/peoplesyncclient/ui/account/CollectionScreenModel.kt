@@ -2,21 +2,21 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.account
+package com.atomicasoftware.contactzillasync.ui.account
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.atomica.contactzillasync.db.AppDatabase
-import com.atomica.contactzillasync.db.Collection
-import com.atomica.contactzillasync.repository.AccountRepository
-import com.atomica.contactzillasync.repository.DavCollectionRepository
-import com.atomica.contactzillasync.repository.DavSyncStatsRepository
-import com.atomica.contactzillasync.settings.Settings
-import com.atomica.contactzillasync.settings.SettingsManager
-import com.atomica.contactzillasync.util.DavUtils.lastSegment
+import com.atomicasoftware.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.db.Collection
+import com.atomicasoftware.contactzillasync.repository.AccountRepository
+import com.atomicasoftware.contactzillasync.repository.DavCollectionRepository
+import com.atomicasoftware.contactzillasync.repository.DavSyncStatsRepository
+import com.atomicasoftware.contactzillasync.settings.Settings
+import com.atomicasoftware.contactzillasync.settings.SettingsManager
+import com.atomicasoftware.contactzillasync.util.DavUtils.lastSegment
 import dagger.Lazy
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory

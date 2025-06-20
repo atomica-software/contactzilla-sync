@@ -2,16 +2,16 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.resource
+package com.atomicasoftware.contactzillasync.resource
 
-import com.atomica.contactzillasync.db.SyncState
+import com.atomicasoftware.contactzillasync.db.SyncState
 
 interface LocalCollection<out T: LocalResource<*>> {
 
     /** a tag that uniquely identifies the collection (ContactzillaSync-wide) */
     val tag: String
 
-    /** ID of the collection in the database (corresponds to [com.atomica.contactzillasync.db.Collection.id]) */
+    /** ID of the collection in the database (corresponds to [com.atomicasoftware.contactzillasync.db.Collection.id]) */
     val dbCollectionId: Long?
 
     /** collection title (used for user notifications etc.) **/

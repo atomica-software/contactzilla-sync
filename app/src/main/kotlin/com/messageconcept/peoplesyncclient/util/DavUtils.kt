@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.util
+package com.atomicasoftware.contactzillasync.util
 
 import okhttp3.HttpUrl
 import okhttp3.MediaType

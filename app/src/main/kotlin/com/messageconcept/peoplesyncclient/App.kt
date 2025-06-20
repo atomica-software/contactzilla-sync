@@ -2,16 +2,16 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync
+package com.atomicasoftware.contactzillasync
 
 import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
-import com.atomica.contactzillasync.log.LogManager
-import com.atomica.contactzillasync.startup.StartupPlugin
-import com.atomica.contactzillasync.settings.ManagedSettings
-import com.atomica.contactzillasync.sync.account.AccountsCleanupWorker
-import com.atomica.contactzillasync.ui.UiUtils
+import com.atomicasoftware.contactzillasync.log.LogManager
+import com.atomicasoftware.contactzillasync.startup.StartupPlugin
+import com.atomicasoftware.contactzillasync.settings.ManagedSettings
+import com.atomicasoftware.contactzillasync.sync.account.AccountsCleanupWorker
+import com.atomicasoftware.contactzillasync.ui.UiUtils
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers

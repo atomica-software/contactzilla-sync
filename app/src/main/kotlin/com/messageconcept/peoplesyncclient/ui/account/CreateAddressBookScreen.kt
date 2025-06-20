@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.account
+package com.atomicasoftware.contactzillasync.ui.account
 
 import android.accounts.Account
 import androidx.compose.foundation.layout.Column
@@ -35,11 +35,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.db.HomeSet
-import com.atomica.contactzillasync.ui.AppTheme
-import com.atomica.contactzillasync.ui.composable.ExceptionInfoDialog
-import com.atomica.contactzillasync.ui.composable.ProgressBar
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.db.HomeSet
+import com.atomicasoftware.contactzillasync.ui.AppTheme
+import com.atomicasoftware.contactzillasync.ui.composable.ExceptionInfoDialog
+import com.atomicasoftware.contactzillasync.ui.composable.ProgressBar
 import okhttp3.HttpUrl.Companion.toHttpUrl
 
 @Composable

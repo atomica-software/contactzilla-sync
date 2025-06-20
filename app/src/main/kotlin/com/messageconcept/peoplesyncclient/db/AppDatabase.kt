@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.db
+package com.atomicasoftware.contactzillasync.db
 
 import android.accounts.AccountManager
 import android.app.PendingIntent
@@ -20,12 +20,12 @@ import androidx.room.TypeConverters
 import androidx.room.migration.AutoMigrationSpec
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.TextTable
-import com.atomica.contactzillasync.db.migration.AutoMigration12
-import com.atomica.contactzillasync.db.migration.AutoMigration16
-import com.atomica.contactzillasync.ui.AccountsActivity
-import com.atomica.contactzillasync.ui.NotificationRegistry
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.TextTable
+import com.atomicasoftware.contactzillasync.db.migration.AutoMigration12
+import com.atomicasoftware.contactzillasync.db.migration.AutoMigration16
+import com.atomicasoftware.contactzillasync.ui.AccountsActivity
+import com.atomicasoftware.contactzillasync.ui.NotificationRegistry
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.di
+package com.atomicasoftware.contactzillasync.di
 
 import dagger.Module
 import dagger.Provides

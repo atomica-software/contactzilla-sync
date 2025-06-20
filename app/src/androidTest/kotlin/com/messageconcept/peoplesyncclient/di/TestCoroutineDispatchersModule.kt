@@ -2,9 +2,9 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.di
+package com.atomicasoftware.contactzillasync.di
 
-import com.atomica.contactzillasync.di.TestCoroutineDispatchersModule.standardTestDispatcher
+import com.atomicasoftware.contactzillasync.di.TestCoroutineDispatchersModule.standardTestDispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
@@ -18,7 +18,7 @@ import kotlinx.coroutines.test.setMain
 /**
  * Provides test dispatchers to be injected instead of the normal ones.
  *
- * The [standardTestDispatcher] is set as main dispatcher in [com.atomica.contactzillasync.HiltTestRunner],
+ * The [standardTestDispatcher] is set as main dispatcher in [com.atomicasoftware.contactzillasync.HiltTestRunner],
  * so that tests can just use [kotlinx.coroutines.test.runTest] without providing [standardTestDispatcher].
  */
 @Module

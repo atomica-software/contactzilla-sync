@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.db
+package com.atomicasoftware.contactzillasync.db
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -12,7 +12,7 @@ import at.bitfire.dav4jvm.Response
 import at.bitfire.dav4jvm.UrlUtils
 import at.bitfire.dav4jvm.property.webdav.DisplayName
 import at.bitfire.dav4jvm.property.webdav.ResourceType
-import com.atomica.contactzillasync.util.trimToNull
+import com.atomicasoftware.contactzillasync.util.trimToNull
 import okhttp3.HttpUrl
 
 /**

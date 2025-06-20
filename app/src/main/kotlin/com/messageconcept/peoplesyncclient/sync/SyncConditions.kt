@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync
+package com.atomicasoftware.contactzillasync.sync
 
 import android.content.Context
 import android.content.Intent
@@ -10,10 +10,10 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
 import androidx.core.content.getSystemService
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.ui.NotificationRegistry
-import com.atomica.contactzillasync.ui.account.WifiPermissionsActivity
-import com.atomica.contactzillasync.util.PermissionUtils
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.ui.NotificationRegistry
+import com.atomicasoftware.contactzillasync.ui.account.WifiPermissionsActivity
+import com.atomicasoftware.contactzillasync.util.PermissionUtils
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

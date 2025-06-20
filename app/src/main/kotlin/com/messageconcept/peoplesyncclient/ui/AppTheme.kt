@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui
+package com.atomicasoftware.contactzillasync.ui
 
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
@@ -23,7 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.LocalView
 import androidx.lifecycle.compose.LifecycleResumeEffect
-import com.atomica.contactzillasync.ui.composable.SafeAndroidUriHandler
+import com.atomicasoftware.contactzillasync.ui.composable.SafeAndroidUriHandler
 
 @Composable
 fun AppTheme(

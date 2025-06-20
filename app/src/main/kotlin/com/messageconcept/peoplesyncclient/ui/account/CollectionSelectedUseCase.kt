@@ -2,15 +2,15 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.account
+package com.atomicasoftware.contactzillasync.ui.account
 
 import android.accounts.Account
-import com.atomica.contactzillasync.di.DefaultDispatcher
-import com.atomica.contactzillasync.repository.AccountRepository
-import com.atomica.contactzillasync.repository.DavCollectionRepository
-import com.atomica.contactzillasync.repository.DavServiceRepository
-import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
-import com.atomica.contactzillasync.ui.account.CollectionSelectedUseCase.Companion.DELAY_MS
+import com.atomicasoftware.contactzillasync.di.DefaultDispatcher
+import com.atomicasoftware.contactzillasync.repository.AccountRepository
+import com.atomicasoftware.contactzillasync.repository.DavCollectionRepository
+import com.atomicasoftware.contactzillasync.repository.DavServiceRepository
+import com.atomicasoftware.contactzillasync.sync.worker.SyncWorkerManager
+import com.atomicasoftware.contactzillasync.ui.account.CollectionSelectedUseCase.Companion.DELAY_MS
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job

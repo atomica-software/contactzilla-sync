@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.account
+package com.atomicasoftware.contactzillasync.ui.account
 
 import android.Manifest
 import android.os.Build
@@ -40,12 +40,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.atomica.contactzillasync.Constants
-import com.atomica.contactzillasync.Constants.withStatParams
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.ui.AppTheme
-import com.atomica.contactzillasync.ui.composable.PermissionSwitchRow
-import com.atomica.contactzillasync.util.PermissionUtils
+import com.atomicasoftware.contactzillasync.Constants
+import com.atomicasoftware.contactzillasync.Constants.withStatParams
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.ui.AppTheme
+import com.atomicasoftware.contactzillasync.ui.composable.PermissionSwitchRow
+import com.atomicasoftware.contactzillasync.util.PermissionUtils
 
 @Composable
 fun WifiPermissionsScreen(

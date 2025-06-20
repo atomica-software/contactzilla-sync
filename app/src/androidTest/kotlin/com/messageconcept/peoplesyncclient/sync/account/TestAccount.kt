@@ -1,13 +1,13 @@
 /*
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
-package com.atomica.contactzillasync.sync.account
+package com.atomicasoftware.contactzillasync.sync.account
 
 import android.accounts.Account
 import android.accounts.AccountManager
 import androidx.test.platform.app.InstrumentationRegistry
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
 import org.junit.Assert.assertTrue
 
 object TestAccount {

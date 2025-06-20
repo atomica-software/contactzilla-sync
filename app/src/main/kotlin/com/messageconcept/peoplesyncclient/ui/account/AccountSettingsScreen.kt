@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.account
+package com.atomicasoftware.contactzillasync.ui.account
 
 import android.accounts.Account
 import android.app.Activity
@@ -53,17 +53,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.atomica.contactzillasync.Constants
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.db.Credentials
-import com.atomica.contactzillasync.ui.AppTheme
-import com.atomica.contactzillasync.ui.composable.ActionCard
-import com.atomica.contactzillasync.ui.composable.EditTextInputDialog
-import com.atomica.contactzillasync.ui.composable.MultipleChoiceInputDialog
-import com.atomica.contactzillasync.ui.composable.Setting
-import com.atomica.contactzillasync.ui.composable.SettingsHeader
-import com.atomica.contactzillasync.ui.composable.SwitchSetting
-import com.atomica.contactzillasync.util.PermissionUtils
+import com.atomicasoftware.contactzillasync.Constants
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.db.Credentials
+import com.atomicasoftware.contactzillasync.ui.AppTheme
+import com.atomicasoftware.contactzillasync.ui.composable.ActionCard
+import com.atomicasoftware.contactzillasync.ui.composable.EditTextInputDialog
+import com.atomicasoftware.contactzillasync.ui.composable.MultipleChoiceInputDialog
+import com.atomicasoftware.contactzillasync.ui.composable.Setting
+import com.atomicasoftware.contactzillasync.ui.composable.SettingsHeader
+import com.atomicasoftware.contactzillasync.ui.composable.SwitchSetting
+import com.atomicasoftware.contactzillasync.util.PermissionUtils
 import at.bitfire.vcard4android.GroupMethod
 import kotlinx.coroutines.launch
 

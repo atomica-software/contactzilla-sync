@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.resource
+package com.atomicasoftware.contactzillasync.resource
 
 import android.accounts.Account
 import android.content.ContentProviderClient
-import com.atomica.contactzillasync.db.Collection
+import com.atomicasoftware.contactzillasync.db.Collection
 
 /**
  * Represents a local data store for a specific collection type.

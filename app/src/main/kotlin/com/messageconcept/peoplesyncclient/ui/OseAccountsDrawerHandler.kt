@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui
+package com.atomicasoftware.contactzillasync.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
@@ -18,11 +18,11 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.atomica.contactzillasync.Constants
-import com.atomica.contactzillasync.Constants.COMMUNITY_URL
-import com.atomica.contactzillasync.Constants.FEDIVERSE_URL
-import com.atomica.contactzillasync.Constants.withStatParams
-import com.atomica.contactzillasync.R
+import com.atomicasoftware.contactzillasync.Constants
+import com.atomicasoftware.contactzillasync.Constants.COMMUNITY_URL
+import com.atomicasoftware.contactzillasync.Constants.FEDIVERSE_URL
+import com.atomicasoftware.contactzillasync.Constants.withStatParams
+import com.atomicasoftware.contactzillasync.R
 import javax.inject.Inject
 
 open class OseAccountsDrawerHandler @Inject constructor(): AccountsDrawerHandler() {

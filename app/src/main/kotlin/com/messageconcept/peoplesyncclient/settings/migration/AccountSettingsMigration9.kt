@@ -2,12 +2,12 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings.migration
+package com.atomicasoftware.contactzillasync.settings.migration
 
 import android.accounts.Account
 import android.content.ContentResolver
-import com.atomica.contactzillasync.db.AppDatabase
-import com.atomica.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.db.Service
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

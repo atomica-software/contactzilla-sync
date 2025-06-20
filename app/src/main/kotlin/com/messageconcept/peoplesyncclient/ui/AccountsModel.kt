@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui
+package com.atomicasoftware.contactzillasync.ui
 
 import android.accounts.Account
 import android.content.Context
@@ -23,19 +23,19 @@ import androidx.lifecycle.ViewModel
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.WorkQuery
-import com.atomica.contactzillasync.db.AppDatabase
-import com.atomica.contactzillasync.repository.AccountRepository
-import com.atomica.contactzillasync.servicedetection.RefreshCollectionsWorker
-import com.atomica.contactzillasync.settings.ManagedSettings
-import com.atomica.contactzillasync.sync.SyncDataType
-import com.atomica.contactzillasync.sync.worker.BaseSyncWorker
-import com.atomica.contactzillasync.sync.worker.OneTimeSyncWorker
-import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
-import com.atomica.contactzillasync.ui.account.AccountProgress
-import com.atomica.contactzillasync.ui.intro.IntroPage
-import com.atomica.contactzillasync.ui.intro.IntroPageFactory
-import com.atomica.contactzillasync.util.broadcastReceiverFlow
-import com.atomica.contactzillasync.util.packageChangedFlow
+import com.atomicasoftware.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.repository.AccountRepository
+import com.atomicasoftware.contactzillasync.servicedetection.RefreshCollectionsWorker
+import com.atomicasoftware.contactzillasync.settings.ManagedSettings
+import com.atomicasoftware.contactzillasync.sync.SyncDataType
+import com.atomicasoftware.contactzillasync.sync.worker.BaseSyncWorker
+import com.atomicasoftware.contactzillasync.sync.worker.OneTimeSyncWorker
+import com.atomicasoftware.contactzillasync.sync.worker.SyncWorkerManager
+import com.atomicasoftware.contactzillasync.ui.account.AccountProgress
+import com.atomicasoftware.contactzillasync.ui.intro.IntroPage
+import com.atomicasoftware.contactzillasync.ui.intro.IntroPageFactory
+import com.atomicasoftware.contactzillasync.util.broadcastReceiverFlow
+import com.atomicasoftware.contactzillasync.util.packageChangedFlow
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

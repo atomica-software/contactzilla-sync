@@ -2,9 +2,9 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync.groups
+package com.atomicasoftware.contactzillasync.sync.groups
 
-import com.atomica.contactzillasync.resource.LocalAddressBook
+import com.atomicasoftware.contactzillasync.resource.LocalAddressBook
 import at.bitfire.vcard4android.Contact
 import java.util.logging.Logger
 

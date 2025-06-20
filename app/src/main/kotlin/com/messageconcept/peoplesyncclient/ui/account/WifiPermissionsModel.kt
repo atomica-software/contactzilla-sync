@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.account
+package com.atomicasoftware.contactzillasync.ui.account
 
 import android.content.Context
 import android.content.IntentFilter
@@ -10,7 +10,7 @@ import android.location.LocationManager
 import androidx.core.content.getSystemService
 import androidx.core.location.LocationManagerCompat
 import androidx.lifecycle.ViewModel
-import com.atomica.contactzillasync.util.broadcastReceiverFlow
+import com.atomicasoftware.contactzillasync.util.broadcastReceiverFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.map

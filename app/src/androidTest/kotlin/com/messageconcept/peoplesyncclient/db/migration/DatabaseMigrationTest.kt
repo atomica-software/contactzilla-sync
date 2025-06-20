@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.db.migration
+package com.atomicasoftware.contactzillasync.db.migration
 
 import androidx.room.migration.AutoMigrationSpec
 import androidx.room.migration.Migration
@@ -10,7 +10,7 @@ import androidx.room.testing.MigrationTestHelper
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
 import androidx.test.platform.app.InstrumentationRegistry
-import com.atomica.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.db.AppDatabase
 import dagger.hilt.android.testing.HiltAndroidRule
 import org.junit.Before
 import org.junit.Rule

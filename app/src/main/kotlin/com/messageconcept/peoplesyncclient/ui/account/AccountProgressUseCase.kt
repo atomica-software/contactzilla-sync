@@ -2,16 +2,16 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.account
+package com.atomicasoftware.contactzillasync.ui.account
 
 import android.accounts.Account
 import android.content.Context
 import androidx.work.WorkInfo
-import com.atomica.contactzillasync.db.Service
-import com.atomica.contactzillasync.servicedetection.RefreshCollectionsWorker
-import com.atomica.contactzillasync.sync.SyncDataType
-import com.atomica.contactzillasync.sync.worker.OneTimeSyncWorker
-import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
+import com.atomicasoftware.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.servicedetection.RefreshCollectionsWorker
+import com.atomicasoftware.contactzillasync.sync.SyncDataType
+import com.atomicasoftware.contactzillasync.sync.worker.OneTimeSyncWorker
+import com.atomicasoftware.contactzillasync.sync.worker.SyncWorkerManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

@@ -2,17 +2,17 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.servicedetection
+package com.atomicasoftware.contactzillasync.servicedetection
 
 import android.security.NetworkSecurityPolicy
-import com.atomica.contactzillasync.db.AppDatabase
-import com.atomica.contactzillasync.db.Collection
-import com.atomica.contactzillasync.db.HomeSet
-import com.atomica.contactzillasync.db.Principal
-import com.atomica.contactzillasync.db.Service
-import com.atomica.contactzillasync.network.HttpClient
-import com.atomica.contactzillasync.settings.Settings
-import com.atomica.contactzillasync.settings.SettingsManager
+import com.atomicasoftware.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.db.Collection
+import com.atomicasoftware.contactzillasync.db.HomeSet
+import com.atomicasoftware.contactzillasync.db.Principal
+import com.atomicasoftware.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.network.HttpClient
+import com.atomicasoftware.contactzillasync.settings.Settings
+import com.atomicasoftware.contactzillasync.settings.SettingsManager
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

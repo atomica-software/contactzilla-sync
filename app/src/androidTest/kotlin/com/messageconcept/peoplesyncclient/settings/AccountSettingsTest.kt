@@ -2,12 +2,12 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.settings
+package com.atomicasoftware.contactzillasync.settings
 
 import android.accounts.AccountManager
 import android.content.Context
-import com.atomica.contactzillasync.TestUtils
-import com.atomica.contactzillasync.sync.account.TestAccount
+import com.atomicasoftware.contactzillasync.TestUtils
+import com.atomicasoftware.contactzillasync.sync.account.TestAccount
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

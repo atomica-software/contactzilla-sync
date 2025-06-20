@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync.groups
+package com.atomicasoftware.contactzillasync.sync.groups
 
 import at.bitfire.vcard4android.Contact
 

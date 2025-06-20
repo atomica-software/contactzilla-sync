@@ -2,10 +2,10 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  **************************************************************************************************/
 
-package com.atomica.contactzillasync
+package com.atomicasoftware.contactzillasync
 
 import android.content.Context
-import com.atomica.contactzillasync.ui.DebugInfoActivity
+import com.atomicasoftware.contactzillasync.ui.DebugInfoActivity
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

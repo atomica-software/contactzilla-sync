@@ -1,7 +1,7 @@
 /*
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
-package com.atomica.contactzillasync.sync.account
+package com.atomicasoftware.contactzillasync.sync.account
 
 import android.accounts.AbstractAccountAuthenticator
 import android.accounts.Account
@@ -12,7 +12,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.os.bundleOf
-import com.atomica.contactzillasync.R
+import com.atomicasoftware.contactzillasync.R
 
 class AddressBookAuthenticatorService: Service() {
 

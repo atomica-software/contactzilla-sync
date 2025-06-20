@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.network
+package com.atomicasoftware.contactzillasync.network
 
 import android.net.Uri
-import com.atomica.contactzillasync.BuildConfig
-import com.atomica.contactzillasync.db.Credentials
+import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.db.Credentials
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

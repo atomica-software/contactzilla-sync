@@ -1,7 +1,7 @@
 /*
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
-package com.atomica.contactzillasync.servicedetection
+package com.atomicasoftware.contactzillasync.servicedetection
 
 import android.app.ActivityManager
 import android.content.Context
@@ -26,11 +26,11 @@ import at.bitfire.dav4jvm.property.webdav.CurrentUserPrivilegeSet
 import at.bitfire.dav4jvm.property.webdav.DisplayName
 import at.bitfire.dav4jvm.property.webdav.HrefListProperty
 import at.bitfire.dav4jvm.property.webdav.ResourceType
-import com.atomica.contactzillasync.db.Collection
-import com.atomica.contactzillasync.db.Credentials
-import com.atomica.contactzillasync.log.StringHandler
-import com.atomica.contactzillasync.network.DnsRecordResolver
-import com.atomica.contactzillasync.network.HttpClient
+import com.atomicasoftware.contactzillasync.db.Collection
+import com.atomicasoftware.contactzillasync.db.Credentials
+import com.atomicasoftware.contactzillasync.log.StringHandler
+import com.atomicasoftware.contactzillasync.network.DnsRecordResolver
+import com.atomicasoftware.contactzillasync.network.HttpClient
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

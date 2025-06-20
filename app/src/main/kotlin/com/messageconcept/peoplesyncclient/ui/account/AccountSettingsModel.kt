@@ -2,21 +2,21 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.account
+package com.atomicasoftware.contactzillasync.ui.account
 
 import android.accounts.Account
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.atomica.contactzillasync.db.AppDatabase
-import com.atomica.contactzillasync.db.Credentials
-import com.atomica.contactzillasync.db.Service
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.settings.ManagedSettings
-import com.atomica.contactzillasync.settings.SettingsManager
-import com.atomica.contactzillasync.sync.ResyncType
-import com.atomica.contactzillasync.sync.SyncDataType
-import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
+import com.atomicasoftware.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.db.Credentials
+import com.atomicasoftware.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.settings.ManagedSettings
+import com.atomicasoftware.contactzillasync.settings.SettingsManager
+import com.atomicasoftware.contactzillasync.sync.ResyncType
+import com.atomicasoftware.contactzillasync.sync.SyncDataType
+import com.atomicasoftware.contactzillasync.sync.worker.SyncWorkerManager
 import at.bitfire.vcard4android.GroupMethod
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory

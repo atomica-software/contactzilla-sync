@@ -2,10 +2,10 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.network
+package com.atomicasoftware.contactzillasync.network
 
 import android.os.Build
-import com.atomica.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttp
 import okhttp3.Response

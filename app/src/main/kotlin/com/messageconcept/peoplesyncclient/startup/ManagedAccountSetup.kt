@@ -6,20 +6,20 @@
  * http://www.gnu.org/licenses/gpl.html
  */
 
-package com.atomica.contactzillasync.startup
+package com.atomicasoftware.contactzillasync.startup
 
 import android.content.Context
-import com.atomica.contactzillasync.db.Credentials
-import com.atomica.contactzillasync.repository.AccountRepository
-import com.atomica.contactzillasync.servicedetection.DavResourceFinder
-import com.atomica.contactzillasync.servicedetection.RefreshCollectionsWorker
-import com.atomica.contactzillasync.sync.worker.SyncWorkerManager
-import com.atomica.contactzillasync.settings.AccountSettings
-import com.atomica.contactzillasync.settings.ManagedAccountConfig
-import com.atomica.contactzillasync.settings.ManagedSettings
-import com.atomica.contactzillasync.util.PermissionUtils
-import com.atomica.contactzillasync.startup.StartupPlugin.Companion.PRIORITY_DEFAULT
-import com.atomica.contactzillasync.startup.StartupPlugin.Companion.PRIORITY_HIGHEST
+import com.atomicasoftware.contactzillasync.db.Credentials
+import com.atomicasoftware.contactzillasync.repository.AccountRepository
+import com.atomicasoftware.contactzillasync.servicedetection.DavResourceFinder
+import com.atomicasoftware.contactzillasync.servicedetection.RefreshCollectionsWorker
+import com.atomicasoftware.contactzillasync.sync.worker.SyncWorkerManager
+import com.atomicasoftware.contactzillasync.settings.AccountSettings
+import com.atomicasoftware.contactzillasync.settings.ManagedAccountConfig
+import com.atomicasoftware.contactzillasync.settings.ManagedSettings
+import com.atomicasoftware.contactzillasync.util.PermissionUtils
+import com.atomicasoftware.contactzillasync.startup.StartupPlugin.Companion.PRIORITY_DEFAULT
+import com.atomicasoftware.contactzillasync.startup.StartupPlugin.Companion.PRIORITY_HIGHEST
 import at.bitfire.vcard4android.GroupMethod
 import dagger.Binds
 import dagger.Module

@@ -2,14 +2,14 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.startup
+package com.atomicasoftware.contactzillasync.startup
 
 import android.content.Context
 import android.os.Build
 import android.os.StrictMode
-import com.atomica.contactzillasync.BuildConfig
-import com.atomica.contactzillasync.startup.StartupPlugin.Companion.PRIORITY_DEFAULT
-import com.atomica.contactzillasync.startup.StartupPlugin.Companion.PRIORITY_HIGHEST
+import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.startup.StartupPlugin.Companion.PRIORITY_DEFAULT
+import com.atomicasoftware.contactzillasync.startup.StartupPlugin.Companion.PRIORITY_HIGHEST
 import dagger.Binds
 import dagger.BindsOptionalOf
 import dagger.Module

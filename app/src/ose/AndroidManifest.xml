@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data
                     tools:ignore="AppLinkUrlError"
-                    android:scheme="com.atomica.contactzillasync"
+                    android:scheme="com.atomicasoftware.contactzillasync"
                     android:path="/oauth2/redirect"/>
             </intent-filter>
         </activity>

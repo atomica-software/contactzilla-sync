@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.db
+package com.atomicasoftware.contactzillasync.db
 
 import androidx.annotation.StringDef
 import androidx.room.ColumnInfo
@@ -25,8 +25,8 @@ import at.bitfire.dav4jvm.property.push.WebPush
 import at.bitfire.dav4jvm.property.webdav.CurrentUserPrivilegeSet
 import at.bitfire.dav4jvm.property.webdav.DisplayName
 import at.bitfire.dav4jvm.property.webdav.ResourceType
-import com.atomica.contactzillasync.util.DavUtils.lastSegment
-import com.atomica.contactzillasync.util.trimToNull
+import com.atomicasoftware.contactzillasync.util.DavUtils.lastSegment
+import com.atomicasoftware.contactzillasync.util.trimToNull
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 

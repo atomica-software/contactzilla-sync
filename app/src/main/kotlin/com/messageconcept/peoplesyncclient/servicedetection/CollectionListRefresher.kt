@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.servicedetection
+package com.atomicasoftware.contactzillasync.servicedetection
 
 import at.bitfire.dav4jvm.DavResource
 import at.bitfire.dav4jvm.Property
@@ -28,16 +28,16 @@ import at.bitfire.dav4jvm.property.webdav.GroupMembership
 import at.bitfire.dav4jvm.property.webdav.HrefListProperty
 import at.bitfire.dav4jvm.property.webdav.Owner
 import at.bitfire.dav4jvm.property.webdav.ResourceType
-import com.atomica.contactzillasync.db.AppDatabase
-import com.atomica.contactzillasync.db.Collection
-import com.atomica.contactzillasync.db.HomeSet
-import com.atomica.contactzillasync.db.Principal
-import com.atomica.contactzillasync.db.Service
-import com.atomica.contactzillasync.repository.DavCollectionRepository
-import com.atomica.contactzillasync.repository.DavHomeSetRepository
-import com.atomica.contactzillasync.settings.Settings
-import com.atomica.contactzillasync.settings.SettingsManager
-import com.atomica.contactzillasync.util.DavUtils.parent
+import com.atomicasoftware.contactzillasync.db.AppDatabase
+import com.atomicasoftware.contactzillasync.db.Collection
+import com.atomicasoftware.contactzillasync.db.HomeSet
+import com.atomicasoftware.contactzillasync.db.Principal
+import com.atomicasoftware.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.repository.DavCollectionRepository
+import com.atomicasoftware.contactzillasync.repository.DavHomeSetRepository
+import com.atomicasoftware.contactzillasync.settings.Settings
+import com.atomicasoftware.contactzillasync.settings.SettingsManager
+import com.atomicasoftware.contactzillasync.util.DavUtils.parent
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.composable
+package com.atomicasoftware.contactzillasync.ui.composable
 
 import android.accounts.Account
 import androidx.compose.foundation.layout.Row
@@ -24,8 +24,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import at.bitfire.dav4jvm.exception.HttpException
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.ui.DebugInfoActivity
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.ui.DebugInfoActivity
 import okhttp3.HttpUrl
 import java.io.IOException
 

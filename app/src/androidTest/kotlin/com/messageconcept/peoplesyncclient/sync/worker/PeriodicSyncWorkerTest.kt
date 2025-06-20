@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync.worker
+package com.atomicasoftware.contactzillasync.sync.worker
 
 import android.accounts.Account
 import android.content.Context
@@ -12,10 +12,10 @@ import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
 import androidx.work.testing.TestListenableWorkerBuilder
 import androidx.work.workDataOf
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.TestUtils
-import com.atomica.contactzillasync.sync.SyncDataType
-import com.atomica.contactzillasync.sync.account.TestAccount
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.TestUtils
+import com.atomicasoftware.contactzillasync.sync.SyncDataType
+import com.atomicasoftware.contactzillasync.sync.account.TestAccount
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

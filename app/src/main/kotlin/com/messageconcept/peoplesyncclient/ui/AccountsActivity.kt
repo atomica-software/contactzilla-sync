@@ -2,16 +2,16 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui
+package com.atomicasoftware.contactzillasync.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import com.atomica.contactzillasync.settings.ManagedSettings
-import com.atomica.contactzillasync.ui.account.AccountActivity
+import com.atomicasoftware.contactzillasync.settings.ManagedSettings
+import com.atomicasoftware.contactzillasync.ui.account.AccountActivity
 
-import com.atomica.contactzillasync.ui.setup.LoginActivity
+import com.atomicasoftware.contactzillasync.ui.setup.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

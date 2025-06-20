@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui
+package com.atomicasoftware.contactzillasync.ui
 
 import android.accounts.Account
 import android.content.Context
@@ -11,7 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.atomica.contactzillasync.log.LogFileHandler
+import com.atomicasoftware.contactzillasync.log.LogFileHandler
 import com.google.common.io.ByteStreams
 import com.google.common.io.Files
 import dagger.assisted.Assisted

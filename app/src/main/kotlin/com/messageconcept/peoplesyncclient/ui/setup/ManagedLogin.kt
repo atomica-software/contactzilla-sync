@@ -6,7 +6,7 @@
  * http://www.gnu.org/licenses/gpl.html
  */
 
-package com.atomica.contactzillasync.ui.setup
+package com.atomicasoftware.contactzillasync.ui.setup
 
 import android.net.Uri
 import androidx.compose.foundation.layout.Column
@@ -34,9 +34,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.ui.composable.Assistant
-import com.atomica.contactzillasync.ui.composable.PasswordTextField
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.ui.composable.Assistant
+import com.atomicasoftware.contactzillasync.ui.composable.PasswordTextField
 
 object ManagedLogin : LoginType {
 

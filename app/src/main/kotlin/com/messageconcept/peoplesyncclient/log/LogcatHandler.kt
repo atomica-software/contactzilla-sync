@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.log
+package com.atomicasoftware.contactzillasync.log
 
 import android.os.Build
 import android.util.Log
-import com.atomica.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.BuildConfig
 import com.google.common.base.Ascii
 import java.util.logging.Handler
 import java.util.logging.Level

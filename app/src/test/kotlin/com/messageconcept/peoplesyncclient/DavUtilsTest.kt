@@ -2,11 +2,11 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync
+package com.atomicasoftware.contactzillasync
 
-import com.atomica.contactzillasync.util.DavUtils
-import com.atomica.contactzillasync.util.DavUtils.lastSegment
-import com.atomica.contactzillasync.util.DavUtils.parent
+import com.atomicasoftware.contactzillasync.util.DavUtils
+import com.atomicasoftware.contactzillasync.util.DavUtils.lastSegment
+import com.atomicasoftware.contactzillasync.util.DavUtils.parent
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.MediaType.Companion.toMediaType
 import org.junit.Assert

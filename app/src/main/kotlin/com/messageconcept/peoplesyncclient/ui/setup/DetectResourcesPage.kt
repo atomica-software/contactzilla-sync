@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.ui.setup
+package com.atomicasoftware.contactzillasync.ui.setup
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,12 +26,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.atomica.contactzillasync.Constants
-import com.atomica.contactzillasync.Constants.withStatParams
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.ui.DebugInfoActivity
-import com.atomica.contactzillasync.ui.UiUtils.toAnnotatedString
-import com.atomica.contactzillasync.ui.composable.ProgressBar
+import com.atomicasoftware.contactzillasync.Constants
+import com.atomicasoftware.contactzillasync.Constants.withStatParams
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.ui.DebugInfoActivity
+import com.atomicasoftware.contactzillasync.ui.UiUtils.toAnnotatedString
+import com.atomicasoftware.contactzillasync.ui.composable.ProgressBar
 
 @Composable
 fun DetectResourcesPage(

@@ -2,7 +2,7 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.sync
+package com.atomicasoftware.contactzillasync.sync
 
 import android.accounts.Account
 import android.app.PendingIntent
@@ -17,14 +17,14 @@ import android.provider.Settings
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import at.bitfire.dav4jvm.exception.UnauthorizedException
-import com.atomica.contactzillasync.R
-import com.atomica.contactzillasync.db.Collection
-import com.atomica.contactzillasync.resource.LocalCollection
-import com.atomica.contactzillasync.resource.LocalContact
-import com.atomica.contactzillasync.resource.LocalResource
-import com.atomica.contactzillasync.ui.DebugInfoActivity
-import com.atomica.contactzillasync.ui.NotificationRegistry
-import com.atomica.contactzillasync.ui.account.AccountSettingsActivity
+import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.db.Collection
+import com.atomicasoftware.contactzillasync.resource.LocalCollection
+import com.atomicasoftware.contactzillasync.resource.LocalContact
+import com.atomicasoftware.contactzillasync.resource.LocalResource
+import com.atomicasoftware.contactzillasync.ui.DebugInfoActivity
+import com.atomicasoftware.contactzillasync.ui.NotificationRegistry
+import com.atomicasoftware.contactzillasync.ui.account.AccountSettingsActivity
 import com.google.common.base.Ascii
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory

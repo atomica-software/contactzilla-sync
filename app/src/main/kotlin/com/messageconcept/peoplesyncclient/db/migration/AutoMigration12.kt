@@ -2,14 +2,14 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.db.migration
+package com.atomicasoftware.contactzillasync.db.migration
 
 import android.content.Context
 import androidx.room.DeleteColumn
 import androidx.room.ProvidedAutoMigrationSpec
 import androidx.room.migration.AutoMigrationSpec
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.atomica.contactzillasync.servicedetection.RefreshCollectionsWorker
+import com.atomicasoftware.contactzillasync.servicedetection.RefreshCollectionsWorker
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

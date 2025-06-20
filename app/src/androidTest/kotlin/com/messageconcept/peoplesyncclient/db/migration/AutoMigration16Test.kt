@@ -2,10 +2,10 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.db.migration
+package com.atomicasoftware.contactzillasync.db.migration
 
-import com.atomica.contactzillasync.db.Collection.Companion.TYPE_CALENDAR
-import com.atomica.contactzillasync.db.Service
+import com.atomicasoftware.contactzillasync.db.Collection.Companion.TYPE_CALENDAR
+import com.atomicasoftware.contactzillasync.db.Service
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull

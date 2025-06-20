@@ -2,17 +2,17 @@
  * Copyright © All Contributors. See LICENSE and AUTHORS in the root directory for details.
  */
 
-package com.atomica.contactzillasync.di
+package com.atomicasoftware.contactzillasync.di
 
-import com.atomica.contactzillasync.ui.intro.OseIntroPageFactory
+import com.atomicasoftware.contactzillasync.ui.intro.OseIntroPageFactory
 
-import com.atomica.contactzillasync.ui.AboutActivity
-import com.atomica.contactzillasync.ui.AccountsDrawerHandler
-import com.atomica.contactzillasync.ui.OpenSourceLicenseInfoProvider
-import com.atomica.contactzillasync.ui.OseAccountsDrawerHandler
-import com.atomica.contactzillasync.ui.intro.IntroPageFactory
-import com.atomica.contactzillasync.ui.setup.LoginTypesProvider
-import com.atomica.contactzillasync.ui.setup.StandardLoginTypesProvider
+import com.atomicasoftware.contactzillasync.ui.AboutActivity
+import com.atomicasoftware.contactzillasync.ui.AccountsDrawerHandler
+import com.atomicasoftware.contactzillasync.ui.OpenSourceLicenseInfoProvider
+import com.atomicasoftware.contactzillasync.ui.OseAccountsDrawerHandler
+import com.atomicasoftware.contactzillasync.ui.intro.IntroPageFactory
+import com.atomicasoftware.contactzillasync.ui.setup.LoginTypesProvider
+import com.atomicasoftware.contactzillasync.ui.setup.StandardLoginTypesProvider
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
