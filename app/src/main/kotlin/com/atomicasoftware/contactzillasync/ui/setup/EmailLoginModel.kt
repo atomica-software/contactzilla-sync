@@ -27,20 +27,22 @@ class EmailLoginModel @AssistedInject constructor(
 
     data class UiState(
         val email: String = "",
-        val password: String = ""
+        val password: String = "",
+        val hasAttemptedContinue: Boolean = false
     ) {
         val uri = "mailto:$email".toURIorNull()
         
         // Validate that email ends with @contactzilla.app
         val isValidDomain = email.endsWith("@contactzilla.app", ignoreCase = true)
         
-        // Show domain error if email is not empty and doesn't have valid domain
-        val showDomainError = email.isNotEmpty() && !isValidDomain
+        // Only show validation errors after user has attempted to continue
+        val showDomainError = hasAttemptedContinue && email.isNotEmpty() && !isValidDomain
         
-        // Show general email error if email is not empty and URI is null (invalid format)
-        val showGeneralEmailError = email.isNotEmpty() && uri == null && isValidDomain
+        // Show general email error if email is not empty and URI is null (invalid format) 
+        val showGeneralEmailError = hasAttemptedContinue && email.isNotEmpty() && uri == null && isValidDomain
 
-        val canContinue = uri != null && password.isNotEmpty() && isValidDomain
+        // Allow button to be enabled for any valid email format, domain validation happens on click
+        val canContinue = uri != null && password.isNotEmpty()
 
         fun asLoginInfo(): LoginInfo {
             return LoginInfo(
@@ -64,11 +66,15 @@ class EmailLoginModel @AssistedInject constructor(
     }
 
     fun setEmail(email: String) {
-        uiState = uiState.copy(email = email)
+        uiState = uiState.copy(email = email, hasAttemptedContinue = false)
     }
 
     fun setPassword(password: String) {
         uiState = uiState.copy(password = password)
+    }
+    
+    fun attemptContinue() {
+        uiState = uiState.copy(hasAttemptedContinue = true)
     }
 
 }

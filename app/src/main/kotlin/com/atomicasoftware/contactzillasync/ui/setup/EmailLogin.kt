@@ -36,6 +36,7 @@ import com.atomicasoftware.contactzillasync.R
 import com.atomicasoftware.contactzillasync.ui.UiUtils.toAnnotatedString
 import com.atomicasoftware.contactzillasync.ui.composable.Assistant
 import com.atomicasoftware.contactzillasync.ui.composable.PasswordTextField
+import com.atomicasoftware.contactzillasync.util.DavUtils.toURIorNull
 
 object EmailLogin : LoginType {
 
@@ -67,7 +68,17 @@ object EmailLogin : LoginType {
             canContinue = uiState.canContinue,
             showDomainError = uiState.showDomainError,
             showGeneralEmailError = uiState.showGeneralEmailError,
-            onLogin = { onLogin(uiState.asLoginInfo()) }
+            onLogin = { 
+                model.attemptContinue()
+                // Check validation directly since uiState won't update immediately
+                val uri = "mailto:${uiState.email}".toURIorNull()
+                val isValidDomain = uiState.email.endsWith("@contactzilla.app", ignoreCase = true)
+                val isValid = uri != null && uiState.password.isNotEmpty() && isValidDomain
+                
+                if (isValid) {
+                    onLogin(uiState.asLoginInfo())
+                }
+            }
         )
     }
 
@@ -85,6 +96,7 @@ fun EmailLoginScreen(
     showGeneralEmailError: Boolean = false,
     onLogin: () -> Unit = {}
 ) {
+
     Assistant(
         nextLabel = stringResource(R.string.login_login),
         nextEnabled = canContinue,
@@ -142,7 +154,7 @@ fun EmailLoginScreen(
                     imeAction = ImeAction.Done
                 ),
                 keyboardActions = KeyboardActions(
-                    onDone = { if (canContinue) onLogin() }
+                    onDone = { onLogin() }
                 ),
                 modifier = Modifier.fillMaxWidth()
             )

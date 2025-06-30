@@ -26,14 +26,20 @@ class EmailLoginModelTest {
     }
 
     @Test
-    fun `test invalid email domain`() {
+    fun `test invalid email domain shows error only after continue attempt`() {
         val model = createModel()
         model.setEmail("user@example.com")
+        model.setPassword("password")
         
         val uiState = model.uiState
         assertFalse("Invalid domain should not be accepted", uiState.isValidDomain)
-        assertTrue("Should show domain error for invalid domain", uiState.showDomainError)
-        assertFalse("Should not be able to continue with invalid domain", uiState.canContinue)
+        assertFalse("Should not show domain error before continue attempt", uiState.showDomainError)
+        assertTrue("Should be able to click continue button with any valid email format", uiState.canContinue)
+        
+        // After attempting to continue
+        model.attemptContinue()
+        val uiStateAfterAttempt = model.uiState
+        assertTrue("Should show domain error after continue attempt", uiStateAfterAttempt.showDomainError)
     }
 
     @Test
@@ -57,6 +63,11 @@ class EmailLoginModelTest {
         assertFalse("Empty email should show no domain error", uiState.showDomainError)
         assertFalse("Empty email should show no general email error", uiState.showGeneralEmailError)
         assertFalse("Should not be able to continue with empty email", uiState.canContinue)
+        
+        // Even after attempting to continue with empty email
+        model.attemptContinue()
+        val uiStateAfterAttempt = model.uiState
+        assertFalse("Empty email should still show no domain error after continue attempt", uiStateAfterAttempt.showDomainError)
     }
 
     @Test
@@ -75,21 +86,49 @@ class EmailLoginModelTest {
     fun `test subdomain rejection`() {
         val model = createModel()
         model.setEmail("user@subdomain.contactzilla.app")
+        model.setPassword("password")
         
         val uiState = model.uiState
         assertFalse("Subdomain should not be accepted", uiState.isValidDomain)
-        assertTrue("Should show domain error for subdomain", uiState.showDomainError)
-        assertFalse("Should not be able to continue with subdomain", uiState.canContinue)
+        assertFalse("Should not show domain error before continue attempt", uiState.showDomainError)
+        assertTrue("Should be able to click continue button with valid email format", uiState.canContinue)
+        
+        // After attempting to continue
+        model.attemptContinue()
+        val uiStateAfterAttempt = model.uiState
+        assertTrue("Should show domain error after continue attempt", uiStateAfterAttempt.showDomainError)
     }
 
     @Test
     fun `test similar domain rejection`() {
         val model = createModel()
         model.setEmail("user@contactzilla.app.evil.com")
+        model.setPassword("password")
         
         val uiState = model.uiState
         assertFalse("Similar domain should not be accepted", uiState.isValidDomain)
-        assertTrue("Should show domain error for similar domain", uiState.showDomainError)
-        assertFalse("Should not be able to continue with similar domain", uiState.canContinue)
+        assertFalse("Should not show domain error before continue attempt", uiState.showDomainError)
+        assertTrue("Should be able to click continue button with valid email format", uiState.canContinue)
+        
+        // After attempting to continue
+        model.attemptContinue()
+        val uiStateAfterAttempt = model.uiState
+        assertTrue("Should show domain error after continue attempt", uiStateAfterAttempt.showDomainError)
+    }
+    
+    @Test
+    fun `test email change clears continue attempt flag`() {
+        val model = createModel()
+        model.setEmail("user@example.com")
+        model.attemptContinue()
+        
+        val uiStateWithError = model.uiState
+        assertTrue("Should show domain error after continue attempt", uiStateWithError.showDomainError)
+        
+        // Change email to clear the attempt flag
+        model.setEmail("user@contactzilla.app")
+        val uiStateAfterEmailChange = model.uiState
+        assertFalse("Should not show domain error after email change", uiStateAfterEmailChange.showDomainError)
+        assertTrue("Should be valid domain", uiStateAfterEmailChange.isValidDomain)
     }
 } 
