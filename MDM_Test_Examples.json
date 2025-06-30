@@ -6,15 +6,15 @@
       "json": {
         "managedProperty": [
           {
-            "key": "login_email",
+            "key": "login_email_1",
             "valueString": "john.doe@contactzilla.app"
           },
           {
-            "key": "login_password", 
+            "key": "login_password_1", 
             "valueString": "your_secure_password"
           },
           {
-            "key": "login_account_name",
+            "key": "login_account_name_1",
             "valueString": "John Doe Work Contacts"
           }
         ]
@@ -26,15 +26,15 @@
       "json": {
         "managedProperty": [
           {
-            "key": "login_email",
+            "key": "login_email_1",
             "valueString": "manager@contactzilla.app"
           },
           {
-            "key": "login_password",
+            "key": "login_password_1",
             "valueString": "manager_password"
           },
           {
-            "key": "login_account_name", 
+            "key": "login_account_name_1", 
             "valueString": "Staff Contacts"
           },
           {
@@ -70,11 +70,11 @@
       "json": {
         "managedProperty": [
           {
-            "key": "login_email",
+            "key": "login_email_1",
             "valueString": "team@contactzilla.app"
           },
           {
-            "key": "login_password",
+            "key": "login_password_1",
             "valueString": "team_password"
           }
         ]
@@ -86,15 +86,15 @@
       "json": {
         "managedProperty": [
           {
-            "key": "login_email",
+            "key": "login_email_1",
             "valueString": "honorableswanobey@contactzilla.app"
           },
           {
-            "key": "login_password",
+            "key": "login_password_1",
             "valueString": "yourpassword"
           },
           {
-            "key": "login_account_name",
+            "key": "login_account_name_1",
             "valueString": "Swan Obey (Debug)"
           },
           {
@@ -117,15 +117,15 @@
   "notes": {
     "url_generation": "URLs are automatically generated from email domains. For user@contactzilla.app, the CardDAV URL becomes https://dav.contactzilla.app/addressbooks/user/",
     "account_naming": "If login_account_name is not provided, it defaults to the username part of the email",
-    "multiple_accounts": "Use _2, _3, etc. suffixes for additional accounts. The app supports unlimited accounts.",
-    "required_fields": "login_email and login_password are required. login_account_name is optional but recommended for clarity.",
+    "multiple_accounts": "All keys require number suffixes starting from _1. First account uses _1, second uses _2, etc. The app supports unlimited accounts.",
+    "required_fields": "login_email_N and login_password_N are required (where N is the account number starting from 1). login_account_name_N is optional but recommended for clarity.",
     "email_validation": "Email addresses must end with @contactzilla.app (case insensitive)"
   },
   
   "curl_examples": {
     "description": "Example curl commands for posting to MDM",
     "examples": [
-      "curl -X POST 'https://your-mdm-server.com/api/policy' -H 'Content-Type: application/json' -d '{\"managedProperty\":[{\"key\":\"login_email\",\"valueString\":\"user@contactzilla.app\"},{\"key\":\"login_password\",\"valueString\":\"password123\"}]}'",
+      "curl -X POST 'https://your-mdm-server.com/api/policy' -H 'Content-Type: application/json' -d '{\"managedProperty\":[{\"key\":\"login_email_1\",\"valueString\":\"user@contactzilla.app\"},{\"key\":\"login_password_1\",\"valueString\":\"password123\"}]}'",
       "curl -X POST 'https://your-mdm-server.com/api/device/policy' -H 'Authorization: Bearer YOUR_TOKEN' -H 'Content-Type: application/json' -d @single_account_config.json"
     ]
   }
