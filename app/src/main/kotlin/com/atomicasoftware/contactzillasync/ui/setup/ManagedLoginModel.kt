@@ -71,9 +71,13 @@ class ManagedLoginModel @AssistedInject constructor(
             url = initialLoginInfo.baseUri?.toString()?.removePrefix("https://") ?: "",
             username = initialLoginInfo.credentials?.username ?: "",
             password = initialLoginInfo.credentials?.password ?: "",
-            isUsernameManaged = !managedSettings.getUsername().isNullOrEmpty(),
+            isUsernameManaged = !managedSettings.getEmail().isNullOrEmpty(),
             isPasswordManaged = !managedSettings.getPassword().isNullOrEmpty(),
-            baseUrl = managedSettings.getBaseUrl() ?: "",
+            baseUrl = managedSettings.getEmail()?.let { email ->
+                val domain = email.substringAfter("@")
+                val usernameFromEmail = email.substringBefore("@")
+                "https://dav.$domain/addressbooks/$usernameFromEmail/"
+            } ?: "",
             organization = managedSettings.getOrganization() ?: "",
         )
     }

@@ -118,7 +118,7 @@ class AccountSettingsModel @AssistedInject constructor(
 
             contactGroupMethod = accountSettings.getGroupMethod(),
 
-            allowUsernameChange = managedSettings.getUsername().isNullOrEmpty(),
+            allowUsernameChange = managedSettings.getEmail().isNullOrEmpty(),
             allowPasswordChange = managedSettings.getPassword().isNullOrEmpty(),
         )
     }

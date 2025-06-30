@@ -1,0 +1,132 @@
+{
+  "description": "Example MDM JSON configurations for testing ContactZilla app",
+  "examples": {
+    "single_account": {
+      "description": "Single account configuration - most common use case",
+      "json": {
+        "managedProperty": [
+          {
+            "key": "login_email",
+            "valueString": "john.doe@contactzilla.app"
+          },
+          {
+            "key": "login_password", 
+            "valueString": "your_secure_password"
+          },
+          {
+            "key": "login_account_name",
+            "valueString": "John Doe Work Contacts"
+          }
+        ]
+      }
+    },
+    
+    "multiple_accounts": {
+      "description": "Multiple accounts configuration - for users who need separate contact lists",
+      "json": {
+        "managedProperty": [
+          {
+            "key": "login_email",
+            "valueString": "manager@contactzilla.app"
+          },
+          {
+            "key": "login_password",
+            "valueString": "manager_password"
+          },
+          {
+            "key": "login_account_name", 
+            "valueString": "Staff Contacts"
+          },
+          {
+            "key": "login_email_2",
+            "valueString": "sales@contactzilla.app"
+          },
+          {
+            "key": "login_password_2",
+            "valueString": "sales_password"
+          },
+          {
+            "key": "login_account_name_2",
+            "valueString": "Client Contacts"
+          },
+          {
+            "key": "login_email_3",
+            "valueString": "support@contactzilla.app"
+          },
+          {
+            "key": "login_password_3",
+            "valueString": "support_password"
+          },
+          {
+            "key": "login_account_name_3",
+            "valueString": "Support Team"
+          }
+        ]
+      }
+    },
+    
+    "minimal_account": {
+      "description": "Minimal configuration - account name will be auto-generated from email",
+      "json": {
+        "managedProperty": [
+          {
+            "key": "login_email",
+            "valueString": "team@contactzilla.app"
+          },
+          {
+            "key": "login_password",
+            "valueString": "team_password"
+          }
+        ]
+      }
+    },
+    
+    "debug_accounts": {
+      "description": "Debug accounts for development testing",
+      "json": {
+        "managedProperty": [
+          {
+            "key": "login_email",
+            "valueString": "honorableswanobey@contactzilla.app"
+          },
+          {
+            "key": "login_password",
+            "valueString": "yourpassword"
+          },
+          {
+            "key": "login_account_name",
+            "valueString": "Swan Obey (Debug)"
+          },
+          {
+            "key": "login_email_2", 
+            "valueString": "talentedowlrich@contactzilla.app"
+          },
+          {
+            "key": "login_password_2",
+            "valueString": "yourpassword"
+          },
+          {
+            "key": "login_account_name_2",
+            "valueString": "Owl Rich (Debug)"
+          }
+        ]
+      }
+    }
+  },
+  
+  "notes": {
+    "url_generation": "URLs are automatically generated from email domains. For user@contactzilla.app, the CardDAV URL becomes https://dav.contactzilla.app/addressbooks/user/",
+    "account_naming": "If login_account_name is not provided, it defaults to the username part of the email",
+    "multiple_accounts": "Use _2, _3, etc. suffixes for additional accounts. The app supports unlimited accounts.",
+    "required_fields": "login_email and login_password are required. login_account_name is optional but recommended for clarity.",
+    "email_validation": "Email addresses must end with @contactzilla.app (case insensitive)"
+  },
+  
+  "curl_examples": {
+    "description": "Example curl commands for posting to MDM",
+    "examples": [
+      "curl -X POST 'https://your-mdm-server.com/api/policy' -H 'Content-Type: application/json' -d '{\"managedProperty\":[{\"key\":\"login_email\",\"valueString\":\"user@contactzilla.app\"},{\"key\":\"login_password\",\"valueString\":\"password123\"}]}'",
+      "curl -X POST 'https://your-mdm-server.com/api/device/policy' -H 'Authorization: Bearer YOUR_TOKEN' -H 'Content-Type: application/json' -d @single_account_config.json"
+    ]
+  }
+} 

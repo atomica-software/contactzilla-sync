@@ -35,11 +35,21 @@ import javax.inject.Singleton
 
 // Data class to represent a managed account configuration
 data class ManagedAccountConfig(
-    val baseUrl: String,
-    val username: String,
+    val email: String,
     val password: String,
     val accountName: String
-)
+) {
+    // Derive baseUrl from email domain
+    val baseUrl: String
+        get() {
+            val domain = email.substringAfter("@")
+            return "https://dav.$domain/addressbooks/${email.substringBefore("@")}/"
+        }
+        
+    // Maintain compatibility with existing code that expects username
+    val username: String
+        get() = email
+}
 
 @Singleton
 class ManagedSettings @Inject constructor(
@@ -50,8 +60,7 @@ class ManagedSettings @Inject constructor(
 )  {
 
     companion object {
-        private const val KEY_LOGIN_BASE_URL = "login_base_url"
-        private const val KEY_LOGIN_USER_NAME = "login_user_name"
+        private const val KEY_LOGIN_EMAIL = "login_email"
         private const val KEY_LOGIN_PASSWORD = "login_password"
         private const val KEY_LOGIN_ACCOUNT_NAME = "login_account_name"
         private const val KEY_ORGANIZATION = "organization"
@@ -69,23 +78,20 @@ class ManagedSettings @Inject constructor(
         // Debug managed_by value for testing
         private const val DEBUG_MANAGED_BY = "Acme Corporation IT Department"
         
-        // Test configurations for debug mode (consistent _NUMBER suffix pattern)
+        // Test configurations for debug mode (now using email format)
         private val debugConfigs = mapOf(
             1 to ManagedAccountConfig(
-                baseUrl = "dav.contactzilla.app/addressbooks/honorableswanobey/",  // Try parent directory
-                username = "honorableswanobey", 
+                email = "honorableswanobey@contactzilla.app",
                 password = "SilentExceptionalHawk4=#8+?!",
                 accountName = "Staff List"
             ),
             2 to ManagedAccountConfig(
-                baseUrl = "dav.contactzilla.app/addressbooks/flawlesshyenaecho/",  // Try parent directory
-                username = "flawlesshyenaecho",
+                email = "flawlesshyenaecho@contactzilla.app",
                 password = "PhilanthropicDivineMoor17$%@+4", 
                 accountName = "Clients"
             ),
             3 to ManagedAccountConfig(
-                baseUrl = "dav.contactzilla.app/addressbooks/hypnoticmonasterysustain/",  // Try parent directory
-                username = "hypnoticmonasterysustain",
+                email = "hypnoticmonasterysustain@contactzilla.app",
                 password = "MagicDeepOwl9%54$=@", 
                 accountName = "BackToTheFuture"
             )
@@ -131,12 +137,8 @@ class ManagedSettings @Inject constructor(
         context.registerReceiver(broadCastReceiver, IntentFilter(ACTION_APPLICATION_RESTRICTIONS_CHANGED))
     }
 
-    fun getBaseUrl(): String? {
-        return restrictions.getString(KEY_LOGIN_BASE_URL)
-    }
-
-    fun getUsername(): String? {
-        return restrictions.getString(KEY_LOGIN_USER_NAME)
+    fun getEmail(): String? {
+        return restrictions.getString(KEY_LOGIN_EMAIL)
     }
 
     fun getPassword(): String? {
@@ -172,22 +174,20 @@ class ManagedSettings @Inject constructor(
             }
         }
         
-        val baseUrl = restrictions.getString(getKeyForAccount(accountIndex, KEY_LOGIN_BASE_URL))
-        val username = restrictions.getString(getKeyForAccount(accountIndex, KEY_LOGIN_USER_NAME))
+        val email = restrictions.getString(getKeyForAccount(accountIndex, KEY_LOGIN_EMAIL))
         val password = restrictions.getString(getKeyForAccount(accountIndex, KEY_LOGIN_PASSWORD))
         val accountName = restrictions.getString(getKeyForAccount(accountIndex, KEY_LOGIN_ACCOUNT_NAME))
         
         // Return null if essential fields are missing
-        if (baseUrl.isNullOrEmpty() || username.isNullOrEmpty() || password.isNullOrEmpty()) {
-            logger.info("Account config $accountIndex missing essential fields - baseUrl: ${baseUrl?.isNotEmpty()}, username: ${username?.isNotEmpty()}, password: ${password?.isNotEmpty()}")
+        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+            logger.info("Account config $accountIndex missing essential fields - email: ${email?.isNotEmpty()}, password: ${password?.isNotEmpty()}")
             return null
         }
         
         return ManagedAccountConfig(
-            baseUrl = baseUrl,
-            username = username,
+            email = email,
             password = password,
-            accountName = accountName ?: username // Fallback to username if account name not provided
+            accountName = accountName ?: email.substringBefore("@") // Fallback to username part of email
         )
     }
     
@@ -200,7 +200,7 @@ class ManagedSettings @Inject constructor(
         while (true) {
             val config = getAccountConfig(accountIndex)
             if (config != null) {
-                logger.info("Found account config $accountIndex: ${config.accountName} - ${config.baseUrl}")
+                logger.info("Found account config $accountIndex: ${config.accountName} - ${config.email}")
                 configs.add(config)
                 accountIndex++
             } else {
@@ -246,8 +246,7 @@ class ManagedSettings @Inject constructor(
                     val username = accountManager.getUserData(account, KEY_USERNAME)
                     val password = accountManager.getPassword(account)
 
-                    val managedBaseUrl = getBaseUrl()
-                    val managedUsername = getUsername()
+                    val managedEmail = getEmail()
                     val managedPassword = getPassword()
                     // If the password has been deleted/unset, do not update existing accounts
                     // and set an empty password as this is guaranteed to lead to synchronization
@@ -257,8 +256,9 @@ class ManagedSettings @Inject constructor(
                         logger.log(Level.INFO,"${account.name}: Managed login password has been deleted. Doing nothing.")
                         return
                     }
-                    // check if baseUrl and userName match
-                    if (managedBaseUrl == baseUrl && managedUsername == username) {
+                    // check if email matches username
+                    val matchesConfig = (managedEmail != null && managedEmail == username)
+                    if (matchesConfig) {
                         if (managedPassword != password) {
                             logger.log(Level.INFO,"${account.name}: Managed login password changed. Updating account settings and requesting sync.")
                             accountManager.setPassword(account, managedPassword)
@@ -276,7 +276,7 @@ class ManagedSettings @Inject constructor(
     }
 
     fun isManaged(): Boolean {
-        return !restrictions.getString(KEY_LOGIN_BASE_URL).isNullOrEmpty()
+        return !restrictions.getString(KEY_LOGIN_EMAIL).isNullOrEmpty()
     }
     
     /**

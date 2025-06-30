@@ -155,16 +155,14 @@ class QrLoginModel @AssistedInject constructor(
                     else -> continue
                 }
                 configMap[key] = value
+                logger.info("QR Config extracted key: '$key' = '$value'")
             }
             
             // Extract account configurations
             val accounts = mutableListOf<ManagedAccountConfig>()
             
-            // Check for primary account (no suffix)
-            extractAccountConfig(configMap, "", accounts)
-            
-            // Check for numbered accounts (_2, _3, etc.)
-            var accountIndex = 2
+            // Check for numbered accounts starting from _1 (matching MDM system)
+            var accountIndex = 1
             while (true) {
                 val suffix = "_$accountIndex"
                 if (extractAccountConfig(configMap, suffix, accounts)) {
@@ -191,25 +189,25 @@ class QrLoginModel @AssistedInject constructor(
         suffix: String,
         accounts: MutableList<ManagedAccountConfig>
     ): Boolean {
-        val baseUrl = configMap["login_base_url$suffix"]
-        val username = configMap["login_user_name$suffix"]
+        val email = configMap["login_email$suffix"]
         val password = configMap["login_password$suffix"]
         val accountName = configMap["login_account_name$suffix"]
         
-        return if (!baseUrl.isNullOrEmpty() && !username.isNullOrEmpty() && !password.isNullOrEmpty()) {
+        logger.info("QR Config extraction for suffix '$suffix': email='$email', password='${password?.isNotEmpty()}', accountName='$accountName'")
+        
+        if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
             accounts.add(
                 ManagedAccountConfig(
-                    baseUrl = baseUrl,
-                    username = username,
+                    email = email,
                     password = password,
-                    accountName = accountName ?: username
+                    accountName = accountName ?: email.substringBefore("@")
                 )
             )
-            logger.info("Extracted account config${suffix}: $accountName ($baseUrl)")
-            true
-        } else {
-            false
+            logger.info("Extracted account config${suffix}: $accountName ($email)")
+            return true
         }
+        
+        return false
     }
 
     /**

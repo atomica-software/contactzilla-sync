@@ -54,13 +54,15 @@ class AccountsActivity: AppCompatActivity() {
                 onAddAccount = {
                     val intent = Intent(this, LoginActivity::class.java)
                     // attach infos from managed settings
-                    managedSettings.getBaseUrl()?.let {
-                        intent.putExtra(LoginActivity.EXTRA_URL, it)
-                        intent.putExtra(LoginActivity.EXTRA_LOGIN_MANAGED, true)
-                    }
-                    managedSettings.getUsername()?.let {
-                        intent.putExtra(LoginActivity.EXTRA_USERNAME, it)
-                    }
+                            managedSettings.getEmail()?.let { email ->
+            // Generate baseUrl from email
+            val domain = email.substringAfter("@")
+            val username = email.substringBefore("@")
+            val baseUrl = "https://dav.$domain/addressbooks/$username/"
+            intent.putExtra(LoginActivity.EXTRA_URL, baseUrl)
+            intent.putExtra(LoginActivity.EXTRA_USERNAME, email)
+            intent.putExtra(LoginActivity.EXTRA_LOGIN_MANAGED, true)
+        }
                     managedSettings.getPassword()?.let {
                         intent.putExtra(LoginActivity.EXTRA_PASSWORD, it)
                     }

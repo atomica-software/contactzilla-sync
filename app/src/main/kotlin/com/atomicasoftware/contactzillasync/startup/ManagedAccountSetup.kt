@@ -120,7 +120,7 @@ class ManagedAccountSetup @Inject constructor(
     suspend fun createSingleManagedAccount(config: ManagedAccountConfig): Boolean {
         return withContext(Dispatchers.IO) {
             try {
-                logger.info("Creating single managed account: ${config.accountName} (URL: ${config.baseUrl}, User: ${config.username})")
+                logger.info("Creating single managed account: ${config.accountName} (Email: ${config.email})")
                 
                 // Check if account already exists
                 val accountExists = accountRepository.exists(config.accountName)
@@ -131,21 +131,19 @@ class ManagedAccountSetup @Inject constructor(
                 
                 // Create credentials
                 val credentials = Credentials(
-                    username = config.username,
+                    username = config.email,
                     password = config.password
                 )
                 
-                // Parse base URL - add https:// if missing
+                // Generate base URL from email domain
                 val baseUri = try {
-                    val url = if (!config.baseUrl.startsWith("http://") && !config.baseUrl.startsWith("https://")) {
-                        "https://${config.baseUrl}"
-                    } else {
-                        config.baseUrl
-                    }
-                    logger.info("Using URL: $url for account ${config.accountName}")
+                    val domain = config.email.substringAfter("@")
+                    val username = config.email.substringBefore("@")
+                    val url = "https://dav.$domain/addressbooks/$username/"
+                    logger.info("Generated URL: $url for account ${config.accountName}")
                     URI(url)
                 } catch (e: Exception) {
-                    logger.log(Level.WARNING, "Invalid base URL for account ${config.accountName}: ${config.baseUrl}", e)
+                    logger.log(Level.WARNING, "Invalid email for account ${config.accountName}: ${config.email}", e)
                     return@withContext false
                 }
                 
@@ -209,7 +207,7 @@ class ManagedAccountSetup @Inject constructor(
         
         for (config in managedAccountConfigs) {
             try {
-                logger.info("Creating managed account: ${config.accountName} (URL: ${config.baseUrl}, User: ${config.username})")
+                logger.info("Creating managed account: ${config.accountName} (Email: ${config.email})")
                 
                 // Check if account already exists
                 val accountExists = withContext(Dispatchers.IO) {
@@ -222,21 +220,19 @@ class ManagedAccountSetup @Inject constructor(
                 
                 // Create credentials
                 val credentials = Credentials(
-                    username = config.username,
+                    username = config.email,
                     password = config.password
                 )
                 
-                // Parse base URL - add https:// if missing
+                // Generate base URL from email domain
                 val baseUri = try {
-                    val url = if (!config.baseUrl.startsWith("http://") && !config.baseUrl.startsWith("https://")) {
-                        "https://${config.baseUrl}"
-                    } else {
-                        config.baseUrl
-                    }
-                    logger.info("Using URL: $url for account ${config.accountName}")
+                    val domain = config.email.substringAfter("@")
+                    val username = config.email.substringBefore("@")
+                    val url = "https://dav.$domain/addressbooks/$username/"
+                    logger.info("Generated URL: $url for account ${config.accountName}")
                     URI(url)
                 } catch (e: Exception) {
-                    logger.log(Level.WARNING, "Invalid base URL for account ${config.accountName}: ${config.baseUrl}", e)
+                    logger.log(Level.WARNING, "Invalid email for account ${config.accountName}: ${config.email}", e)
                     continue
                 }
                 
