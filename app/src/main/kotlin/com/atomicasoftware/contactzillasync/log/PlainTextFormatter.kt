@@ -50,7 +50,7 @@ class PlainTextFormatter(
 
         fun shortClassName(className: String) = className
             .replace(Regex("^at\\.bitfire\\.(dav|cert4an|dav4an|ical4an|vcard4an)droid\\."), ".")
-            .replace(Regex("^com\\.atomica\\.contactzillasync\\."), "")
+            .replace(Regex("^com\\.atomicasoftware\\.contactzillasync\\."), "")
             .replace(Regex("\\$.*$"), "")
 
         private fun stackTrace(ex: Throwable): String {

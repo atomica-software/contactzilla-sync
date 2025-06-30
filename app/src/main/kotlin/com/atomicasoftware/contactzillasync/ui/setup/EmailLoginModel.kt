@@ -30,8 +30,17 @@ class EmailLoginModel @AssistedInject constructor(
         val password: String = ""
     ) {
         val uri = "mailto:$email".toURIorNull()
+        
+        // Validate that email ends with @contactzilla.app
+        val isValidDomain = email.endsWith("@contactzilla.app", ignoreCase = true)
+        
+        // Show domain error if email is not empty and doesn't have valid domain
+        val showDomainError = email.isNotEmpty() && !isValidDomain
+        
+        // Show general email error if email is not empty and URI is null (invalid format)
+        val showGeneralEmailError = email.isNotEmpty() && uri == null && isValidDomain
 
-        val canContinue = uri != null && password.isNotEmpty()
+        val canContinue = uri != null && password.isNotEmpty() && isValidDomain
 
         fun asLoginInfo(): LoginInfo {
             return LoginInfo(

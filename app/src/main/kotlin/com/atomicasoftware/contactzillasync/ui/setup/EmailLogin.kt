@@ -65,6 +65,8 @@ object EmailLogin : LoginType {
             password = uiState.password,
             onSetPassword = model::setPassword,
             canContinue = uiState.canContinue,
+            showDomainError = uiState.showDomainError,
+            showGeneralEmailError = uiState.showGeneralEmailError,
             onLogin = { onLogin(uiState.asLoginInfo()) }
         )
     }
@@ -79,6 +81,8 @@ fun EmailLoginScreen(
     password: String,
     onSetPassword: (String) -> Unit = {},
     canContinue: Boolean,
+    showDomainError: Boolean = false,
+    showGeneralEmailError: Boolean = false,
     onLogin: () -> Unit = {}
 ) {
     Assistant(
@@ -100,6 +104,16 @@ fun EmailLoginScreen(
                 value = email,
                 onValueChange = onSetEmail,
                 label = { Text(stringResource(R.string.login_email_address)) },
+                isError = showDomainError || showGeneralEmailError,
+                supportingText = when {
+                    showDomainError -> {
+                        { Text(stringResource(R.string.login_email_address_domain_error)) }
+                    }
+                    showGeneralEmailError -> {
+                        { Text(stringResource(R.string.login_email_address_error)) }
+                    }
+                    else -> null
+                },
                 singleLine = true,
                 leadingIcon = {
                     Icon(Icons.Default.Email, null)
@@ -143,6 +157,8 @@ fun EmailLoginScreen_Preview() {
     EmailLoginScreen(
         email = "test@example.com",
         password = "",
-        canContinue = false
+        canContinue = false,
+        showDomainError = true,
+        showGeneralEmailError = false
     )
 }
