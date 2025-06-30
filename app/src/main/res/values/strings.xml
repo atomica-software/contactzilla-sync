@@ -304,6 +304,7 @@
     <string name="login_qr_scan_instructions">Point your camera at the Contactzilla QR setup code to automatically configure your account</string>
     <string name="login_qr_scan_error">Unable to scan QR code. Please try again.</string>
     <string name="login_qr_config_error">Unable to load configuration from QR code. Please check the QR code and try again.</string>
+    <string name="login_qr_domain_error">QR code URL must be from contactzilla.app domain</string>
     <string name="login_qr_accounts_created">Successfully configured %d account(s) from QR code</string>
     <string name="login_user_name">User name</string>
     <string name="login_user_name_optional">User name*</string>

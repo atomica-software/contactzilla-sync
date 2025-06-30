@@ -466,6 +466,9 @@
   <string name="widget_icon_sync_label">Sync-Taste-Symbol</string>
   <string name="widget_sync_description">Antippen, um die Synchronisierung manuell durchzuführen.</string>
   <!--cert4android-->
+  <!--QR code errors-->
+  <string name="login_qr_domain_error">QR-Code-URL muss von der Domain contactzilla.app stammen</string>
+  
   <!--managed configurations-->
   <string name="login_type_managed">Bitte anmelden</string>
   <string name="account_list_managed_configuration">Die Kontoeinstellungen werden von %s verwaltet.</string>

@@ -425,6 +425,9 @@
   <string name="widget_sync_all">Sincronizar todos</string>
   <string name="widget_sync_all_accounts">Sincronizar todas las cuentas</string>
   <!--cert4android-->
+  <!--QR code errors-->
+  <string name="login_qr_domain_error">La URL del código QR debe ser del dominio contactzilla.app</string>
+  
   <!--managed configurations-->
   <string name="login_type_managed">Por favor, inicie sesión</string>
   <string name="account_list_managed_configuration">La configuración de la cuenta es gestionada por %s.</string>

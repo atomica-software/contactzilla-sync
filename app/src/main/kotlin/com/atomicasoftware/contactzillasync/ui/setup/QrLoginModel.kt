@@ -27,6 +27,8 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.util.logging.Level
 import java.util.logging.Logger
+import java.net.URL
+import com.atomicasoftware.contactzillasync.BuildConfig
 
 @HiltViewModel(assistedFactory = QrLoginModel.Factory::class)
 class QrLoginModel @AssistedInject constructor(
@@ -59,6 +61,54 @@ class QrLoginModel @AssistedInject constructor(
     }
 
     /**
+     * Validates that the QR code URL is from an allowed domain for security purposes.
+     * In production, only contactzilla.app domain is allowed.
+     * In debug mode, additional test domains are permitted.
+     */
+    private fun isValidQrUrl(url: String): Boolean {
+        return try {
+            val parsedUrl = URL(url)
+            val host = parsedUrl.host?.lowercase() ?: return false
+            
+            // Allowed domains for production
+            val allowedDomains = setOf(
+                "contactzilla.app",
+                "www.contactzilla.app"
+            )
+            
+            // Additional domains allowed in debug mode for testing
+            val debugAllowedDomains = if (BuildConfig.DEBUG) {
+                setOf(
+                    "gist.githubusercontent.com", // For development testing
+                    "raw.githubusercontent.com",
+                    "localhost",
+                    "127.0.0.1"
+                )
+            } else {
+                emptySet()
+            }
+            
+            val allAllowedDomains = allowedDomains + debugAllowedDomains
+            
+            // Check if host matches any allowed domain or is a subdomain of contactzilla.app
+            val isAllowed = allAllowedDomains.any { allowedDomain ->
+                host == allowedDomain || host.endsWith(".$allowedDomain")
+            }
+            
+            if (isAllowed) {
+                logger.info("QR URL validation passed for domain: $host")
+            } else {
+                logger.warning("QR URL validation failed for domain: $host (not in allowed list: $allAllowedDomains)")
+            }
+            
+            isAllowed
+        } catch (e: Exception) {
+            logger.log(Level.WARNING, "Invalid QR URL format: $url", e)
+            false
+        }
+    }
+
+    /**
      * Processes a QR code by downloading the JSON configuration and creating accounts
      */
     fun processQrCode(qrContent: String, context: Context, onSuccess: (LoginInfo) -> Unit) {
@@ -67,6 +117,13 @@ class QrLoginModel @AssistedInject constructor(
                 uiState = uiState.copy(isLoading = true, error = null)
                 
                 logger.info("Processing QR code: $qrContent")
+                
+                // Validate QR URL domain for security
+                if (!isValidQrUrl(qrContent)) {
+                    logger.warning("QR code URL rejected due to invalid domain: $qrContent")
+                    setError(context.getString(R.string.login_qr_domain_error))
+                    return@launch
+                }
                 
                 // Download JSON configuration from QR code URL
                 val jsonConfig = downloadJsonConfig(qrContent)
