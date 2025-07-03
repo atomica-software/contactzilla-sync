@@ -30,8 +30,8 @@ android {
         applicationId = "com.atomicasoftware.contactzillasync"
 
         //noinspection HighAppVersionCode
-        versionCode = 2070040507
-        versionName = "4.5.7"
+        versionCode = 2070040508
+        versionName = "4.5.8"
 
         setProperty("archivesBaseName", "ContactzillaSyncClient-$versionName")
 
@@ -66,7 +66,7 @@ android {
     productFlavors {
         create("ose") {
             dimension = "distribution"
-            versionNameSuffix = "-ps"
+            versionNameSuffix = "-cz"
         }
     }
 
