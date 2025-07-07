@@ -15,5 +15,8 @@ data class LoginInfo(
     val suggestedAccountName: String? = null,
 
     /** group method that should be pre-selected */
-    val suggestedGroupMethod: GroupMethod = GroupMethod.CATEGORIES
+    val suggestedGroupMethod: GroupMethod = GroupMethod.CATEGORIES,
+    
+    /** indicates that QR code account creation is complete and login flow should finish */
+    val qrCodeComplete: Boolean = false
 )

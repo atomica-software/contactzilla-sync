@@ -171,6 +171,12 @@ class LoginScreenModel @AssistedInject constructor(
 
     fun updateLoginInfo(loginInfo: LoginInfo) {
         loginDetailsUiState = loginDetailsUiState.copy(loginInfo = loginInfo)
+        
+        // Check if QR code completion is signaled
+        if (loginInfo.qrCodeComplete) {
+            logger.info("LoginScreenModel: QR code completion detected, finishing login process")
+            finish = true
+        }
     }
 
 

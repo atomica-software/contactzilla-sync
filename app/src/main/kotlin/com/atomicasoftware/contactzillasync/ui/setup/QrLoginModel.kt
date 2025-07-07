@@ -145,15 +145,19 @@ class QrLoginModel @AssistedInject constructor(
                 val createdAccounts = createAccountsFromConfig(accountConfigs, context)
                 
                 if (createdAccounts > 0) {
-                    logger.info("Successfully created $createdAccounts accounts from QR code")
+                    logger.info("QR Code Processing: Successfully created $createdAccounts accounts from QR code")
                     
-                    // Create a dummy LoginInfo to satisfy the interface
-                    // The actual account creation was handled above
-                    val dummyLoginInfo = LoginInfo()
+                    // Create a special LoginInfo that signals QR completion
+                    // This tells the login flow that accounts are already created and it should finish
+                    val completionLoginInfo = LoginInfo(
+                        baseUri = null,
+                        credentials = null,
+                        qrCodeComplete = true  // Special flag to indicate QR completion
+                    )
                     
-                    // Show success message and navigate back
+                    // Show success message and signal completion
                     uiState = uiState.copy(isLoading = false)
-                    onSuccess(dummyLoginInfo)
+                    onSuccess(completionLoginInfo)
                 } else {
                     setError("Failed to create any accounts from QR configuration")
                 }
