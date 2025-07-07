@@ -32,8 +32,9 @@ class EmailLoginModel @AssistedInject constructor(
     ) {
         val uri = "mailto:$email".toURIorNull()
         
-        // Validate that email ends with @contactzilla.app
-        val isValidDomain = email.endsWith("@contactzilla.app", ignoreCase = true)
+        // Validate that email ends with @contactzilla.app or @dav.localhost.test
+        val isValidDomain = email.endsWith("@contactzilla.app", ignoreCase = true) ||
+                           email.endsWith("@dav.localhost.test", ignoreCase = true)
         
         // Only show validation errors after user has attempted to continue
         val showDomainError = hasAttemptedContinue && email.isNotEmpty() && !isValidDomain

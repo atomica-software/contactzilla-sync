@@ -55,6 +55,30 @@ class EmailLoginModelTest {
     }
 
     @Test
+    fun `test valid localhost test email address`() {
+        val model = createModel()
+        model.setEmail("user@dav.localhost.test")
+        model.setPassword("password")
+        
+        val uiState = model.uiState
+        assertTrue("Valid localhost test email should be accepted", uiState.isValidDomain)
+        assertFalse("Should not show domain error for valid localhost email", uiState.showDomainError)
+        assertTrue("Should be able to continue with valid localhost email and password", uiState.canContinue)
+    }
+
+    @Test
+    fun `test case insensitive localhost domain validation`() {
+        val model = createModel()
+        model.setEmail("user@DAV.LOCALHOST.TEST")
+        model.setPassword("password")
+        
+        val uiState = model.uiState
+        assertTrue("Localhost domain validation should be case insensitive", uiState.isValidDomain)
+        assertFalse("Should not show domain error for valid localhost email with different case", uiState.showDomainError)
+        assertTrue("Should be able to continue with valid localhost email in different case", uiState.canContinue)
+    }
+
+    @Test
     fun `test empty email`() {
         val model = createModel()
         model.setEmail("")

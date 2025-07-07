@@ -72,7 +72,8 @@ object EmailLogin : LoginType {
                 model.attemptContinue()
                 // Check validation directly since uiState won't update immediately
                 val uri = "mailto:${uiState.email}".toURIorNull()
-                val isValidDomain = uiState.email.endsWith("@contactzilla.app", ignoreCase = true)
+                val isValidDomain = uiState.email.endsWith("@contactzilla.app", ignoreCase = true) ||
+                                  uiState.email.endsWith("@dav.localhost.test", ignoreCase = true)
                 val isValid = uri != null && uiState.password.isNotEmpty() && isValidDomain
                 
                 if (isValid) {
