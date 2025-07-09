@@ -771,7 +771,7 @@ abstract class SyncManager<ResourceType: LocalResource<*>, out CollectionType: L
     companion object {
 
         /** Maximum number of resources that are requested with one multiget request. */
-        const val MAX_MULTIGET_RESOURCES = 10
+        const val MAX_MULTIGET_RESOURCES = 50
 
     }
 
