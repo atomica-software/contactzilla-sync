@@ -292,7 +292,7 @@
     <string name="login_type_email">Login with email address</string>
     <string name="login_email_address">Email address</string>
     <string name="login_email_address_error">Valid email address required</string>
-    <string name="login_email_address_domain_error">Email address must end with @contactzilla.app</string>
+    <string name="login_email_address_domain_error">Email address must end with @contactzilla.app or @contactzilla.us</string>
     <string name="login_email_address_info"><![CDATA[The email domain is used as base URL. <a href="%s">Services are discovered</a> using DNS records and well-known URLs.]]></string>
     <string name="login_password">Password</string>
     <string name="login_password_hide">Hide password</string>
@@ -304,7 +304,7 @@
     <string name="login_qr_scan_instructions">Point your camera at the Contactzilla QR setup code to automatically configure your account</string>
     <string name="login_qr_scan_error">Unable to scan QR code. Please try again.</string>
     <string name="login_qr_config_error">Unable to load configuration from QR code. Please check the QR code and try again.</string>
-    <string name="login_qr_domain_error">QR code URL must be from contactzilla.app domain</string>
+    <string name="login_qr_domain_error">QR code URL must be from a Contactzilla domain (contactzilla.app or contactzilla.us)</string>
     <string name="login_qr_accounts_created">Successfully configured %d account(s) from QR code</string>
     <string name="login_user_name">User name</string>
     <string name="login_user_name_optional">User name*</string>

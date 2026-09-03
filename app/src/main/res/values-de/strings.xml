@@ -240,7 +240,7 @@
   <string name="login_type_email">Mit E-Mail-Adresse anmelden</string>
       <string name="login_email_address">E-Mail-Adresse</string>
     <string name="login_email_address_error">Gültige E-Mail-Adresse benötigt</string>
-    <string name="login_email_address_domain_error">E-Mail-Adresse muss mit @contactzilla.app enden</string>
+    <string name="login_email_address_domain_error">E-Mail-Adresse muss mit @contactzilla.app oder @contactzilla.us enden</string>
     <string name="login_email_address_info"><![CDATA[Die E-Mail-Domäne wird als Basis-URL verwendet. <a href="%s">Dienst-Erkennung</a> erfolgt über DNS-Einträge und well-known-URLs.]]></string>
   <string name="login_password">Passwort</string>
   <string name="login_password_hide">Passwort ausblenden</string>
@@ -467,7 +467,7 @@
   <string name="widget_sync_description">Antippen, um die Synchronisierung manuell durchzuführen.</string>
   <!--cert4android-->
   <!--QR code errors-->
-  <string name="login_qr_domain_error">QR-Code-URL muss von der Domain contactzilla.app stammen</string>
+  <string name="login_qr_domain_error">QR-Code-URL muss von einer Contactzilla-Domain stammen (contactzilla.app oder contactzilla.us)</string>
   
   <!--managed configurations-->
   <string name="login_type_managed">Bitte anmelden</string>

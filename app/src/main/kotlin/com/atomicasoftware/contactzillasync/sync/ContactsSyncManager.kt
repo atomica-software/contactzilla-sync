@@ -155,8 +155,34 @@ class ContactsSyncManager @AssistedInject constructor(
      */
     private lateinit var resourceDownloader: ResourceDownloader
 
+    /**
+     * Counter for successfully processed contacts during sync
+     */
+    private var successfulContactCount = 0
+    private var successfulGroupCount = 0
+    private var successfulIndividualContactCount = 0
+    private var contactsWithoutPhoneCount = 0
+    private var contactsWithoutDisplayNameCount = 0
+    private var contactsWithEmptyDisplayNameCount = 0
+    private var organizationContactsCount = 0
+    private var contactsWithoutDataCount = 0
+    private var duplicateContactsCount = 0
+    private val processedContactNames = mutableSetOf<String>()
+
 
     override fun prepare(): Boolean {
+        // Reset contact counters for this sync
+        successfulContactCount = 0
+        successfulGroupCount = 0
+        successfulIndividualContactCount = 0
+        contactsWithoutPhoneCount = 0
+        contactsWithoutDisplayNameCount = 0
+        contactsWithEmptyDisplayNameCount = 0
+        organizationContactsCount = 0
+        contactsWithoutDataCount = 0
+        duplicateContactsCount = 0
+        processedContactNames.clear()
+        
         if (dirtyVerifier.isPresent) {
             logger.info("Sync will verify dirty contacts (Android 7.x workaround)")
             if (!dirtyVerifier.get().prepareAddressBook(localCollection, isUpload = syncFrameworkUpload))
@@ -329,12 +355,17 @@ class ContactsSyncManager @AssistedInject constructor(
                     version = null     // 3.0 is the default version; don't request 3.0 explicitly because maybe some vCard3-only servers don't understand it
                 }
             }
+            
+            // Track failed contacts for retry
+            val failedContacts = mutableListOf<HttpUrl>()
+            
             runInterruptible {
                 davCollection.multiget(bunch, contentType, version) { response, _ ->
                     // See CalendarSyncManager for more information about the multi-get response
                     SyncException.wrapWithRemoteResource(response.href) wrapResource@{
                         if (!response.isSuccess()) {
-                            logger.warning("Ignoring non-successful multi-get response for ${response.href}")
+                            logger.warning("CONTACT_DEBUG: Multi-get failed for ${response.href.lastSegment}")
+                            failedContacts.add(response.href)
                             return@wrapResource
                         }
 
@@ -362,80 +393,251 @@ class ContactsSyncManager @AssistedInject constructor(
                     }
                 }
             }
+            
+            // Retry failed contacts individually
+            if (failedContacts.isNotEmpty()) {
+                logger.warning("CONTACT_DEBUG: ${failedContacts.size} contacts failed in batch, retrying individually: ${failedContacts.map { it.lastSegment }}")
+                for (failedUrl in failedContacts) {
+                    try {
+                        runInterruptible {
+                            davCollection.multiget(listOf(failedUrl), contentType, version) { response, _ ->
+                                SyncException.wrapWithRemoteResource(response.href) wrapResource@{
+                                    if (!response.isSuccess()) {
+                                        logger.warning("CONTACT_DEBUG: Individual retry failed for ${response.href.lastSegment} - giving up")
+                                        return@wrapResource
+                                    }
+
+                                    val card = response[AddressData::class.java]?.card
+                                    if (card == null) {
+                                        logger.warning("CONTACT_DEBUG: Individual retry failed for ${response.href.lastSegment} - no address data")
+                                        return@wrapResource
+                                    }
+
+                                    val eTag = response[GetETag::class.java]?.eTag
+                                        ?: throw DavException("Individual retry: received response without ETag")
+
+                                    var isJCard = hasJCard
+                                    response[GetContentType::class.java]?.type?.let { type ->
+                                        isJCard = type.sameTypeAs(DavUtils.MEDIA_TYPE_JCARD)
+                                    }
+
+                                    processCard(
+                                        response.href.lastSegment,
+                                        eTag,
+                                        StringReader(card),
+                                        isJCard,
+                                        resourceDownloader
+                                    )
+                                }
+                            }
+                        }
+                    } catch (e: Exception) {
+                        logger.log(Level.WARNING, "CONTACT_DEBUG: Exception during individual retry for ${failedUrl.lastSegment}", e)
+                    }
+                }
+            }
         }
     }
 
     override fun postProcess() {
         groupStrategy.postProcess()
+        logger.info("CONTACT_DEBUG: Total successfully processed contacts: $successfulContactCount")
+        logger.info("CONTACT_DEBUG: - Individual contacts: $successfulIndividualContactCount")
+        logger.info("CONTACT_DEBUG: - Groups: $successfulGroupCount")
+        logger.info("CONTACT_DEBUG: - Contacts without phone numbers: $contactsWithoutPhoneCount")
+        logger.info("CONTACT_DEBUG: - Contacts without display name: $contactsWithoutDisplayNameCount")
+        logger.info("CONTACT_DEBUG: - Contacts with empty display name: $contactsWithEmptyDisplayNameCount")
+        logger.info("CONTACT_DEBUG: - Contacts without contact data: $contactsWithoutDataCount")
+        logger.info("CONTACT_DEBUG: - Organization contacts: $organizationContactsCount")
+        logger.info("CONTACT_DEBUG: - Duplicate contact names: $duplicateContactsCount")
     }
 
 
     // helpers
 
     private fun processCard(fileName: String, eTag: String, reader: Reader, jCard: Boolean, downloader: Contact.Downloader) {
-        logger.info("Processing CardDAV resource $fileName")
-
         val contacts = try {
             Contact.fromReader(reader, jCard, downloader)
         } catch (e: CannotParseException) {
-            logger.log(Level.SEVERE, "Received invalid vCard, ignoring", e)
+            logger.log(Level.SEVERE, "CONTACT_DEBUG: Failed to parse vCard for $fileName", e)
             notifyInvalidResource(e, fileName)
             return
         }
 
         if (contacts.isEmpty()) {
-            logger.warning("Received vCard without data, ignoring")
+            logger.warning("CONTACT_DEBUG: Received empty vCard for $fileName - ignoring")
             return
-        } else if (contacts.size > 1)
-            logger.warning("Received multiple vCards, using first one")
+        } else if (contacts.size > 1) {
+            logger.warning("CONTACT_DEBUG: Received multiple vCards for $fileName, using first one")
+        }
 
         val newData = contacts.first()
-        groupStrategy.verifyContactBeforeSaving(newData)
+        
+        // Get display name for later use
+        val displayName = newData.displayName
+        
+        try {
+            groupStrategy.verifyContactBeforeSaving(newData)
+        } catch (e: Exception) {
+            logger.log(Level.SEVERE, "CONTACT_DEBUG: Group strategy verification failed for $fileName", e)
+            return
+        }
 
         // update local contact, if it exists
-        val localOrNull = localCollection.findByName(fileName)
+        val localOrNull = try {
+            localCollection.findByName(fileName)
+        } catch (e: Exception) {
+            logger.log(Level.SEVERE, "CONTACT_DEBUG: Failed to find existing contact $fileName in local collection", e)
+            return
+        }
+        
         SyncException.wrapWithLocalResource(localOrNull) {
             var local = localOrNull
             if (local != null) {
-                logger.log(Level.INFO, "Updating $fileName in local address book", newData)
+                try {
+                    if (local is LocalGroup && newData.group) {
+                        // update group
+                        local.eTag = eTag
+                        local.flags = LocalResource.FLAG_REMOTELY_PRESENT
+                        local.update(newData)
 
-                if (local is LocalGroup && newData.group) {
-                    // update group
-                    local.eTag = eTag
-                    local.flags = LocalResource.FLAG_REMOTELY_PRESENT
-                    local.update(newData)
+                    } else if (local is LocalContact && !newData.group) {
+                        // update contact
+                        local.eTag = eTag
+                        local.flags = LocalResource.FLAG_REMOTELY_PRESENT
+                        local.update(newData)
 
-                } else if (local is LocalContact && !newData.group) {
-                    // update contact
-                    local.eTag = eTag
-                    local.flags = LocalResource.FLAG_REMOTELY_PRESENT
-                    local.update(newData)
-
-                } else {
-                    // group has become an individual contact or vice versa, delete and create with new type
-                    local.delete()
-                    local = null
+                    } else {
+                        // group has become an individual contact or vice versa, delete and create with new type
+                        local.delete()
+                        local = null
+                    }
+                } catch (e: Exception) {
+                    logger.log(Level.SEVERE, "CONTACT_DEBUG: Failed to update existing contact $fileName", e)
+                    return@wrapWithLocalResource
                 }
             }
 
             if (local == null) {
-                if (newData.group) {
-                    logger.log(Level.INFO, "Creating local group", newData)
-                    val newGroup = LocalGroup(localCollection, newData, fileName, eTag, LocalResource.FLAG_REMOTELY_PRESENT)
-                    SyncException.wrapWithLocalResource(newGroup) {
-                        newGroup.add()
-                        local = newGroup
+                try {
+                    if (newData.group) {
+                        val newGroup = LocalGroup(localCollection, newData, fileName, eTag, LocalResource.FLAG_REMOTELY_PRESENT)
+                        SyncException.wrapWithLocalResource(newGroup) {
+                            newGroup.add()
+                            local = newGroup
+                        }
+                    } else {
+                        val newContact = LocalContact(localCollection, newData, fileName, eTag, LocalResource.FLAG_REMOTELY_PRESENT)
+                        SyncException.wrapWithLocalResource(newContact) {
+                            newContact.add()
+                            local = newContact
+                        }
                     }
-                } else {
-                    logger.log(Level.INFO, "Creating local contact", newData)
-                    val newContact = LocalContact(localCollection, newData, fileName, eTag, LocalResource.FLAG_REMOTELY_PRESENT)
-                    SyncException.wrapWithLocalResource(newContact) {
-                        newContact.add()
-                        local = newContact
-                    }
+                } catch (e: Exception) {
+                    logger.log(Level.SEVERE, "CONTACT_DEBUG: Failed to create new contact $fileName", e)
+                    return@wrapWithLocalResource
                 }
             }
 
+            // Final verification that the contact was saved
+            try {
+                val finalLocal = local
+                if (finalLocal?.id == null) {
+                    logger.severe("CONTACT_DEBUG: SAVE_FAILED - Contact $fileName has no ID after save operation!")
+                } else {
+                    // Contact was successfully saved, increment counters
+                    successfulContactCount++
+                    if (newData.group) {
+                        successfulGroupCount++
+                    } else {
+                        successfulIndividualContactCount++
+                        
+                        // Check for duplicate names
+                        val contactName = displayName?.trim()
+                        if (!contactName.isNullOrBlank()) {
+                            if (processedContactNames.contains(contactName)) {
+                                duplicateContactsCount++
+                                logger.info("CONTACT_DEBUG: Duplicate contact name: '$contactName' in $fileName")
+                            } else {
+                                processedContactNames.add(contactName)
+                            }
+                        }
+                        
+                        // Check for various issues that might cause contacts to be hidden
+                        var hasIssues = false
+                        val issues = mutableListOf<String>()
+                        
+                        // Check phone numbers
+                        if (newData.phoneNumbers.isEmpty()) {
+                            contactsWithoutPhoneCount++
+                        }
+                        
+                        // Check display name
+                        if (displayName == null) {
+                            contactsWithoutDisplayNameCount++
+                            issues.add("no displayName")
+                            hasIssues = true
+                        } else if (displayName.isBlank()) {
+                            contactsWithEmptyDisplayNameCount++
+                            issues.add("empty displayName")
+                            hasIssues = true
+                        }
+                        
+                        // Check if contact has any name fields at all
+                        val hasAnyName = displayName?.isNotBlank() == true ||
+                                        newData.prefix?.isNotBlank() == true ||
+                                        newData.givenName?.isNotBlank() == true ||
+                                        newData.middleName?.isNotBlank() == true ||
+                                        newData.familyName?.isNotBlank() == true ||
+                                        newData.suffix?.isNotBlank() == true
+                        
+                        if (!hasAnyName) {
+                            issues.add("no name fields")
+                            hasIssues = true
+                        }
+                        
+                        // Check if contact has any data at all (emails, phone, addresses, etc.)
+                        val hasAnyData = newData.phoneNumbers.isNotEmpty() ||
+                                        newData.emails.isNotEmpty() ||
+                                        newData.addresses.isNotEmpty() ||
+                                        newData.impps.isNotEmpty()
+                        
+                        if (!hasAnyData) {
+                            contactsWithoutDataCount++
+                            issues.add("no contact data")
+                            hasIssues = true
+                        }
+                        
+                        // Check if this is an organization/company contact
+                        var isOrganization = false
+                        
+                        // Check if it has organization data but no personal names
+                        val hasPersonalNames = newData.givenName?.isNotBlank() == true ||
+                                             newData.familyName?.isNotBlank() == true ||
+                                             newData.middleName?.isNotBlank() == true
+                        
+                        val hasOrganizationData = newData.organization != null
+                        
+                        if (hasOrganizationData && !hasPersonalNames) {
+                            isOrganization = true
+                        }
+                        
+                        if (isOrganization) {
+                            organizationContactsCount++
+                            logger.info("CONTACT_DEBUG: Organization contact: $fileName (name: '$displayName')")
+                        }
+                        
+                        // Log problematic contacts
+                        if (hasIssues) {
+                            logger.info("CONTACT_DEBUG: Potentially problematic contact: $fileName - ${issues.joinToString(", ")}")
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                logger.log(Level.SEVERE, "CONTACT_DEBUG: SAVE_FAILED - Failed final verification for $fileName", e)
+            }
+
+            // update hashcode of contact on Android 7 (workaround to prevent always-dirty contacts)
             dirtyVerifier.getOrNull()?.let { verifier ->
                 // workaround for Android 7 which sets DIRTY flag when only meta-data is changed
                 (local as? LocalContact)?.let { localContact ->

@@ -28,7 +28,7 @@ import org.json.JSONObject
 import java.util.logging.Level
 import java.util.logging.Logger
 import java.net.URL
-import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.util.AllowedDomains
 
 @HiltViewModel(assistedFactory = QrLoginModel.Factory::class)
 class QrLoginModel @AssistedInject constructor(
@@ -62,45 +62,22 @@ class QrLoginModel @AssistedInject constructor(
 
     /**
      * Validates that the QR code URL is from an allowed domain for security purposes.
-     * In production, only contactzilla.app domain is allowed.
+     * In production, only Contactzilla domains are allowed.
      * In debug mode, additional test domains are permitted.
      */
     private fun isValidQrUrl(url: String): Boolean {
         return try {
             val parsedUrl = URL(url)
             val host = parsedUrl.host?.lowercase() ?: return false
-            
-            // Allowed domains for production
-            val allowedDomains = setOf(
-                "contactzilla.app",
-                "www.contactzilla.app"
-            )
-            
-            // Additional domains allowed in debug mode for testing
-            val debugAllowedDomains = if (BuildConfig.DEBUG) {
-                setOf(
-                    "gist.githubusercontent.com", // For development testing
-                    "raw.githubusercontent.com",
-                    "localhost",
-                    "127.0.0.1"
-                )
-            } else {
-                emptySet()
-            }
-            
-            val allAllowedDomains = allowedDomains + debugAllowedDomains
-            
-            // Check if host matches any allowed domain or is a subdomain of contactzilla.app
-            val isAllowed = allAllowedDomains.any { allowedDomain ->
-                host == allowedDomain || host.endsWith(".$allowedDomain")
-            }
-            
+
+            val isAllowed = AllowedDomains.isValidQrUrlHost(host)
+
             if (isAllowed) {
                 logger.info("QR URL validation passed for domain: $host")
             } else {
-                logger.warning("QR URL validation failed for domain: $host (not in allowed list: $allAllowedDomains)")
+                logger.warning("QR URL validation failed for domain: $host")
             }
-            
+
             isAllowed
         } catch (e: Exception) {
             logger.log(Level.WARNING, "Invalid QR URL format: $url", e)

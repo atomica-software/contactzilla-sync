@@ -24,6 +24,8 @@ bitfire-vcard4android = "59eb998f29"
 compose-accompanist = "0.37.3"
 compose-bom = "2025.05.01"
 compose-google-fonts = "1.8.2"
+conscrypt = "2.5.3"
+androidx-graphics-path = "1.1.0"
 dnsjava = "3.6.2"
 glance = "1.1.1"
 guava = "33.4.8-android"
@@ -75,6 +77,8 @@ compose-materialIconsExtended = { module = "androidx.compose.material:material-i
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-toolingPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "compose-google-fonts" }
+conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = "conscrypt" }
+androidx-graphics-path = { module = "androidx.graphics:graphics-path", version.ref = "androidx-graphics-path" }
 dnsjava = { module = "dnsjava:dnsjava", version.ref = "dnsjava" }
 glance-base = { module = "androidx.glance:glance-appwidget", version.ref = "glance" }
 glance-material = { module = "androidx.glance:glance-material", version.ref = "glance" }

@@ -36,6 +36,7 @@ import com.atomicasoftware.contactzillasync.R
 import com.atomicasoftware.contactzillasync.ui.UiUtils.toAnnotatedString
 import com.atomicasoftware.contactzillasync.ui.composable.Assistant
 import com.atomicasoftware.contactzillasync.ui.composable.PasswordTextField
+import com.atomicasoftware.contactzillasync.util.AllowedDomains
 import com.atomicasoftware.contactzillasync.util.DavUtils.toURIorNull
 
 object EmailLogin : LoginType {
@@ -72,8 +73,7 @@ object EmailLogin : LoginType {
                 model.attemptContinue()
                 // Check validation directly since uiState won't update immediately
                 val uri = "mailto:${uiState.email}".toURIorNull()
-                val isValidDomain = uiState.email.endsWith("@contactzilla.app", ignoreCase = true) ||
-                                  uiState.email.endsWith("@dav.localhost.test", ignoreCase = true)
+                val isValidDomain = AllowedDomains.isValidEmailDomain(uiState.email)
                 val isValid = uri != null && uiState.password.isNotEmpty() && isValidDomain
                 
                 if (isValid) {

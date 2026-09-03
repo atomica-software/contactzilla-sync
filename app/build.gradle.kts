@@ -105,6 +105,9 @@ android {
     }
 
     packaging {
+        jniLibs {
+            useLegacyPackaging = false
+        }
         resources {
             // multiple (test) dependencies have LICENSE files at same location
             merges += arrayOf("META-INF/LICENSE*")
@@ -125,6 +128,15 @@ android {
     }
 }
 
+configurations.configureEach {
+    resolutionStrategy {
+        force(
+            libs.conscrypt.android.get().toString(),
+            libs.androidx.graphics.path.get().toString(),
+        )
+    }
+}
+
 ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
 }
@@ -141,6 +153,10 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines)
     coreLibraryDesugaring(libs.android.desugaring)
+
+    // 16 KB page size compatible native libraries (override older transitive versions)
+    implementation(libs.conscrypt.android)
+    implementation(libs.androidx.graphics.path)
 
     // Hilt
     implementation(libs.hilt.android.base)

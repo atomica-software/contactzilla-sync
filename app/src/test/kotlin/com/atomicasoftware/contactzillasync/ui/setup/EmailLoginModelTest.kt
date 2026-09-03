@@ -55,7 +55,31 @@ class EmailLoginModelTest {
     }
 
     @Test
+    fun `test valid contactzilla us email address`() {
+        val model = createModel()
+        model.setEmail("user@contactzilla.us")
+        model.setPassword("password")
+
+        val uiState = model.uiState
+        assertTrue("Valid contactzilla.us email should be accepted", uiState.isValidDomain)
+        assertFalse("Should not show domain error for valid email", uiState.showDomainError)
+        assertTrue("Should be able to continue with valid email and password", uiState.canContinue)
+    }
+
+    @Test
     fun `test valid localhost test email address`() {
+        val model = createModel()
+        model.setEmail("user@localhost.test")
+        model.setPassword("password")
+
+        val uiState = model.uiState
+        assertTrue("Valid localhost.test email should be accepted", uiState.isValidDomain)
+        assertFalse("Should not show domain error for valid localhost email", uiState.showDomainError)
+        assertTrue("Should be able to continue with valid localhost email and password", uiState.canContinue)
+    }
+
+    @Test
+    fun `test valid dav localhost test email address`() {
         val model = createModel()
         model.setEmail("user@dav.localhost.test")
         model.setPassword("password")

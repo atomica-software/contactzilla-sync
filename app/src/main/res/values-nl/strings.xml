@@ -239,7 +239,7 @@
   <string name="login_type_email">Inloggen met e-mailadres</string>
       <string name="login_email_address">E-mailadres</string>
     <string name="login_email_address_error">Geldig e-mailadres vereist</string>
-    <string name="login_email_address_domain_error">E-mailadres moet eindigen met @contactzilla.app</string>
+    <string name="login_email_address_domain_error">E-mailadres moet eindigen met @contactzilla.app of @contactzilla.us</string>
     <string name="login_email_address_info"><![CDATA[Het e-maildomein wordt gebruikt als basis-URL. <a href="%s">Diensten worden ontdekt</a> met behulp van DNS-records en bekende URL\'s.]]></string>
   <string name="login_password">Wachtwoord</string>
   <string name="login_password_hide">Verberg wachtwoord</string>
@@ -466,7 +466,7 @@
   <string name="widget_sync_description">Tik om de synchronisatie handmatig uit te voeren.</string>
   <!--cert4android-->
   <!--QR code errors-->
-  <string name="login_qr_domain_error">QR-code URL moet van contactzilla.app domein zijn</string>
+  <string name="login_qr_domain_error">QR-code URL moet van een Contactzilla-domein zijn (contactzilla.app of contactzilla.us)</string>
   
   <!--managed configurations-->
   <string name="login_type_managed">Inloggen</string>
