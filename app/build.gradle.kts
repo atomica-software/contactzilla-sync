@@ -24,7 +24,7 @@ tasks.cyclonedxBom {
 
 // Android configuration
 android {
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.atomicasoftware.contactzillasync"
@@ -36,7 +36,7 @@ android {
         setProperty("archivesBaseName", "ContactzillaSyncClient-$versionName")
 
         minSdk = 24        // Android 7.0
-        targetSdk = 35     // Android 15
+        targetSdk = 36     // Android 16
 
         testInstrumentationRunner = "com.atomicasoftware.contactzillasync.HiltTestRunner"
     }
