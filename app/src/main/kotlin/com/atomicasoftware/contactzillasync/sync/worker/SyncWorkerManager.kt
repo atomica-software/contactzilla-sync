@@ -254,6 +254,35 @@ class SyncWorkerManager @Inject constructor(
             .cancelUniqueWork(PeriodicSyncWorker.workerName(account, dataType))
     }
 
+    /**
+     * Determines the interval that periodic synchronization is currently scheduled with.
+     *
+     * @param account    account to check
+     * @param dataType   type of data to synchronize
+     * @return repeat interval in seconds, or `null` if no periodic sync worker is enqueued or running
+     */
+    fun getPeriodicInterval(account: Account, dataType: SyncDataType): Long? =
+        WorkManager.getInstance(context).getWorkInfos(
+            WorkQuery.Builder
+                .fromUniqueWorkNames(listOf(PeriodicSyncWorker.workerName(account, dataType)))
+                .addStates(listOf(WorkInfo.State.ENQUEUED, WorkInfo.State.RUNNING))
+                .build()
+        ).get()
+            .firstNotNullOfOrNull { it.periodicityInfo }
+            ?.let { TimeUnit.MILLISECONDS.toSeconds(it.repeatIntervalMillis) }
+
+    /**
+     * The interval a periodic sync worker actually runs at when [enablePeriodic] is called with [interval].
+     *
+     * WorkManager doesn't allow intervals below [PeriodicWorkRequest.MIN_PERIODIC_INTERVAL_MILLIS] and silently
+     * uses that minimum instead, so a requested interval and the scheduled one are not necessarily the same.
+     *
+     * @param interval   requested interval in seconds
+     * @return interval in seconds that would actually be scheduled
+     */
+    fun effectivePeriodicInterval(interval: Long): Long =
+        interval.coerceAtLeast(TimeUnit.MILLISECONDS.toSeconds(PeriodicWorkRequest.MIN_PERIODIC_INTERVAL_MILLIS))
+
 
     // common / helpers
 

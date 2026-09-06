@@ -87,6 +87,9 @@ class AccountRepository @Inject constructor(
                 val accountSettings = accountSettingsFactory.create(account)
                 accountSettings.setGroupMethod(groupMethod)
 
+                // schedule periodic sync using the sync interval from the (managed) settings
+                automaticSyncManager.get().updateAutomaticSync(account)
+
                 // start CardDAV service detection (refresh collections)
                 RefreshCollectionsWorker.enqueue(context, id)
             }
