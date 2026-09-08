@@ -55,6 +55,13 @@
         android:title="@string/managed_by_title"
         android:description="@string/managed_by_description"/>
 
+    <restriction
+        android:defaultValue="false"
+        android:key="hide_ui"
+        android:restrictionType="bool"
+        android:title="@string/hide_ui_title"
+        android:description="@string/hide_ui_description"/>
+
     <!-- Account 1 (Primary) -->
     <restriction
         android:description="@string/login_email_address_info"

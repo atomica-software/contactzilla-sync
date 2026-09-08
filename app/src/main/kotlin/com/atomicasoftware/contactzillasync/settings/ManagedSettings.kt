@@ -65,6 +65,7 @@ class ManagedSettings @Inject constructor(
         private const val KEY_LOGIN_ACCOUNT_NAME = "login_account_name"
         private const val KEY_ORGANIZATION = "organization"
         private const val KEY_MANAGED_BY = "managed_by"
+        private const val KEY_HIDE_UI = "hide_ui"
         
         // Keys for additional accounts - Consistent naming pattern for all accounts
         // Account 1: login_base_url_1, Account 2: login_base_url_2, etc.
@@ -156,6 +157,17 @@ class ManagedSettings @Inject constructor(
         }
         
         return restrictions.getString(KEY_MANAGED_BY) ?: "your organization"
+    }
+
+    /**
+     * Whether the MDM has locked the app down to the account list.
+     *
+     * When this is set, the app must not offer any way into the app settings or into an account,
+     * so that the only things left are the account list itself and pull-to-refresh. This is
+     * enforced both in the UI and in the activities that can be started from outside the app.
+     */
+    fun isUiHidden(): Boolean {
+        return restrictions.getBoolean(KEY_HIDE_UI, false)
     }
 
     // Get account configuration for a specific account number (starting from 1)

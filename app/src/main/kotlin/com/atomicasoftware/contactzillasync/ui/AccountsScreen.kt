@@ -127,6 +127,7 @@ fun AccountsScreen(
         onManagePermissions = onManagePermissions,
         isManaged = model.isManaged.collectAsStateWithLifecycle(false).value,
         managedBy = model.managedBy.collectAsStateWithLifecycle("your organization").value,
+        hideUi = model.hideUi.collectAsStateWithLifecycle(false).value,
         internetUnavailable = !model.networkAvailable.collectAsStateWithLifecycle(false).value,
         batterySaverActive = model.batterySaverActive.collectAsStateWithLifecycle(false).value,
         dataSaverActive = model.dataSaverEnabled.collectAsStateWithLifecycle(false).value,
@@ -149,6 +150,8 @@ fun AccountsScreen(
     onManagePermissions: () -> Unit = {},
     isManaged: Boolean = false,
     managedBy: String = "your organization",
+    /** when set, the app is locked down to this screen: no drawer, no settings, no account details */
+    hideUi: Boolean = false,
     internetUnavailable: Boolean = false,
     batterySaverActive: Boolean = false,
     dataSaverActive: Boolean = false,
@@ -177,38 +180,41 @@ fun AccountsScreen(
     AppTheme {
         ModalNavigationDrawer(
             drawerState = drawerState,
+            gesturesEnabled = !hideUi,
             drawerContent = {
-                ModalDrawerSheet(
-                    windowInsets = WindowInsets(0.dp)
-                ) {
-                    accountsDrawerHandler.AccountsDrawer(
-                        snackbarHostState = snackbarHostState,
-                        onCloseDrawer = {
-                            scope.launch {
-                                drawerState.close()
+                if (!hideUi)
+                    ModalDrawerSheet(
+                        windowInsets = WindowInsets(0.dp)
+                    ) {
+                        accountsDrawerHandler.AccountsDrawer(
+                            snackbarHostState = snackbarHostState,
+                            onCloseDrawer = {
+                                scope.launch {
+                                    drawerState.close()
+                                }
                             }
-                        }
-                    )
-                }
+                        )
+                    }
             }
         ) {
             Scaffold(
                 topBar = {
                     TopAppBar(
                         navigationIcon = {
-                            IconToggleButton(false, onCheckedChange = { openDrawer ->
-                                scope.launch {
-                                    if (openDrawer)
-                                        drawerState.open()
-                                    else
-                                        drawerState.close()
+                            if (!hideUi)
+                                IconToggleButton(false, onCheckedChange = { openDrawer ->
+                                    scope.launch {
+                                        if (openDrawer)
+                                            drawerState.open()
+                                        else
+                                            drawerState.close()
+                                    }
+                                }) {
+                                    Icon(
+                                        Icons.Filled.Menu,
+                                        stringResource(androidx.compose.ui.R.string.navigation_menu)
+                                    )
                                 }
-                            }) {
-                                Icon(
-                                    Icons.Filled.Menu,
-                                    stringResource(androidx.compose.ui.R.string.navigation_menu)
-                                )
-                            }
                         },
                         title = {
                             Text(stringResource(R.string.app_name))
@@ -216,37 +222,39 @@ fun AccountsScreen(
                     )
                 },
                 floatingActionButton = {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        if (showAddAccount == AccountsModel.FABStyle.WithText)
-                            ExtendedFloatingActionButton(
-                                text = { Text(stringResource(R.string.login_add_account)) },
-                                icon = { Icon(Icons.Filled.Add, stringResource(R.string.login_add_account)) },
-                                containerColor = MaterialTheme.colorScheme.primary,
-                                contentColor = MaterialTheme.colorScheme.onPrimary,
-                                onClick = onAddAccount
-                            )
-                        else if (showAddAccount == AccountsModel.FABStyle.Standard)
-                            FloatingActionButton(
-                                onClick = onAddAccount,
-                                containerColor = MaterialTheme.colorScheme.secondary,
-                                contentColor = MaterialTheme.colorScheme.onSecondary
-                            ) {
-                                Icon(Icons.Filled.Add, stringResource(R.string.login_add_account))
-                            }
-
-                        if (showSyncAll)
-                            FloatingActionButton(
-                                onClick = onSyncAll,
-                                containerColor = MaterialTheme.colorScheme.primary,
-                                contentColor = MaterialTheme.colorScheme.onPrimary,
-                                modifier = Modifier.padding(top = 24.dp)
-                            ) {
-                                Icon(
-                                    Icons.Default.Sync,
-                                    contentDescription = stringResource(R.string.accounts_sync_all)
+                    // when the UI is hidden, pull-to-refresh is the only way left to start a sync
+                    if (!hideUi)
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            if (showAddAccount == AccountsModel.FABStyle.WithText)
+                                ExtendedFloatingActionButton(
+                                    text = { Text(stringResource(R.string.login_add_account)) },
+                                    icon = { Icon(Icons.Filled.Add, stringResource(R.string.login_add_account)) },
+                                    containerColor = MaterialTheme.colorScheme.primary,
+                                    contentColor = MaterialTheme.colorScheme.onPrimary,
+                                    onClick = onAddAccount
                                 )
-                            }
-                    }
+                            else if (showAddAccount == AccountsModel.FABStyle.Standard)
+                                FloatingActionButton(
+                                    onClick = onAddAccount,
+                                    containerColor = MaterialTheme.colorScheme.secondary,
+                                    contentColor = MaterialTheme.colorScheme.onSecondary
+                                ) {
+                                    Icon(Icons.Filled.Add, stringResource(R.string.login_add_account))
+                                }
+
+                            if (showSyncAll)
+                                FloatingActionButton(
+                                    onClick = onSyncAll,
+                                    containerColor = MaterialTheme.colorScheme.primary,
+                                    contentColor = MaterialTheme.colorScheme.onPrimary,
+                                    modifier = Modifier.padding(top = 24.dp)
+                                ) {
+                                    Icon(
+                                        Icons.Default.Sync,
+                                        contentDescription = stringResource(R.string.accounts_sync_all)
+                                    )
+                                }
+                        }
                 },
                 snackbarHost = { SnackbarHost(snackbarHostState) }
             ) { padding ->
@@ -337,6 +345,7 @@ fun AccountsScreen(
                             // account list
                             AccountList(
                                 accounts = accounts,
+                                accountsClickable = !hideUi,
                                 onClickAccount = { account ->
                                     onShowAccount(account)
                                 },
@@ -388,9 +397,30 @@ fun AccountsScreen_Preview_OneAccount() {
 }
 
 @Composable
+@Preview
+fun AccountsScreen_Preview_HiddenUi() {
+    AccountsScreen(
+        accountsDrawerHandler = object: AccountsDrawerHandler() {
+            @Composable
+            override fun MenuEntries(snackbarHostState: SnackbarHostState) {
+                Text("Menu entries")
+            }
+        },
+        accounts = listOf(
+            AccountsModel.AccountInfo(
+                Account("Account Name", "test"),
+                AccountProgress.Idle
+            )
+        ),
+        hideUi = true
+    )
+}
+
+@Composable
 fun AccountList(
     accounts: List<AccountsModel.AccountInfo>,
     modifier: Modifier = Modifier,
+    accountsClickable: Boolean = true,
     onClickAccount: (Account) -> Unit = {}
 ) {
     Column(modifier) {
@@ -418,7 +448,7 @@ fun AccountList(
                     ),
                     elevation = CardDefaults.cardElevation(1.dp),
                     modifier = Modifier
-                        .clickable { onClickAccount(account) }
+                        .clickable(enabled = accountsClickable) { onClickAccount(account) }
                         .fillMaxWidth()
                         .padding(bottom = 8.dp)
                 ) {

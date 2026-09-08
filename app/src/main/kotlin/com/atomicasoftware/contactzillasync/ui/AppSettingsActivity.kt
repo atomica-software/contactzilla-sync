@@ -13,14 +13,26 @@ import android.provider.Settings
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.atomicasoftware.contactzillasync.BuildConfig
+import com.atomicasoftware.contactzillasync.settings.ManagedSettings
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AppSettingsActivity: AppCompatActivity() {
 
+    @Inject
+    lateinit var managedSettings: ManagedSettings
+
     @SuppressLint("BatteryLife")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // this activity is exported (APPLICATION_PREFERENCES), so hiding the way here in the
+        // accounts screen isn't enough to keep it out of reach
+        if (managedSettings.isUiHidden()) {
+            finish()
+            return
+        }
 
         setContent {
             AppSettingsScreen(

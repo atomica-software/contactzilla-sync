@@ -160,6 +160,14 @@ class AccountsModel @AssistedInject constructor(
             immediate = true
         ).map { managedSettings.getManagedBy() }
 
+    /** whether the MDM restricts the app to the account list (no settings, no account details) **/
+    val hideUi =
+        broadcastReceiverFlow(
+            context = context,
+            filter = IntentFilter(ACTION_APPLICATION_RESTRICTIONS_CHANGED),
+            immediate = true
+        ).map { managedSettings.isUiHidden() }
+
     /** whether a usable network connection is available (sync framework won't run synchronization otherwise) */
     val networkAvailable = callbackFlow<Boolean> {
         val networkCallback = object: ConnectivityManager.NetworkCallback() {

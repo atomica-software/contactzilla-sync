@@ -591,6 +591,8 @@
     <string name="organization">Organization name</string>
     <string name="managed_by_title">Managed By</string>
     <string name="managed_by_description">Organization or entity managing the account settings (defaults to "your organization")</string>
+    <string name="hide_ui_title">Hide app interface</string>
+    <string name="hide_ui_description">Restrict the app to the account list with pull-to-refresh. Hides the navigation menu, app settings and account details.</string>
     <string name="wifi_only_title">Sync over WiFi only</string>
     <string name="wifi_only_ssids_title">WiFi SSID restriction</string>
 

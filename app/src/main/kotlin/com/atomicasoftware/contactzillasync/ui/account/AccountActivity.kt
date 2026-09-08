@@ -12,6 +12,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
 import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.settings.ManagedSettings
 import com.atomicasoftware.contactzillasync.ui.AccountsActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.logging.Logger
@@ -23,8 +24,18 @@ class AccountActivity : AppCompatActivity() {
     @Inject
     lateinit var logger: Logger
 
+    @Inject
+    lateinit var managedSettings: ManagedSettings
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // this activity is exported, so disabling the account cards in the accounts screen isn't
+        // enough to keep the account details out of reach
+        if (managedSettings.isUiHidden()) {
+            finish()
+            return
+        }
 
         val account =
             IntentCompat.getParcelableExtra(intent, EXTRA_ACCOUNT, Account::class.java) ?:

@@ -9,6 +9,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.atomicasoftware.contactzillasync.db.Credentials
+import com.atomicasoftware.contactzillasync.settings.ManagedSettings
 import com.atomicasoftware.contactzillasync.ui.account.AccountActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.net.URI
@@ -25,8 +26,17 @@ class LoginActivity @Inject constructor(): AppCompatActivity() {
 
     @Inject lateinit var loginTypesProvider: LoginTypesProvider
 
+    @Inject lateinit var managedSettings: ManagedSettings
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // this activity is exported and can be reached by a carddav: link, so it has to be closed
+        // explicitly; managed accounts are set up by ManagedAccountSetup and don't come through here
+        if (managedSettings.isUiHidden()) {
+            finish()
+            return
+        }
 
         val (initialLoginType, skipLoginTypePage) = loginTypesProvider.intentToInitialLoginType(intent)
 

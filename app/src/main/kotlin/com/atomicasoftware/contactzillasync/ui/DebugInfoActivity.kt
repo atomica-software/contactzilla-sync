@@ -15,11 +15,13 @@ import androidx.core.content.FileProvider
 import androidx.core.content.IntentCompat
 import com.atomicasoftware.contactzillasync.BuildConfig
 import com.atomicasoftware.contactzillasync.R
+import com.atomicasoftware.contactzillasync.settings.ManagedSettings
 import com.google.common.base.Ascii
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.HttpUrl
 import java.io.File
 import java.time.Instant
+import javax.inject.Inject
 
 /**
  * Debug info activity. Provides verbose information for debugging and support. Should enable users
@@ -57,8 +59,19 @@ class DebugInfoActivity : AppCompatActivity() {
         private const val EXTRA_TIMESTAMP = "timestamp"
     }
 
+    @Inject
+    lateinit var managedSettings: ManagedSettings
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // this activity is exported (BUG_REPORT), so hiding the way here in the app settings
+        // isn't enough to keep it out of reach
+        if (managedSettings.isUiHidden()) {
+            finish()
+            return
+        }
+
         val extras = intent.extras
 
         setContent { 
