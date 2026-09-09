@@ -29,7 +29,8 @@ class DefaultsProvider @Inject constructor(): SettingsProvider {
     )
 
     val longDefaults = mapOf<String, Long>(
-        Pair(Settings.DEFAULT_SYNC_INTERVAL, 4*3600)    /* 4 hours */
+        // 15 minutes is the shortest interval WorkManager will schedule periodic work at
+        Pair(Settings.DEFAULT_SYNC_INTERVAL, 15*60)     /* 15 minutes */
     )
 
     val stringDefaults = mapOf(

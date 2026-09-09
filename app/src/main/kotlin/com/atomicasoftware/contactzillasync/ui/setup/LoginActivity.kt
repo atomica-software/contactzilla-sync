@@ -45,7 +45,6 @@ class LoginActivity @Inject constructor(): AppCompatActivity() {
                 initialLoginType = initialLoginType,
                 skipLoginTypePage = skipLoginTypePage,
                 initialLoginInfo = loginInfoFromIntent(intent),
-                onNavUp = { onSupportNavigateUp() },
                 onFinish = { newAccount ->
                     finish()
 

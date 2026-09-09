@@ -59,7 +59,6 @@ class LoginScreenModel @AssistedInject constructor(
     enum class Page {
         LoginType,
         LoginDetails,
-        DetectResources,
         AccountDetails
     }
 
@@ -78,6 +77,10 @@ class LoginScreenModel @AssistedInject constructor(
     // navigation events
 
     fun navToNextPage() {
+        // the login flow is already done (for instance, QR code login created the accounts itself)
+        if (finish)
+            return
+
         when (page) {
             Page.LoginType -> {
                 // continue to login details
@@ -88,26 +91,10 @@ class LoginScreenModel @AssistedInject constructor(
             }
 
             Page.LoginDetails -> {
-                // continue to resource detection
+                // Stay on this page and detect resources in place, so that the entered login
+                // details are preserved if detection fails. Only a successful detection advances.
                 loginInfo = loginDetailsUiState.loginInfo
-                page = Page.DetectResources
-
                 detectResources()
-            }
-
-            Page.DetectResources -> {
-                // continue to account details
-                val emails = foundConfig?.calDAV?.emails.orEmpty().toSet()
-                val principalName = foundConfig?.cardDAV?.principal?.pathSegments?.dropLast(1)?.last()
-                val initialAccountName = emails.firstOrNull()
-                    ?: principalName
-                    ?: loginInfo.suggestedAccountName
-                    ?: loginInfo.credentials?.username
-                    ?: loginInfo.baseUri?.host
-                    ?: ""
-                updateAccountNameAndEmails(initialAccountName, emails)
-                updateGroupMethod(loginInfo.suggestedGroupMethod)
-                page = Page.AccountDetails
             }
 
             Page.AccountDetails -> {
@@ -116,21 +103,41 @@ class LoginScreenModel @AssistedInject constructor(
         }
     }
 
+    /**
+     * Called when [detectResources] found a usable configuration. Suggests an account name from
+     * the detected configuration and continues to the last page.
+     */
+    private fun navToAccountDetails() {
+        // prefer the address book's own name, so that a manually added account is named the same as
+        // one added by QR code or managed configuration
+        val addressBookNames = foundConfig?.cardDAV?.addressBookNames.orEmpty()
+        val emails = foundConfig?.calDAV?.emails.orEmpty()
+        val principalName = foundConfig?.cardDAV?.principal?.pathSegments?.dropLast(1)?.last()
+        val initialAccountName = addressBookNames.firstOrNull()
+            ?: emails.firstOrNull()
+            ?: principalName
+            ?: loginInfo.suggestedAccountName
+            ?: loginInfo.credentials?.username
+            ?: loginInfo.baseUri?.host
+            ?: ""
+        updateAccountNameAndSuggestions(initialAccountName, (addressBookNames + emails).toSet())
+        updateGroupMethod(loginInfo.suggestedGroupMethod)
+        page = Page.AccountDetails
+    }
+
     fun navBack() {
         when (page) {
             Page.LoginType ->
                 finish = true
 
             Page.LoginDetails ->
-                if (loginTypesProvider.maybeNonInteractive)
+                if (detectResourcesUiState.loading)
+                    // a login attempt is running: only abort it, don't leave the page
+                    cancelResourceDetection()
+                else if (loginTypesProvider.maybeNonInteractive)
                     finish = true
                 else
                     page = Page.LoginType
-
-            Page.DetectResources -> {
-                cancelResourceDetection()
-                page = Page.LoginDetails
-            }
 
             Page.AccountDetails ->
                 page = Page.LoginDetails
@@ -180,7 +187,7 @@ class LoginScreenModel @AssistedInject constructor(
     }
 
 
-    // UI element state – third page: detect resources
+    // resource detection – runs on top of the login details page
 
     data class DetectResourcesUiState(
         val loading: Boolean = false,
@@ -189,6 +196,10 @@ class LoginScreenModel @AssistedInject constructor(
         val logs: String? = null
     )
 
+    /** Whether detection failed and the error should be shown to the user. */
+    val detectionFailed: Boolean
+        get() = detectResourcesUiState.foundNothing
+
     var detectResourcesUiState by mutableStateOf(DetectResourcesUiState())
         private set
 
@@ -196,11 +207,20 @@ class LoginScreenModel @AssistedInject constructor(
     private var detectResourcesJob: Job? = null
 
     private fun detectResources() {
-        detectResourcesUiState = detectResourcesUiState.copy(loading = true)
+        val baseUri = loginInfo.baseUri
+        if (baseUri == null) {
+            logger.warning("LoginScreenModel: resource detection requested without a base URI")
+            detectResourcesUiState = DetectResourcesUiState(foundNothing = true)
+            return
+        }
+
+        // discard the result of any previous attempt
+        detectResourcesUiState = DetectResourcesUiState(loading = true)
+
         detectResourcesJob = viewModelScope.launch {
             val result = withContext(Dispatchers.IO) {
                  runInterruptible {
-                     resourceFinderFactory.create(loginInfo.baseUri!!, loginInfo.credentials).use { finder ->
+                     resourceFinderFactory.create(baseUri, loginInfo.credentials).use { finder ->
                          finder.findInitialConfiguration()
                      }
                  }
@@ -208,11 +228,12 @@ class LoginScreenModel @AssistedInject constructor(
 
             if (result.calDAV != null || result.cardDAV != null) {
                 foundConfig = result
-                navToNextPage()
+                detectResourcesUiState = DetectResourcesUiState()
+                navToAccountDetails()
 
             } else {
                 foundConfig = null
-                detectResourcesUiState = detectResourcesUiState.copy(
+                detectResourcesUiState = DetectResourcesUiState(
                     loading = false,
                     foundNothing = true,
                     encountered401 = result.encountered401,
@@ -224,6 +245,13 @@ class LoginScreenModel @AssistedInject constructor(
 
     private fun cancelResourceDetection() {
         detectResourcesJob?.cancel()
+        detectResourcesJob = null
+        detectResourcesUiState = DetectResourcesUiState()
+    }
+
+    /** Dismisses the error of a failed login attempt, returning the user to the login form. */
+    fun dismissDetectionError() {
+        detectResourcesUiState = DetectResourcesUiState()
     }
 
 
@@ -279,12 +307,12 @@ class LoginScreenModel @AssistedInject constructor(
         }
     }
 
-    fun updateAccountNameAndEmails(accountName: String, emails: Set<String>) {
+    fun updateAccountNameAndSuggestions(accountName: String, suggestions: Set<String>) {
         _accountDetailsUiState.update { currentState ->
             currentState.copy(
                 accountName = accountName,
                 accountNameExists = accountRepository.exists(accountName),
-                suggestedAccountNames = emails
+                suggestedAccountNames = suggestions
             )
         }
     }
@@ -302,6 +330,15 @@ class LoginScreenModel @AssistedInject constructor(
     }
 
     fun createAccount() {
+        val config = foundConfig
+        if (config == null) {
+            logger.warning("LoginScreenModel: account creation requested without a detected configuration")
+            _accountDetailsUiState.update { currentState ->
+                currentState.copy(couldNotCreateAccount = true)
+            }
+            return
+        }
+
         _accountDetailsUiState.update { currentState ->
             currentState.copy(creatingAccount = true)
         }
@@ -311,7 +348,7 @@ class LoginScreenModel @AssistedInject constructor(
                 accountRepository.createBlocking(
                     accountDetailsUiState.value.accountName,
                     loginInfo.credentials,
-                    foundConfig!!,
+                    config,
                     accountDetailsUiState.value.groupMethod
                 )
             }

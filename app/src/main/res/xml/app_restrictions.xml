@@ -39,7 +39,7 @@
         android:title="@string/distrust_system_certs_title"/>
 
     <restriction
-        android:defaultValue="14400"
+        android:defaultValue="900"
         android:key="default_sync_interval"
         android:restrictionType="integer"
         android:title="@string/default_sync_interval"/>

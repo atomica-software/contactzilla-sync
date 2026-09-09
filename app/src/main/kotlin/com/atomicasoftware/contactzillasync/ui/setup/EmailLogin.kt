@@ -26,6 +26,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,9 +37,6 @@ import com.atomicasoftware.contactzillasync.R
 import com.atomicasoftware.contactzillasync.ui.UiUtils.toAnnotatedString
 import com.atomicasoftware.contactzillasync.ui.composable.Assistant
 import com.atomicasoftware.contactzillasync.ui.composable.PasswordTextField
-import com.atomicasoftware.contactzillasync.util.AllowedDomains
-import com.atomicasoftware.contactzillasync.util.DavUtils.toURIorNull
-
 object EmailLogin : LoginType {
 
     override val title: Int
@@ -71,14 +69,10 @@ object EmailLogin : LoginType {
             showGeneralEmailError = uiState.showGeneralEmailError,
             onLogin = { 
                 model.attemptContinue()
-                // Check validation directly since uiState won't update immediately
-                val uri = "mailto:${uiState.email}".toURIorNull()
-                val isValidDomain = AllowedDomains.isValidEmailDomain(uiState.email)
-                val isValid = uri != null && uiState.password.isNotEmpty() && isValidDomain
-                
-                if (isValid) {
+                // check the state captured by this composition, since attemptContinue() only
+                // flips the flag that reveals validation errors
+                if (uiState.canLogin)
                     onLogin(uiState.asLoginInfo())
-                }
             }
         )
     }
@@ -133,6 +127,7 @@ fun EmailLoginScreen(
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Email,
+                    capitalization = KeyboardCapitalization.None,
                     imeAction = ImeAction.Next
                 ),
                 modifier = Modifier

@@ -26,6 +26,7 @@ import at.bitfire.dav4jvm.property.webdav.CurrentUserPrivilegeSet
 import at.bitfire.dav4jvm.property.webdav.DisplayName
 import at.bitfire.dav4jvm.property.webdav.HrefListProperty
 import at.bitfire.dav4jvm.property.webdav.ResourceType
+import com.atomicasoftware.contactzillasync.BuildConfig
 import com.atomicasoftware.contactzillasync.db.Collection
 import com.atomicasoftware.contactzillasync.db.Credentials
 import com.atomicasoftware.contactzillasync.log.StringHandler
@@ -42,6 +43,7 @@ import java.io.InterruptedIOException
 import java.net.SocketTimeoutException
 import java.net.URI
 import java.net.URISyntaxException
+import java.security.MessageDigest
 import java.util.LinkedList
 import java.util.logging.Level
 import java.util.logging.Logger
@@ -92,9 +94,42 @@ class DavResourceFinder @AssistedInject constructor(
             }
         .build()
 
+    init {
+        if (BuildConfig.DEBUG)
+            logCredentialFingerprint()
+    }
+
     override fun close() {
         httpClient.close()
     }
+
+    /**
+     * Logs a non-reversible fingerprint of the credentials that are about to be sent, so that an
+     * HTTP 401 can be attributed to the credentials themselves without writing the password to the
+     * log. Invisible characters introduced by pasting (a trailing line break, for instance) show up
+     * as an unexpected length or `ascii=false`.
+     *
+     * Debug builds only, since it reveals the user name.
+     */
+    private fun logCredentialFingerprint() {
+        fun fingerprint(value: String?) =
+            if (value == null)
+                "null"
+            else
+                "len=${value.length} ascii=${value.all { it.code in 32..126 }} sha256=${sha256Prefix(value)}"
+
+        log.info(
+            "Credential fingerprint for $baseURI: " +
+            "username=<${credentials?.username}> ${fingerprint(credentials?.username)}, " +
+            "password ${fingerprint(credentials?.password)}"
+        )
+    }
+
+    private fun sha256Prefix(value: String) =
+        MessageDigest.getInstance("SHA-256")
+            .digest(value.toByteArray(Charsets.UTF_8))
+            .joinToString("") { "%02x".format(it) }
+            .take(16)
 
     private fun initLogging(): StringHandler {
         // don't use more than 1/4 of the available memory for a log string
@@ -195,10 +230,58 @@ class DavResourceFinder @AssistedInject constructor(
 
         // return config or null if config doesn't contain useful information
         val serviceAvailable = config.principal != null || config.homeSets.isNotEmpty() || config.collections.isNotEmpty()
-        return if (serviceAvailable)
-            config
-        else
-            null
+        if (!serviceAvailable)
+            return null
+
+        config.addressBookNames += findAddressBookNames(config)
+        return config
+    }
+
+    /**
+     * Collects the names of the user's address books, so that one can be suggested as the account
+     * name. Purely informational – the result is not written to the database.
+     */
+    private fun findAddressBookNames(config: Configuration.ServiceInfo): List<String> {
+        // the user-given URL already turned out to be an address book (or several)
+        val known = config.collections.values.mapNotNull { it.displayName }
+        if (known.isNotEmpty())
+            return known
+
+        // otherwise look one level below the home set, or below the user-given URL if we didn't
+        // find a home set. Never below an address book, so we don't enumerate its contacts.
+        val urls =
+            if (config.homeSets.isNotEmpty())
+                config.homeSets.toList()
+            else
+                listOfNotNull(baseURI.toHttpUrlOrNull())
+
+        return urls.flatMap { queryAddressBookNames(it) }
+    }
+
+    /**
+     * Lists the address books directly below [url].
+     *
+     * @param url   a collection that contains address books, for instance an address book home set
+     * @return display names of the address books found (empty if none)
+     */
+    private fun queryAddressBookNames(url: HttpUrl): List<String> {
+        val names = LinkedList<String>()
+        try {
+            DavResource(httpClient.okHttpClient, url, log).propfind(1, ResourceType.NAME, DisplayName.NAME) { response, _ ->
+                val isAddressBook = response[ResourceType::class.java]?.types?.contains(ResourceType.ADDRESSBOOK) == true
+                if (isAddressBook)
+                    response[DisplayName::class.java]?.displayName?.trim()?.let { displayName ->
+                        if (displayName.isNotEmpty()) {
+                            log.info("Found address book \"$displayName\" at ${response.href}")
+                            names += displayName
+                        }
+                    }
+            }
+        } catch (e: Exception) {
+            log.log(Level.FINE, "Couldn't list address books at $url", e)
+            processException(e)
+        }
+        return names
     }
 
     /**
@@ -480,7 +563,10 @@ class DavResourceFinder @AssistedInject constructor(
             val homeSets: MutableSet<HttpUrl> = HashSet(),
             val collections: MutableMap<HttpUrl, Collection> = HashMap(),
 
-            val emails: MutableList<String> = LinkedList()
+            val emails: MutableList<String> = LinkedList(),
+
+            /** Names of the user's address books, to suggest as account name. Not persisted. */
+            val addressBookNames: MutableList<String> = LinkedList()
         )
 
         override fun toString() =

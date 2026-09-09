@@ -44,7 +44,12 @@ fun PasswordTextField(
 
     OutlinedTextField(
         value = password,
-        onValueChange = onPasswordChange,
+        onValueChange = { newPassword ->
+            // Pasting a copied line brings its trailing line break along, and a single-line field
+            // renders it invisibly – so the password looks correct but authentication fails. No
+            // control character can be entered here deliberately, so drop them all.
+            onPasswordChange(newPassword.filterNot(Char::isISOControl))
+        },
         label = labelText?.let { { Text(it) } },
         leadingIcon = leadingIcon,
         isError = isError,

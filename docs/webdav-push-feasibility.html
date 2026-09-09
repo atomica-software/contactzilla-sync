@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WebDAV-Push support — feasibility and scope</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+
+  html { font-size: 10.5pt; }
+  body {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 20pt;
+    line-height: 1.2;
+    margin: 0 0 4pt 0;
+    letter-spacing: -0.3pt;
+  }
+  .subtitle {
+    color: #555;
+    font-size: 10pt;
+    margin: 0 0 4pt 0;
+  }
+  .meta {
+    color: #777;
+    font-size: 8.5pt;
+    border-bottom: 1.5pt solid #1a1a1a;
+    padding-bottom: 10pt;
+    margin-bottom: 16pt;
+  }
+
+  h2 {
+    font-size: 13pt;
+    margin: 20pt 0 6pt 0;
+    padding-bottom: 3pt;
+    border-bottom: 0.5pt solid #ccc;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 11pt;
+    margin: 14pt 0 4pt 0;
+    page-break-after: avoid;
+  }
+  p { margin: 0 0 8pt 0; }
+
+  code {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 8.8pt;
+    background: #f2f2f2;
+    padding: 0.5pt 3pt;
+    border-radius: 2pt;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 8pt 0 12pt 0;
+    font-size: 9pt;
+  }
+  tr { page-break-inside: avoid; }
+  thead { display: table-header-group; }
+  th {
+    text-align: left;
+    background: #f2f2f2;
+    font-weight: 600;
+    padding: 5pt 7pt;
+    border-bottom: 0.8pt solid #bbb;
+  }
+  td {
+    padding: 5pt 7pt;
+    border-bottom: 0.4pt solid #e0e0e0;
+    vertical-align: top;
+  }
+  td.status { white-space: nowrap; font-weight: 600; }
+  .ok      { color: #1a7f37; }
+  .gone    { color: #b42318; }
+  .partial { color: #a8620a; }
+
+  ul, ol { margin: 0 0 8pt 0; padding-left: 18pt; }
+  li { margin-bottom: 4pt; }
+
+  .callout {
+    background: #f7f7f5;
+    border-left: 2.5pt solid #666;
+    padding: 8pt 11pt;
+    margin: 10pt 0 12pt 0;
+    page-break-inside: avoid;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout .label {
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.6pt;
+    color: #666;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 3pt;
+  }
+
+  .filelist {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 8.5pt;
+    line-height: 1.7;
+    background: #f7f7f5;
+    padding: 8pt 11pt;
+    margin: 8pt 0 12pt 0;
+    page-break-inside: avoid;
+  }
+
+  a { color: #1a1a1a; }
+  .refs { font-size: 9pt; }
+  .refs td { padding: 4pt 7pt; }
+  .footer-note {
+    margin-top: 18pt;
+    padding-top: 8pt;
+    border-top: 0.5pt solid #ccc;
+    font-size: 8.5pt;
+    color: #777;
+  }
+</style>
+</head>
+<body>
+
+<h1>Supporting WebDAV-Push</h1>
+<p class="subtitle">Feasibility assessment and implementation scope for ContactzillaSync</p>
+<p class="meta">
+  Android client: <code>com.atomicasoftware.contactzillasync</code> &nbsp;·&nbsp;
+  Server: <code>dav.contactzilla.app</code> (SabreDAV) &nbsp;·&nbsp;
+  9 September 2026
+</p>
+
+<h2>Why this matters</h2>
+
+<p>
+  Contacts currently reach the device by polling. Android's WorkManager enforces a fifteen-minute
+  floor on periodic work, so fifteen minutes is the fastest the app can ever poll — a limit the
+  codebase already acknowledges in <code>SyncWorkerManager.effectivePeriodicInterval()</code>, which
+  silently raises any shorter interval to the minimum. Server-side changes therefore take up to
+  fifteen minutes to appear, and no amount of client work will improve that.
+</p>
+
+<p>
+  WebDAV-Push removes the constraint entirely. The server notifies the device the moment a collection
+  changes and the client syncs within seconds, while also using <em>less</em> battery than polling
+  because the device stops waking up to ask about changes that haven't happened. It is the only route
+  to near-instant contact updates.
+</p>
+
+<div class="callout">
+  <span class="label">Current server status</span>
+  <p>
+    A PROPFIND against <code>/addressbooks/kindsapphireevolve/clients/</code> for
+    <code>transports</code> and <code>topic</code> in the <code>https://bitfire.at/webdav-push</code>
+    namespace returns <strong>404 Not Found</strong> for both properties. The server advertises no
+    push support today, so the client correctly falls back to polling.
+  </p>
+</div>
+
+<h2>Where the client stands</h2>
+
+<p>
+  The client is further along than its behaviour suggests. Server capability detection, the database
+  schema and a number of supporting APIs are all present and working; only the runtime — registration,
+  message receipt and the transport integration — is absent.
+</p>
+
+<table>
+  <thead>
+    <tr><th style="width:34%">Layer</th><th style="width:14%">Status</th><th>Detail</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Capability detection</td>
+      <td class="status ok">Present</td>
+      <td><code>CollectionListRefresher</code> requests <code>PushTransports.NAME</code> and <code>Topic.NAME</code> in its PROPFIND</td>
+    </tr>
+    <tr>
+      <td>Property parsing</td>
+      <td class="status ok">Present</td>
+      <td><code>Collection.fromDavResponse()</code> extracts the web-push transport, VAPID key and topic</td>
+    </tr>
+    <tr>
+      <td>Database schema</td>
+      <td class="status ok">Present</td>
+      <td>Schema v17. Columns <code>pushTopic</code>, <code>supportsWebPush</code>, <code>pushVapidKey</code>, <code>pushSubscription</code>, <code>pushSubscriptionCreated</code>, <code>pushSubscriptionExpires</code>. No migration needed.</td>
+    </tr>
+    <tr>
+      <td>DAO / repository APIs</td>
+      <td class="status ok">Present</td>
+      <td><code>getSyncableByPushTopic</code>, <code>getFirstVapidKey</code>, <code>updatePushSubscription</code> and others — currently with zero callers</td>
+    </tr>
+    <tr>
+      <td>Push-Dont-Notify header</td>
+      <td class="status ok">Present</td>
+      <td><code>SyncManager</code> sends it on PUT and DELETE when a subscription URL is stored</td>
+    </tr>
+    <tr>
+      <td>Collection status UI</td>
+      <td class="status ok">Present</td>
+      <td><code>CollectionScreen</code> displays push support and subscription timestamps (read-only)</td>
+    </tr>
+    <tr>
+      <td>Strings</td>
+      <td class="status ok">Present</td>
+      <td>Including German, Dutch, French and Spanish translations</td>
+    </tr>
+    <tr>
+      <td>Subscription registration</td>
+      <td class="status gone">Missing</td>
+      <td>The POST <code>push-register</code> flow was deleted</td>
+    </tr>
+    <tr>
+      <td>Incoming message handling</td>
+      <td class="status gone">Missing</td>
+      <td>No receiver parses a push message or triggers a sync</td>
+    </tr>
+    <tr>
+      <td>UnifiedPush integration</td>
+      <td class="status gone">Missing</td>
+      <td>Dependencies and the manifest service entry were removed</td>
+    </tr>
+    <tr>
+      <td>Distributor settings UI</td>
+      <td class="status gone">Missing</td>
+      <td>Deleted, though its strings survive</td>
+    </tr>
+    <tr>
+      <td><code>fromPush</code> sync flag</td>
+      <td class="status partial">Stub</td>
+      <td>The parameter exists on <code>SyncWorkerManager.enqueueOneTime</code> but is only logged</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>What was removed, and when</h3>
+
+<p>
+  Commit <code>0724c719</code>, "Remove WebDAV Push code", dated 15 March 2025 and now 156 commits
+  behind HEAD, deleted 1,123 lines across 18 files:
+</p>
+
+<div class="filelist">
+  push/PushRegistrationManager.kt &nbsp;— 332 lines — UnifiedPush registration, POST push-register<br>
+  push/PushMessageHandler.kt &nbsp;— 107 lines — parse incoming message, trigger sync<br>
+  push/UnifiedPushService.kt &nbsp;— 80 lines — UnifiedPush entry point<br>
+  push/PushNotificationManager.kt &nbsp;— 70 lines — "sync pending" notification<br>
+  push/PushRegistrationWorker.kt &nbsp;— 38 lines — periodic re-registration<br>
+  ui/AppSettingsScreen.kt &nbsp;— 214 lines — distributor selection UI<br>
+  ui/AppSettingsModel.kt &nbsp;— 76 lines — distributor state<br>
+  <br>
+  plus hooks in RefreshCollectionsWorker, BaseSyncWorker, SyncWorkerManager,<br>
+  CollectionSelectedUseCase; the manifest &lt;service&gt; entry; and two Gradle dependencies.
+</div>
+
+<div class="callout">
+  <span class="label">This is not a clean revert</span>
+  <p>
+    The deleted files lived under <code>com.messageconcept.peoplesyncclient</code>. The app has since
+    been renamed to <code>com.atomicasoftware.contactzillasync</code>, and 156 commits of drift have
+    landed in the classes these files hook into. Expect a manual port of roughly 630 lines of main
+    source rather than a <code>git revert</code>.
+  </p>
+</div>
+
+<h2>The transport decision</h2>
+
+<p>
+  Web Push needs something to carry the message to the handset, and this is the one genuine product
+  decision in the project. It should be settled before any client work starts, because it determines
+  what the app is.
+</p>
+
+<table>
+  <thead>
+    <tr><th style="width:26%">Option</th><th>Trade-off</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>UnifiedPush distributor</strong><br><code>org.unifiedpush.android:connector</code></td>
+      <td>
+        Fully open, no Google dependency, and what DAVx⁵ ships. But it requires users to install a
+        separate distributor app such as ntfy and connect it manually. Fine for hobbyists;
+        a non-starter for MDM-managed business users who will not install a second app.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Embedded FCM distributor</strong><br><code>org.unifiedpush.android:embedded-fcm-distributor</code></td>
+      <td>
+        No second app — push works out of the box. Was already a dependency before the removal.
+        Requires a Firebase project, <code>google-services.json</code> and a hard dependency on Google
+        Play Services. The build currently has a single <code>ose</code> flavour and no Firebase
+        anywhere, so this changes the nature of the app.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Both, by flavour</strong></td>
+      <td>
+        Keep <code>ose</code> pure with the plain connector and add a Play-targeted flavour with the
+        embedded distributor. Most flexible, most build complexity, and requires maintaining two
+        release artefacts.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  The decision can be deferred during development: build and test against ntfy first, then decide on
+  FCM before shipping to end users.
+</p>
+
+<h2>The server is the larger piece of work</h2>
+
+<p>
+  There is no ready-made sabre/dav plugin for WebDAV-Push. The only reference server implementation is
+  bitfire's Nextcloud extension, <code>nc_ext_dav_push</code>. This means writing a
+  <code>Sabre\DAV\ServerPlugin</code> against the specification draft, registering it with
+  <code>Server::addPlugin()</code>. It must do five things.
+</p>
+
+<h3>1. Advertise capability</h3>
+<p>
+  Expose <code>transports</code>, <code>topic</code> and <code>supported-triggers</code> through
+  <code>propFind</code> on address book collections. The transports element carries the server's VAPID
+  public key. The specification requires that <code>topic</code> and <code>supported-triggers</code>
+  are <em>not</em> returned for resources that don't support push.
+</p>
+
+<h3>2. Accept subscriptions</h3>
+<p>
+  Handle <code>POST</code> with <code>Content-Type: application/xml</code> and a
+  <code>push-register</code> root element. Persist the subscription against the authenticated user and
+  respond <code>201</code> with <code>Location</code> and <code>Expires</code> headers. Re-registering
+  an existing identifier must update the record rather than create a duplicate.
+</p>
+
+<h3>3. Support unsubscribe and expiry</h3>
+<p>
+  Handle <code>DELETE</code> on the registration URL, and sweep expired subscriptions. The
+  <code>Expires</code> value the server returns may be shorter than the client requested.
+</p>
+
+<h3>4. Deliver push messages</h3>
+<p>
+  On a collection change, send a VAPID-signed, encrypted Web Push message to the stored endpoint,
+  carrying a <code>push-message</code> XML body with the collection topic and ideally the new
+  <code>sync-token</code>. Two practical notes: delivery must happen out of band from the request that
+  caused the change, so a queue and worker are needed rather than inline sending; and the encryption
+  (RFC 8291 and 8292) is fiddly enough that <code>minishlink/web-push</code> is strongly preferable to
+  a hand-rolled implementation.
+</p>
+
+<h3>5. Honour Push-Dont-Notify</h3>
+<p>
+  The client already sends this header on its own writes. If the server ignores it, every change the
+  app makes will push a notification back to the device that made it, causing a redundant sync loop.
+  Registration URLs must be matched in the exact form the server originally issued in the
+  <code>Location</code> header.
+</p>
+
+<h2>Suggested sequencing</h2>
+
+<ol>
+  <li>
+    <strong>Build the sabre/dav plugin first.</strong> The client is useless without it, and it can be
+    validated independently against DAVx⁵, which already implements the protocol. This de-risks the
+    server work before any Android effort is spent.
+  </li>
+  <li>
+    <strong>Port the client <code>push/</code> package.</strong> Re-add the UnifiedPush connector,
+    the manifest service entry, and the five deleted classes under the current package name; re-wire
+    the hooks in <code>RefreshCollectionsWorker</code>, <code>BaseSyncWorker</code> and
+    <code>CollectionSelectedUseCase</code>; and make <code>fromPush</code> do something again.
+  </li>
+  <li>
+    <strong>Test with ntfy</strong> as the distributor, end to end.
+  </li>
+  <li>
+    <strong>Settle the transport question</strong> and, if going the FCM route, add Firebase and
+    restore the distributor settings UI.
+  </li>
+  <li>
+    <strong>Reconsider the poll interval.</strong> Once push is live, the fifteen-minute default
+    becomes a fallback for devices without a working distributor and could be relaxed to reduce
+    battery use.
+  </li>
+</ol>
+
+<h2>References</h2>
+
+<table class="refs">
+  <tbody>
+    <tr>
+      <td style="width:32%">Specification draft</td>
+      <td>bitfireat.github.io/webdav-push/draft-bitfire-webdav-push-00.html</td>
+    </tr>
+    <tr>
+      <td>Project and discussion</td>
+      <td>github.com/bitfireAT/webdav-push</td>
+    </tr>
+    <tr>
+      <td>Reference server (Nextcloud)</td>
+      <td>github.com/bitfireAT/nc_ext_dav_push</td>
+    </tr>
+    <tr>
+      <td>Writing sabre/dav plugins</td>
+      <td>sabre.io/dav/writing-plugins/</td>
+    </tr>
+    <tr>
+      <td>Web Push RFCs</td>
+      <td>RFC 8030 (delivery), RFC 8291 (encryption), RFC 8292 (VAPID)</td>
+    </tr>
+    <tr>
+      <td>Removal commit</td>
+      <td><code>0724c719</code> — "Remove WebDAV Push code", 15 March 2025</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="footer-note">
+  Prepared for Contactzilla. Findings reflect the repository at the time of writing and a live
+  capability probe against <code>dav.contactzilla.app</code>.
+</p>
+
+</body>
+</html>

@@ -37,7 +37,6 @@ fun LoginScreen(
     initialLoginInfo: LoginInfo = LoginInfo(),
     skipLoginTypePage: Boolean = false,
     initialLoginType: LoginType = UrlLogin,
-    onNavUp: () -> Unit,
     onFinish: (Account?) -> Unit
 ) {
     val model: LoginScreenModel = hiltViewModel { factory: LoginScreenModel.Factory ->
@@ -59,7 +58,9 @@ fun LoginScreen(
     LoginScreenContent(
         page = model.page,
         helpUri = loginType.helpUrl,
-        onNavUp = onNavUp,
+        // the up button navigates within the login flow, just like the back gesture, so that
+        // entered details aren't lost by accidentally leaving the whole flow
+        onNavUp = { model.navBack() },
         onFinish = onFinish
     )
 }
@@ -104,9 +105,6 @@ fun LoginScreenContent(
 
                     LoginScreenModel.Page.LoginDetails ->
                         LoginDetailsPage(snackbarHostState = snackbarHostState)
-
-                    LoginScreenModel.Page.DetectResources ->
-                        DetectResourcesPage()
 
                     LoginScreenModel.Page.AccountDetails ->
                         AccountDetailsPage(
